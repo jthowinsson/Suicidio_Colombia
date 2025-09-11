@@ -1,8 +1,11 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: My sample book
-author: The Jupyter Book Community
+title: Modelos explicativos y predictivos del suicidio en Colombia (2015-2023): comparación entre regresión logística y aprendizaje automático (Random Forest)
+author: Msc Jesús D. Zamora Th.
+copyright: "2024, MSc Jesus Zamora"
+description: "Este es mi primer libro hecho con Jupyter Book"
+language: es
 logo: logo.png
 
 # Force re-execution of notebooks on each build.
