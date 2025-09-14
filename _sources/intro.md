@@ -1,8 +1,9 @@
-# Suicidio en Colombia (2015-2023)
+# Suicidio en Colombiaß
 
 <p align="center">
-  <img src="Portada.png" alt="Suicidio" width="200px" />
+  <img src="Portada.png" alt="Suicidio" width="200px"/>
 </p>
+
 
 ```{tableofcontents}
 ```
