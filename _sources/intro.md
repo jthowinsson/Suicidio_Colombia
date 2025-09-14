@@ -1,8 +1,9 @@
+```markdown
 # Suicidio en Colombia
-
-<p align="center">
-   <img src="images/Portada.png" alt="Suicidio" width="200px"/>
-</p>
+```{image} images/Portada.png
+:alt: Portada
+:width: 200px
+:align: center
 
 
 ```{tableofcontents}
