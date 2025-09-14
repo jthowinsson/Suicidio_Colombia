@@ -1,12 +1,14 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: Modelos explicativos y predictivos del suicidio en Colombia (2015-2023): comparación entre regresión logística y aprendizaje automático (Random Forest)
-author: Msc Jesús D. Zamora Th.
-copyright: "2024, MSc Jesus Zamora"
-description: "Este es mi primer libro hecho con Jupyter Book"
+title: |
+  Modelos explicativos y predictivos del suicidio en Colombia (2015-2023):
+  comparación entre regresión logística y aprendizaje automático (Random Forest)
+author: "Msc Jesús D. Zamora Th."
+copyright: "2024, Msc Jesús D. Zamora Th."
+description: "Análisis comparativo entre regresión logística y Random Forest para modelar el suicidio en Colombia (2015-2023)."
 language: es
-logo: logo.png
+logo: Logo.png
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
