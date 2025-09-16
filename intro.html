@@ -362,7 +362,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -378,6 +380,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aproximacion-conceptual">Aproximación Conceptual</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -389,10 +399,30 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="suicidio-en-colombia">
 <h1>Suicidio en Colombia<a class="headerlink" href="#suicidio-en-colombia" title="Link to this heading">#</a></h1>
+<section id="aproximacion-conceptual">
+<h2>Aproximación Conceptual<a class="headerlink" href="#aproximacion-conceptual" title="Link to this heading">#</a></h2>
 <figure class="align-center" id="portada1">
 <a class="reference internal image-reference" href="_images/Salud.png"><img alt="_images/Salud.png" src="_images/Salud.png" style="height: 300px;" />
 </a>
 </figure>
+<p>La conducta suicida es un fenómeno complejo, con diferentes implicaciones, tanto psicopatológicas como existenciales, sociales y morales, por lo que resulta complicado dar una definición única y universal a la misma. Diversos autores han tratado de definir la conducta suicida (Durkheim, Schneider), pero es tal vez Rojas (1984) el que establece un concepto más operativo:</p>
+<p>“Se entiende por suicidio aquella conducta o conjunto de conductas que, dirigidas por el propio sujeto, conducen a la muerte (suicidio consumado) o a una situación de gravedad mortal (suicidio frustrado), bien de forma activa o pasiva”.</p>
+<p>Es decir, que dentro de la conducta suicida no sólo hay que contemplar la consumación del suicidio, sino también la cantidad de matices autoagresivos existentes en la misma y que necesariamente no llevan a la muerte a la persona pero que marcan a partir de este momento su propia existencia.</p>
+<p>Dos son los elementos que integran a la conducta suicida, el “Criterio auto inflingido”, es decir la propia acción violenta, y el “Criterio de propósito”, que hace referencia a la finalidad de muerte. La presencia de ambos criterios o la ausencia de uno de ellos determinan las diferentes formas con que puede presentarse la conducta suicida.</p>
+<figure class="align-default" id="conducta-fig">
+<a class="reference internal image-reference" href="_images/Conducta_AutoInflingido.jpeg"><img alt="_images/Conducta_AutoInflingido.jpeg" src="_images/Conducta_AutoInflingido.jpeg" style="width: 600px;" />
+</a>
+</figure>
+<p><strong>Parasuicidio</strong>:
+También llamado “Gesto Suicida”. Es el conjunto de conductas voluntarias e intencionales que el sujeto pone en marcha con el fin de producirse daño físico y cuyas consecuencias son el dolor, la desfiguración, la mutilación o el daño de alguna función o parte de su cuerpo, pero sin la intención de acabar con su vida.
+Se incluyen aquí entre otros, los cortes en las muñecas, las sobredosis de medicamentos sin intención de muerte y las quemaduras. La intención en el Parasuicidio o Gesto Suicida no es por lo tanto la muerte, sino que tiene que ver con el deseo de conseguir algo (más cariño, que la pareja no le abandone, un empleo, etc.) para lo cual la persona cree que no dispone de otro tipo de recursos personales.</p>
+<p><strong>Ideas suicidas</strong>:
+La persona contempla el suicidio como solución real a sus problemas, si bien aún no se ha producido un daño físico contra sí mismo. No existe aún una idea clara ni de cómo ni de cuando, pero entre las alternativas que puede tener para solucionar su situación problemática ya está presente el suicidio.</p>
+<p><strong>Crisis suicida</strong>: De entre todas las alternativas que la persona disponía para solucionar la situación problemática, el suicidio comienza a tomar protagonismo. La idea ha tomado cuerpo y se activan a nivel psiquico un conjunto de impulsos de muerte, que le llevan a establecer un plan suicida.</p>
+<p><strong>Suicidio consumado</strong>:
+Cuando el Criterio de Propósito o de Muerte y el Criterio Auto Infligido se suman, se establece un plan de acción con diferentes niveles de elaboración. Si la puesta en práctica de este plan tiene “éxito” conduce a la muerte del sujeto.</p>
+<p><strong>Suicidio frustrado</strong>: Es un acto suicida que no conlleva a la muerte de la persona porque determinadas circunstancias externas, muchas veces casuales y siempre no previstas acontecen en el momento crítico. No es por lo tanto un Parasuicidio, ya que en el Suicidio Frustrado sí que hay una voluntad real  de producirse la propia muerte. Sirva como ejemplo el caer sobre las cuerdas de un tendedero al arrojarse por una ventana.</p>
+<p><strong>Tentativa de suicidio</strong>: Toda conducta que busca la propia muerte pero para lograr el propósito la persona no emplea los medios adecuados y por lo tanto el sujeto no consigue acabar con su vida. Es un intento que puede fallar por múltiples causas, desde no tener una firma decisión de suicidarse hasta por el empleo de medios “blandos”. Existe el “propósito de muerte” pero el “criterio auto inflingido” no es el adecuado.</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="Introduccion.html">Introducción</a></li>
@@ -400,6 +430,7 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="referencias.html#referencias">Referencias</a></li>
 </ul>
 </div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -448,6 +479,21 @@ document.write(`
             
             
               
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aproximacion-conceptual">Aproximación Conceptual</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
             
           </div>
           <footer class="bd-footer-content">
@@ -457,7 +503,10 @@ document.write(`
   <div class="footer-item">
     
 <p class="component-author">
-By Msc Jesús D. Zamora Th.
+By Autor: Msc Jesús D. Zamora Th.
+Coautora: Bianca Y. Urueña.  
+Coautora: Laura V. Velásquez O.
+
 </p>
 
   </div>
