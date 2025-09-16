@@ -7,6 +7,7 @@
 :height: 300px
 :align: center
 :name: portada1
+Imagen creada por IA canva
 ```
 
 La conducta suicida es un fenómeno complejo, con diferentes implicaciones, tanto psicopatológicas como existenciales, sociales y morales, por lo que resulta complicado dar una definición única y universal a la misma. Diversos autores han tratado de definir la conducta suicida (Durkheim, Schneider), pero es tal vez Rojas (1984) el que establece un concepto más operativo:
