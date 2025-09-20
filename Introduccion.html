@@ -8,8 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Introducción &#8212; Modelos explicativos y predictivos del suicidio en Colombia (2015-2023):
-comparación entre regresión logística y aprendizaje automático (Random Forest)
+    <title>Introducción &#8212; Factores asociados al mecanismo de suicidio en Colombia (2015–2023)
 </title>
   
   
@@ -155,11 +154,9 @@ comparación entre regresión logística y aprendizaje automático (Random Fores
       
     
     
-    <img src="_static/Logo.png" class="logo__image only-light" alt="Modelos explicativos y predictivos del suicidio en Colombia (2015-2023):
-comparación entre regresión logística y aprendizaje automático (Random Forest)
+    <img src="_static/Logo.png" class="logo__image only-light" alt="Factores asociados al mecanismo de suicidio en Colombia (2015–2023)
  - Home"/>
-    <script>document.write(`<img src="_static/Logo.png" class="logo__image only-dark" alt="Modelos explicativos y predictivos del suicidio en Colombia (2015-2023):
-comparación entre regresión logística y aprendizaje automático (Random Forest)
+    <script>document.write(`<img src="_static/Logo.png" class="logo__image only-dark" alt="Factores asociados al mecanismo de suicidio en Colombia (2015–2023)
  - Home"/>`);</script>
   
   
@@ -188,8 +185,10 @@ comparación entre regresión logística y aprendizaje automático (Random Fores
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Introducción</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Datos_Met.html">Datos y metodología</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Eda.html">Análisis Exploratorio de Datos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="referencias.html">Citations</a></li>
 
+<li class="toctree-l1"><a class="reference internal" href="Ejercicios.html">Mapas</a></li>
 </ul>
 
     </div>
@@ -426,15 +425,15 @@ document.write(`
 </section>
 <section id="objetivo-general">
 <h2>Objetivo general<a class="headerlink" href="#objetivo-general" title="Link to this heading">#</a></h2>
-<p>Analizar y comparar la capacidad explicativa y predictiva de la regresión logística y los algoritmos de aprendizaje automático (Random Forest) para identificar factores asociados al suicidio en Colombia entre 2015 y 2023, utilizando datos oficiales con el fin de contribuir al fortalecimiento de estrategias de prevención en salud mental.</p>
+<p>Estimar la asociación entre características sociodemográficas, contextuales y la probabilidad de que el mecanismo de suicidio sea “generadores de asfixia” (vs otros mecanismos) en Colombia durante 2015–2023.</p>
 <section id="objetivos-especificos">
 <h3>Objetivos específicos<a class="headerlink" href="#objetivos-especificos" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Identificar y caracterizar los principales factores sociodemográficos, psicológicos y ambientales asociados a los casos de suicidio reportados en Colombia durante el periodo 2015-2023, con base en los datos abiertos del gobierno y fuentes oficiales.</p></li>
-<li><p>Aplicar modelos de regresión logística para determinar el peso y la significancia estadística de los factores asociados al suicidio en la población colombiana.</p></li>
-<li><p>Implementar algoritmos de aprendizaje automático, específicamente Random Forest, para establecer patrones predictivos de riesgo de suicidio y comparar su desempeño con el modelo de regresión logística tradicional.</p></li>
-<li><p>Evaluar y contrastar la precisión, sensibilidad y utilidad práctica de ambos modelos (regresión logística y Random Forest) en la identificación de casos de alto riesgo, considerando métricas estadísticas relevantes.</p></li>
-<li><p>Formular recomendaciones orientadas al diseño de estrategias preventivas y políticas públicas en salud mental, a partir de los hallazgos obtenidos en el análisis comparativo de los modelos.</p></li>
+<li><p>Caracterizar los mecanismos de suicidio registrados en Colombia entre 2015 y 2023 según variables sociodemográficas y contextuales.</p></li>
+<li><p>Construir una variable dependiente binaria para analizar el mecanismo predominante (generadores de asfixia vs otros).</p></li>
+<li><p>Estimar un modelo de regresión logística binaria para identificar factores asociados al uso de generadores de asfixia como mecanismo de suicidio.</p></li>
+<li><p>Evaluar el ajuste y desempeño del modelo mediante métricas de discriminación y calibración.</p></li>
+<li><p>Explorar la robustez del modelo a través de análisis de sensibilidad e interacciones entre variables clave.</p></li>
 </ul>
 </section>
 </section>
@@ -524,7 +523,7 @@ document.write(`
     
 <p class="component-author">
 By Autor: Msc Jesús D. Zamora Th.
-Coautora: Bianca Yibirin. U.  
+Coautora: Bianca Yibirin U.
 Coautora: Laura V. Velásquez O.
 
 </p>

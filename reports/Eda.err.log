@@ -30,7 +30,5 @@ import pandas as pd
 
 url = 'https://github.com/jthowinsson/Suicidio_Colombia/raw/main/Presuntos_Suicidios._Colombia%2C_2015_a_2023.xlsx'
 df = pd.read_excel(url)
-print(df.head())
-
 -------------------
 
