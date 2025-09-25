@@ -16,19 +16,69 @@ Traceback (most recent call last):
     return future.result()
   File "/Users/instructorzamora/miniconda3/envs/ml_venv/lib/python3.9/site-packages/nbclient/client.py", line 709, in async_execute
     await self.async_execute_cell(
-  File "/Users/instructorzamora/miniconda3/envs/ml_venv/lib/python3.9/site-packages/nbclient/client.py", line 1005, in async_execute_cell
-    exec_reply = await self.task_poll_for_reply
-  File "/Users/instructorzamora/miniconda3/envs/ml_venv/lib/python3.9/site-packages/nbclient/client.py", line 806, in _async_poll_for_reply
-    error_on_timeout_execute_reply = await self._async_handle_timeout(timeout, cell)
-  File "/Users/instructorzamora/miniconda3/envs/ml_venv/lib/python3.9/site-packages/nbclient/client.py", line 856, in _async_handle_timeout
-    raise CellTimeoutError.error_from_timeout_and_cell(
-nbclient.exceptions.CellTimeoutError: A cell timed out while it was being executed, after 30 seconds.
-The message was: Cell execution timed out.
-Here is a preview of the cell contents:
--------------------
-import pandas as pd
+  File "/Users/instructorzamora/miniconda3/envs/ml_venv/lib/python3.9/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/instructorzamora/miniconda3/envs/ml_venv/lib/python3.9/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# === Gráfica con estilo monocrómatico ===
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib.ticker import MultipleLocator, PercentFormatter
 
-url = 'https://github.com/jthowinsson/Suicidio_Colombia/raw/main/Presuntos_Suicidios._Colombia%2C_2015_a_2023.xlsx'
-df = pd.read_excel(url)
--------------------
+fig, ax = plt.subplots(figsize=(10,6), dpi=150)
+
+# Paleta monocrómica (Blues). Ajusta el colormap si prefieres otra gama.
+cats = rowpct.columns.tolist()
+cmap = plt.cm.Blues
+if len(cats) > 1:
+    colors = [cmap(0.35 + 0.6*i/(len(cats)-1)) for i in range(len(cats))]
+else:
+    colors = [cmap(0.7)]
+
+(rowpct
+ .plot(kind='barh', stacked=True, ax=ax, color=colors,
+       edgecolor='white', linewidth=0.8))
+
+# Estética
+ax.set_xlim(0, 100)
+ax.xaxis.set_major_locator(MultipleLocator(20))
+ax.xaxis.set_major_formatter(PercentFormatter(xmax=100, decimals=0))
+ax.grid(axis='x', linestyle='--', alpha=0.35)
+ax.set_xlabel('Porcentaje (%)', fontsize=11)
+ax.set_ylabel('Ciclo vital', fontsize=11)
+ax.set_title('Distribución de sexo por ciclo vital (100%)', fontsize=13, pad=10)
+
+# Quita spines superiores y derecha
+for spine in ['top', 'right']:
+    ax.spines[spine].set_visible(False)
+
+# Leyenda externa, sin borde
+leg = ax.legend(title='Sexo', bbox_to_anchor=(1.03, 1), loc='upper left', frameon=False)
+
+# Etiquetas internas de porcentaje
+for i, (idx, row) in enumerate(rowpct.iterrows()):
+    cum = 0
+    for val in row:
+        if val >= 3:  # evita ruido visual
+            ax.text(cum + val/2, i, f'{val:.0f}%', va='center', ha='center', fontsize=9, color='#1f1f1f')
+        cum += val
+
+plt.tight_layout()
+plt.show()
+
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[12], line 9[0m
+[1;32m      6[0m fig, ax [38;5;241m=[39m plt[38;5;241m.[39msubplots(figsize[38;5;241m=[39m([38;5;241m10[39m,[38;5;241m6[39m), dpi[38;5;241m=[39m[38;5;241m150[39m)
+[1;32m      8[0m [38;5;66;03m# Paleta monocrómica (Blues). Ajusta el colormap si prefieres otra gama.[39;00m
+[0;32m----> 9[0m cats [38;5;241m=[39m [43mrowpct[49m[38;5;241m.[39mcolumns[38;5;241m.[39mtolist()
+[1;32m     10[0m cmap [38;5;241m=[39m plt[38;5;241m.[39mcm[38;5;241m.[39mBlues
+[1;32m     11[0m [38;5;28;01mif[39;00m [38;5;28mlen[39m(cats) [38;5;241m>[39m [38;5;241m1[39m:
+
+[0;31mNameError[0m: name 'rowpct' is not defined
 

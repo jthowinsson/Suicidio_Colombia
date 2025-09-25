@@ -48,15 +48,15 @@
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
-    <script>let toggleHintShow = 'Click to show';</script>
-    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleHintShow = '↑';</script>
+    <script>let toggleHintHide = '↓';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js?v=4a39c7ea"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>var togglebuttonSelector = 'div.cell div.cell_input';</script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>var togglebuttonSelector = 'div.cell div.cell_input';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Eda';</script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -405,131 +405,115 @@ document.write(`
 <p>En primer lugar, se realiza una revisión general del dataset, verificando el número de observaciones, la disponibilidad de variables y la presencia de valores faltantes o categorías indeterminadas. Posteriormente, se lleva a cabo un análisis univariado, en el que se describen la distribución de la variable dependiente (mecanismo de suicidio: generadores de asfixia vs otros) y de las principales variables independientes (sexo, edad, estado civil, escolaridad, escenario, zona, entre otras).</p>
 <p>En una segunda fase, se desarrolla un análisis bivariado, explorando las asociaciones preliminares entre el mecanismo de suicidio y las variables sociodemográficas/contextuales. Esto incluye el uso de tablas de contingencia, gráficos comparativos y estimaciones de razones de momios (odds ratios) crudas en variables binarias.</p>
 <p>Finalmente, a partir de los hallazgos del EDA, se definen las decisiones de recodificación, agrupación y preparación de variables que alimentarán el modelo de regresión logística, asegurando la validez y consistencia de los resultados.</p>
+<ul class="simple">
+<li><ol class="arabic simple">
+<li><p><em>Carga y dimensiones del DataFrame</em></p></li>
+</ol>
+</li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-
-<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/jthowinsson/Suicidio_Colombia/raw/main/Presuntos_Suicidios._Colombia%2C_2015_a_2023.xlsx&#39;</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Carga, limpieza básica y Contar el número de filas y columnas en el DataFrame</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/jthowinsson/Suicidio_Colombia/main/Presuntos_Suicidios_con_Coor.csv&quot;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>  <span class="c1"># separador coma</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/jthowinsson/Suicidio_Colombia/raw/main/Presuntos_Suicidios._Colombia%2C_2015_a_2023.xlsx&#39;</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/ml_venv/lib/python3.9/site-packages/pandas/io/excel/_base.py:478,</span> in <span class="ni">read_excel</span><span class="nt">(io, sheet_name, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skiprows, nrows, na_values, keep_default_na, na_filter, verbose, parse_dates, date_parser, date_format, thousands, decimal, comment, skipfooter, storage_options, dtype_backend)</span>
-<span class="g g-Whitespace">    </span><span class="mi">476</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">io</span><span class="p">,</span> <span class="n">ExcelFile</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">477</span>     <span class="n">should_close</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="ne">--&gt; </span><span class="mi">478</span>     <span class="n">io</span> <span class="o">=</span> <span class="n">ExcelFile</span><span class="p">(</span><span class="n">io</span><span class="p">,</span> <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">479</span> <span class="k">elif</span> <span class="n">engine</span> <span class="ow">and</span> <span class="n">engine</span> <span class="o">!=</span> <span class="n">io</span><span class="o">.</span><span class="n">engine</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">480</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">481</span>         <span class="s2">&quot;Engine should not be specified when passing &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">482</span>         <span class="s2">&quot;an ExcelFile - ExcelFile already has the engine set&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">483</span>     <span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/ml_venv/lib/python3.9/site-packages/pandas/io/excel/_base.py:1496,</span> in <span class="ni">ExcelFile.__init__</span><span class="nt">(self, path_or_buffer, engine, storage_options)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1494</span>     <span class="n">ext</span> <span class="o">=</span> <span class="s2">&quot;xls&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1495</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1496</span>     <span class="n">ext</span> <span class="o">=</span> <span class="n">inspect_excel_format</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1497</span>         <span class="n">content_or_path</span><span class="o">=</span><span class="n">path_or_buffer</span><span class="p">,</span> <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span>
-<span class="g g-Whitespace">   </span><span class="mi">1498</span>     <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1499</span>     <span class="k">if</span> <span class="n">ext</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1500</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1501</span>             <span class="s2">&quot;Excel file format cannot be determined, you must specify &quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1502</span>             <span class="s2">&quot;an engine manually.&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1503</span>         <span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/ml_venv/lib/python3.9/site-packages/pandas/io/excel/_base.py:1371,</span> in <span class="ni">inspect_excel_format</span><span class="nt">(content_or_path, storage_options)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1368</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">content_or_path</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1369</span>     <span class="n">content_or_path</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">(</span><span class="n">content_or_path</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1371</span> <span class="k">with</span> <span class="n">get_handle</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1372</span>     <span class="n">content_or_path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">,</span> <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span> <span class="n">is_text</span><span class="o">=</span><span class="kc">False</span>
-<span class="g g-Whitespace">   </span><span class="mi">1373</span> <span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1374</span>     <span class="n">stream</span> <span class="o">=</span> <span class="n">handle</span><span class="o">.</span><span class="n">handle</span>
-<span class="g g-Whitespace">   </span><span class="mi">1375</span>     <span class="n">stream</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/ml_venv/lib/python3.9/site-packages/pandas/io/common.py:716,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">713</span>     <span class="n">codecs</span><span class="o">.</span><span class="n">lookup_error</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">715</span> <span class="c1"># open URLs</span>
-<span class="ne">--&gt; </span><span class="mi">716</span> <span class="n">ioargs</span> <span class="o">=</span> <span class="n">_get_filepath_or_buffer</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">717</span>     <span class="n">path_or_buf</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">718</span>     <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">719</span>     <span class="n">compression</span><span class="o">=</span><span class="n">compression</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">720</span>     <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">721</span>     <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">722</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">724</span> <span class="n">handle</span> <span class="o">=</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">filepath_or_buffer</span>
-<span class="g g-Whitespace">    </span><span class="mi">725</span> <span class="n">handles</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">BaseBuffer</span><span class="p">]</span>
-
-<span class="nn">File ~/miniconda3/envs/ml_venv/lib/python3.9/site-packages/pandas/io/common.py:373,</span> in <span class="ni">_get_filepath_or_buffer</span><span class="nt">(filepath_or_buffer, encoding, compression, mode, storage_options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">370</span>         <span class="k">if</span> <span class="n">content_encoding</span> <span class="o">==</span> <span class="s2">&quot;gzip&quot;</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">371</span>             <span class="c1"># Override compression based on Content-Encoding header</span>
-<span class="g g-Whitespace">    </span><span class="mi">372</span>             <span class="n">compression</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;method&quot;</span><span class="p">:</span> <span class="s2">&quot;gzip&quot;</span><span class="p">}</span>
-<span class="ne">--&gt; </span><span class="mi">373</span>         <span class="n">reader</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
-<span class="g g-Whitespace">    </span><span class="mi">374</span>     <span class="k">return</span> <span class="n">IOArgs</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">375</span>         <span class="n">filepath_or_buffer</span><span class="o">=</span><span class="n">reader</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">376</span>         <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">379</span>         <span class="n">mode</span><span class="o">=</span><span class="n">fsspec_mode</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">380</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">382</span> <span class="k">if</span> <span class="n">is_fsspec_url</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">):</span>
-
-<span class="nn">File ~/miniconda3/envs/ml_venv/lib/python3.9/http/client.py:476,</span> in <span class="ni">HTTPResponse.read</span><span class="nt">(self, amt)</span>
-<span class="g g-Whitespace">    </span><span class="mi">474</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">475</span>     <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">476</span>         <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_safe_read</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">length</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">477</span>     <span class="k">except</span> <span class="n">IncompleteRead</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">478</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_close_conn</span><span class="p">()</span>
-
-<span class="nn">File ~/miniconda3/envs/ml_venv/lib/python3.9/http/client.py:626,</span> in <span class="ni">HTTPResponse._safe_read</span><span class="nt">(self, amt)</span>
-<span class="g g-Whitespace">    </span><span class="mi">624</span> <span class="n">s</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="g g-Whitespace">    </span><span class="mi">625</span> <span class="k">while</span> <span class="n">amt</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">626</span>     <span class="n">chunk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">amt</span><span class="p">,</span> <span class="n">MAXAMOUNT</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">627</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">chunk</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">628</span>         <span class="k">raise</span> <span class="n">IncompleteRead</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="n">amt</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/ml_venv/lib/python3.9/socket.py:704,</span> in <span class="ni">SocketIO.readinto</span><span class="nt">(self, b)</span>
-<span class="g g-Whitespace">    </span><span class="mi">702</span> <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">703</span>     <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">704</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sock</span><span class="o">.</span><span class="n">recv_into</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">705</span>     <span class="k">except</span> <span class="n">timeout</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">706</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_timeout_occurred</span> <span class="o">=</span> <span class="kc">True</span>
-
-<span class="nn">File ~/miniconda3/envs/ml_venv/lib/python3.9/ssl.py:1242,</span> in <span class="ni">SSLSocket.recv_into</span><span class="nt">(self, buffer, nbytes, flags)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1238</span>     <span class="k">if</span> <span class="n">flags</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1239</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1240</span>           <span class="s2">&quot;non-zero flags not allowed in calls to recv_into() on </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
-<span class="g g-Whitespace">   </span><span class="mi">1241</span>           <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1242</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">nbytes</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1243</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1244</span>     <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">recv_into</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">nbytes</span><span class="p">,</span> <span class="n">flags</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/ml_venv/lib/python3.9/ssl.py:1100,</span> in <span class="ni">SSLSocket.read</span><span class="nt">(self, len, buffer)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1098</span> <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1099</span>     <span class="k">if</span> <span class="n">buffer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1100</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sslobj</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="nb">len</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1101</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1102</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sslobj</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="nb">len</span><span class="p">)</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(23544, 42)
 </pre></div>
 </div>
 </div>
 </div>
+<ul class="simple">
+<li><ol class="arabic simple" start="2">
+<li><p><em>Información general del DataFrame</em></p></li>
+</ol>
+</li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Ver las primeras filas</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2. Información general del dataset</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Información general ---&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Información general ---
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 23544 entries, 0 to 23543
+Data columns (total 42 columns):
+ #   Column                                Non-Null Count  Dtype  
+---  ------                                --------------  -----  
+ 0   ID                                    23544 non-null  int64  
+ 1   Año del hecho                         23544 non-null  int64  
+ 2   Grupo de edad de la victima           23544 non-null  object 
+ 3   Grupo Mayor Menor de Edad             23544 non-null  object 
+ 4   Edad judicial                         23544 non-null  object 
+ 5   Ciclo Vital                           23544 non-null  object 
+ 6   Sexo de la victima                    23544 non-null  object 
+ 7   Estado Civil                          23544 non-null  object 
+ 8   País de Nacimiento de la Víctima      23544 non-null  object 
+ 9   Escolaridad                           23544 non-null  object 
+ 10  Pertenencia Grupal                    23544 non-null  object 
+ 11  Mes del hecho                         23544 non-null  object 
+ 12  Dia del hecho                         23544 non-null  object 
+ 13  Rango de Hora del Hecho X 3 Horas     23544 non-null  object 
+ 14  Código Dane Municipio                 23544 non-null  int64  
+ 15  Municipio del hecho DANE              23544 non-null  object 
+ 16  Departamento del hecho DANE           23544 non-null  object 
+ 17  Código Dane Departamento              23544 non-null  int64  
+ 18  Escenario del Hecho                   23544 non-null  object 
+ 19  Zona del Hecho                        23544 non-null  object 
+ 20  Actividad Durante el Hecho            23544 non-null  object 
+ 21  Circunstancia del Hecho               23544 non-null  object 
+ 22  Manera de Muerte                      23544 non-null  object 
+ 23  Mecanismo Causal                      23544 non-null  object 
+ 24  Diagnostico Topográfico de la Lesión  23544 non-null  object 
+ 25  Presunto Agresor                      23544 non-null  object 
+ 26  Condición de la Víctima               23544 non-null  object 
+ 27  Medio de Desplazamiento o Transporte  23544 non-null  object 
+ 28  Servicio del Vehículo                 23544 non-null  object 
+ 29  Clase o Tipo de Accidente             23544 non-null  object 
+ 30  Objeto de Colisión                    23544 non-null  object 
+ 31  Servicio del Objeto de Colisión       23544 non-null  object 
+ 32  Razón del Suicidio                    23544 non-null  object 
+ 33  Localidad del Hecho                   23544 non-null  object 
+ 34  Ancestro Racial                       23544 non-null  object 
+ 35  Codigo_Dane_Municipio_norm            23544 non-null  int64  
+ 36  Muni_Cod                              23536 non-null  float64
+ 37  Muni_Nom                              23536 non-null  object 
+ 38  Depto_Cod                             23536 non-null  float64
+ 39  Depto_Nom                             23536 non-null  object 
+ 40  latitud                               23536 non-null  float64
+ 41  longitud                              23536 non-null  float64
+dtypes: float64(4), int64(5), object(33)
+memory usage: 7.5+ MB
+None
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><ol class="arabic simple" start="3">
+<li><p><em>Visualizar las primeras filas del DataFrame</em></p></li>
+</ol>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 3. Vista preliminar de los datos (head)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--- Primeras filas ---&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 
-<span class="c1"># print(df.head()) 5 primera filas</span>
-<span class="c1"># df.head() #muestra todas las columnas</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>  
+<span class="c1"># Configurar pandas para mostrar todas las columnas y todo el ancho</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_columns&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -556,53 +540,53 @@ document.write(`
 3             Hombre   Soltero(a)                         Colombia   
 4             Hombre   Soltero(a)                         Colombia   
 
-                                Escolaridad  ... Presunto Agresor  \
-0  Educación inicial y educación preescolar  ...        No aplica   
-1  Educación inicial y educación preescolar  ...        No aplica   
-2  Educación inicial y educación preescolar  ...        No aplica   
-3  Educación inicial y educación preescolar  ...        No aplica   
-4         Educación media o secundaria alta  ...        No aplica   
+                                Escolaridad  ...  \
+0  Educación inicial y educación preescolar  ...   
+1  Educación inicial y educación preescolar  ...   
+2  Educación inicial y educación preescolar  ...   
+3  Educación inicial y educación preescolar  ...   
+4         Educación media o secundaria alta  ...   
 
-  Condición de la Víctima Medio de Desplazamiento o Transporte  \
-0               No aplica                            No aplica   
-1               No aplica                            No aplica   
-2               No aplica                            No aplica   
-3               No aplica                            No aplica   
-4               No aplica                            No aplica   
+                 Razón del Suicidio Localidad del Hecho Ancestro Racial  \
+0                   Sin información           No aplica        Indigena   
+1  Conflicto con pareja o ex pareja           No aplica         Mestizo   
+2  Conflicto con pareja o ex pareja           No aplica         Mestizo   
+3                   Sin información           No aplica         Mestizo   
+4                   Sin información           No aplica         Mestizo   
 
-  Servicio del Vehículo  Clase o Tipo de Accidente Objeto de Colisión  \
-0             No aplica                  No aplica          No aplica   
-1             No aplica                  No aplica          No aplica   
-2             No aplica                  No aplica          No aplica   
-3             No aplica                  No aplica          No aplica   
-4             No aplica                  No aplica          No aplica   
+  Codigo_Dane_Municipio_norm  Muni_Cod     Muni_Nom Depto_Cod  Depto_Nom  \
+0                      66572   66572.0  PUEBLO RICO      66.0  RISARALDA   
+1                      81001   81001.0       ARAUCA      81.0     ARAUCA   
+2                      81220   81220.0  CRAVO NORTE      81.0     ARAUCA   
+3                      63470   63470.0   MONTENEGRO      63.0    QUINDÍO   
+4                      63130   63130.0      CALARCÁ      63.0    QUINDÍO   
 
-  Servicio del Objeto de Colisión                Razón del Suicidio  \
-0                       No aplica                   Sin información   
-1                       No aplica  Conflicto con pareja o ex pareja   
-2                       No aplica  Conflicto con pareja o ex pareja   
-3                       No aplica                   Sin información   
-4                       No aplica                   Sin información   
+    latitud   longitud  
+0  5.222043 -76.030801  
+1  7.072726 -70.747408  
+2  6.303913 -70.204286  
+3  4.565057 -75.749827  
+4  4.520982 -75.646085  
 
-  Localidad del Hecho Ancestro Racial  
-0           No aplica        Indigena  
-1           No aplica         Mestizo  
-2           No aplica         Mestizo  
-3           No aplica         Mestizo  
-4           No aplica         Mestizo  
-
-[5 rows x 35 columns]
+[5 rows x 42 columns]
 </pre></div>
 </div>
 </div>
 </div>
+<ul class="simple">
+<li><ol class="arabic simple" start="4">
+<li><p><em>Resumen de tipos de variables y valores faltantes</em></p></li>
+</ol>
+</li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 4. Resumen de tipos de variables</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="c1"># === 1) Cargar datos desde GitHub ===</span>
-<span class="c1">#url = &quot;https://github.com/jthowinsson/Suicidio_Colombia/raw/main/Presuntos_Suicidios._Colombia%2C_2015_a_2023.xlsx&quot;</span>
-<span class="c1">#df = pd.read_excel(url)</span>
+<span class="c1">#url = &quot;https://raw.githubusercontent.com/jthowinsson/Suicidio_Colombia/main/Presuntos_Suicidios_con_Coor.csv&quot;</span>
+<span class="c1">#df = pd.read_csv(url, encoding=&quot;utf-8&quot;)  # separador coma</span>
 
 <span class="c1"># === 2) Tabla 1: Dimensiones ===</span>
 <span class="n">dimensiones</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
@@ -673,7 +657,7 @@ document.write(`
     <tr>
       <th>0</th>
       <td>23544</td>
-      <td>35</td>
+      <td>42</td>
     </tr>
   </tbody>
 </table>
@@ -707,14 +691,14 @@ document.write(`
     <tr>
       <th>0</th>
       <td>Numéricas</td>
-      <td>4</td>
-      <td>11.4</td>
+      <td>9</td>
+      <td>21.4</td>
     </tr>
     <tr>
       <th>1</th>
       <td>Categóricas</td>
-      <td>31</td>
-      <td>88.6</td>
+      <td>33</td>
+      <td>78.6</td>
     </tr>
     <tr>
       <th>2</th>
@@ -731,58 +715,58 @@ document.write(`
   </tbody>
 </table>
 </div></div><div class="output text_html"><style type="text/css">
-#T_97643_row0_col1, #T_97643_row1_col1, #T_97643_row2_col1, #T_97643_row3_col1 {
+#T_3ddd8_row0_col1, #T_3ddd8_row1_col1, #T_3ddd8_row2_col1, #T_3ddd8_row3_col1 {
   text-align: right;
 }
-#T_97643_row0_col2 {
+#T_3ddd8_row0_col2 {
   text-align: right;
-  background-color: #deebf7;
+  background-color: #bfd8ed;
   color: #000000;
 }
-#T_97643_row1_col2 {
+#T_3ddd8_row1_col2 {
   text-align: right;
   background-color: #08306b;
   color: #f1f1f1;
 }
-#T_97643_row2_col2, #T_97643_row3_col2 {
+#T_3ddd8_row2_col2, #T_3ddd8_row3_col2 {
   text-align: right;
   background-color: #f7fbff;
   color: #000000;
 }
 </style>
-<table id="T_97643">
+<table id="T_3ddd8">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_97643_level0_col0" class="col_heading level0 col0" >Tipo de variable</th>
-      <th id="T_97643_level0_col1" class="col_heading level0 col1" >Conteo</th>
-      <th id="T_97643_level0_col2" class="col_heading level0 col2" >% sobre total</th>
+      <th id="T_3ddd8_level0_col0" class="col_heading level0 col0" >Tipo de variable</th>
+      <th id="T_3ddd8_level0_col1" class="col_heading level0 col1" >Conteo</th>
+      <th id="T_3ddd8_level0_col2" class="col_heading level0 col2" >% sobre total</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_97643_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_97643_row0_col0" class="data row0 col0" >Numéricas</td>
-      <td id="T_97643_row0_col1" class="data row0 col1" >4</td>
-      <td id="T_97643_row0_col2" class="data row0 col2" >11.4</td>
+      <th id="T_3ddd8_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_3ddd8_row0_col0" class="data row0 col0" >Numéricas</td>
+      <td id="T_3ddd8_row0_col1" class="data row0 col1" >9</td>
+      <td id="T_3ddd8_row0_col2" class="data row0 col2" >21.4</td>
     </tr>
     <tr>
-      <th id="T_97643_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_97643_row1_col0" class="data row1 col0" >Categóricas</td>
-      <td id="T_97643_row1_col1" class="data row1 col1" >31</td>
-      <td id="T_97643_row1_col2" class="data row1 col2" >88.6</td>
+      <th id="T_3ddd8_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_3ddd8_row1_col0" class="data row1 col0" >Categóricas</td>
+      <td id="T_3ddd8_row1_col1" class="data row1 col1" >33</td>
+      <td id="T_3ddd8_row1_col2" class="data row1 col2" >78.6</td>
     </tr>
     <tr>
-      <th id="T_97643_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_97643_row2_col0" class="data row2 col0" >Lógicas</td>
-      <td id="T_97643_row2_col1" class="data row2 col1" >0</td>
-      <td id="T_97643_row2_col2" class="data row2 col2" >0.0</td>
+      <th id="T_3ddd8_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_3ddd8_row2_col0" class="data row2 col0" >Lógicas</td>
+      <td id="T_3ddd8_row2_col1" class="data row2 col1" >0</td>
+      <td id="T_3ddd8_row2_col2" class="data row2 col2" >0.0</td>
     </tr>
     <tr>
-      <th id="T_97643_level0_row3" class="row_heading level0 row3" >3</th>
-      <td id="T_97643_row3_col0" class="data row3 col0" >Fecha / Fecha-hora</td>
-      <td id="T_97643_row3_col1" class="data row3 col1" >0</td>
-      <td id="T_97643_row3_col2" class="data row3 col2" >0.0</td>
+      <th id="T_3ddd8_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_3ddd8_row3_col0" class="data row3 col0" >Fecha / Fecha-hora</td>
+      <td id="T_3ddd8_row3_col1" class="data row3 col1" >0</td>
+      <td id="T_3ddd8_row3_col2" class="data row3 col2" >0.0</td>
     </tr>
   </tbody>
 </table>
@@ -791,672 +775,163 @@ document.write(`
 </div>
 </div>
 </div>
+<ul class="simple">
+<li><ol class="arabic simple" start="5">
+<li><p><em>Número de valores únicos por columna categórica</em></p></li>
+</ol>
+</li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2. Contar el número de filas y columnas en el DataFrame utilizando la función shape</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 5. Resumir las columnas utilizando describe()para obtener la distribución de las variables,</span>
+<span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">([</span><span class="s1">&#39;object&#39;</span><span class="p">,</span><span class="s1">&#39;category&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>  <span class="c1"># Número de valores únicos por columna categórica</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(23544, 35)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Grupo de edad de la victima              17
+Grupo Mayor Menor de Edad                 2
+Edad judicial                            17
+Ciclo Vital                               6
+Sexo de la victima                        2
+Estado Civil                              7
+País de Nacimiento de la Víctima         34
+Escolaridad                              12
+Pertenencia Grupal                       27
+Mes del hecho                            13
+Dia del hecho                             8
+Rango de Hora del Hecho X 3 Horas        10
+Municipio del hecho DANE                978
+Departamento del hecho DANE              34
+Escenario del Hecho                      51
+Zona del Hecho                            4
+Actividad Durante el Hecho               17
+Circunstancia del Hecho                   1
+Manera de Muerte                          1
+Mecanismo Causal                         14
+Diagnostico Topográfico de la Lesión     12
+Presunto Agresor                          1
+Condición de la Víctima                   1
+Medio de Desplazamiento o Transporte      1
+Servicio del Vehículo                     1
+Clase o Tipo de Accidente                 1
+Objeto de Colisión                        1
+Servicio del Objeto de Colisión           1
+Razón del Suicidio                       21
+Localidad del Hecho                      23
+Ancestro Racial                           8
+Muni_Nom                                947
+Depto_Nom                                33
+dtype: int64
 </pre></div>
 </div>
 </div>
 </div>
+<ul class="simple">
+<li><ol class="arabic simple" start="6">
+<li><p><em>Conteo de valores únicos por columna categórica</em></p></li>
+</ol>
+</li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 3. Resumir las columnas utilizando describe()para obtener la distribución de las variables,</span>
-<span class="c1"># incluyendo la media, la mediana, el mínimo, el máximo y los diferentes cuartiles.</span>
-<span class="c1"># df.describe()  # Resumen para columnas numéricas por defecto</span>
-<span class="c1"># print(df.describe())  # Muestra el resumen en consola</span>
-<span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>  <span class="c1"># include=&#39;all&#39; para resumir todas las columnas, no solo las numéricas</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 6.  Para las variables categóricas, necesitamos utilizar el parámetro include=object</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="nb">object</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       Grupo de edad de la victima      Grupo Mayor Menor de Edad  \
+count                        23544                          23544   
+unique                          17                              2   
+top                      (20 a 24)  b) Mayores de Edad (&gt;18 años)   
+freq                          3413                          21041   
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
+       Edad judicial        Ciclo Vital Sexo de la victima Estado Civil  \
+count          23544              23544              23544        23544   
+unique            17                  6                  2            7   
+top        (20 a 24)  (29 a 59) Adultez             Hombre   Soltero(a)   
+freq            3413              10258              18928        11115   
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>ID</th>
-      <th>Año del hecho</th>
-      <th>Grupo de edad de la victima</th>
-      <th>Grupo Mayor Menor de Edad</th>
-      <th>Edad judicial</th>
-      <th>Ciclo Vital</th>
-      <th>Sexo de la victima</th>
-      <th>Estado Civil</th>
-      <th>País de Nacimiento de la Víctima</th>
-      <th>Escolaridad</th>
-      <th>...</th>
-      <th>Presunto Agresor</th>
-      <th>Condición de la Víctima</th>
-      <th>Medio de Desplazamiento o Transporte</th>
-      <th>Servicio del Vehículo</th>
-      <th>Clase o Tipo de Accidente</th>
-      <th>Objeto de Colisión</th>
-      <th>Servicio del Objeto de Colisión</th>
-      <th>Razón del Suicidio</th>
-      <th>Localidad del Hecho</th>
-      <th>Ancestro Racial</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>count</th>
-      <td>23544.000000</td>
-      <td>23544.000000</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>...</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-    </tr>
-    <tr>
-      <th>unique</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>17</td>
-      <td>2</td>
-      <td>17</td>
-      <td>6</td>
-      <td>2</td>
-      <td>7</td>
-      <td>34</td>
-      <td>12</td>
-      <td>...</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>21</td>
-      <td>23</td>
-      <td>8</td>
-    </tr>
-    <tr>
-      <th>top</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>(20 a 24)</td>
-      <td>b) Mayores de Edad (&gt;18 años)</td>
-      <td>(20 a 24)</td>
-      <td>(29 a 59) Adultez</td>
-      <td>Hombre</td>
-      <td>Soltero(a)</td>
-      <td>Colombia</td>
-      <td>Educación básica primaria</td>
-      <td>...</td>
-      <td>No aplica</td>
-      <td>No aplica</td>
-      <td>No aplica</td>
-      <td>No aplica</td>
-      <td>No aplica</td>
-      <td>No aplica</td>
-      <td>No aplica</td>
-      <td>Sin información</td>
-      <td>No aplica</td>
-      <td>Mestizo</td>
-    </tr>
-    <tr>
-      <th>freq</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>3413</td>
-      <td>21041</td>
-      <td>3413</td>
-      <td>10258</td>
-      <td>18928</td>
-      <td>11115</td>
-      <td>22973</td>
-      <td>6291</td>
-      <td>...</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>12444</td>
-      <td>20171</td>
-      <td>19524</td>
-    </tr>
-    <tr>
-      <th>mean</th>
-      <td>11772.500000</td>
-      <td>2019.271577</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>std</th>
-      <td>6796.711705</td>
-      <td>2.574016</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>min</th>
-      <td>1.000000</td>
-      <td>2015.000000</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>25%</th>
-      <td>5886.750000</td>
-      <td>2017.000000</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>50%</th>
-      <td>11772.500000</td>
-      <td>2019.000000</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>75%</th>
-      <td>17658.250000</td>
-      <td>2022.000000</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>max</th>
-      <td>23544.000000</td>
-      <td>2023.000000</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
-</table>
-<p>11 rows × 35 columns</p>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 4.  Para las variables categóricas, necesitamos utilizar el parámetro include=object.</span>
-<span class="c1"># df.describe(include=[&#39;object&#39;, &#39;category&#39;])</span>
-<span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>  <span class="c1"># &#39;object&#39; cubre la mayoría de las variables categóricas</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+       País de Nacimiento de la Víctima                Escolaridad  \
+count                             23544                      23544   
+unique                               34                         12   
+top                            Colombia  Educación básica primaria   
+freq                              22973                       6291   
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
+       Pertenencia Grupal Mes del hecho Dia del hecho  \
+count               23544         23544         23544   
+unique                 27            13             8   
+top               Ninguno          Mayo       Domingo   
+freq                17026          2076          4252   
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Grupo de edad de la victima</th>
-      <th>Grupo Mayor Menor de Edad</th>
-      <th>Edad judicial</th>
-      <th>Ciclo Vital</th>
-      <th>Sexo de la victima</th>
-      <th>Estado Civil</th>
-      <th>País de Nacimiento de la Víctima</th>
-      <th>Escolaridad</th>
-      <th>Pertenencia Grupal</th>
-      <th>Mes del hecho</th>
-      <th>...</th>
-      <th>Presunto Agresor</th>
-      <th>Condición de la Víctima</th>
-      <th>Medio de Desplazamiento o Transporte</th>
-      <th>Servicio del Vehículo</th>
-      <th>Clase o Tipo de Accidente</th>
-      <th>Objeto de Colisión</th>
-      <th>Servicio del Objeto de Colisión</th>
-      <th>Razón del Suicidio</th>
-      <th>Localidad del Hecho</th>
-      <th>Ancestro Racial</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>count</th>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>...</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-    </tr>
-    <tr>
-      <th>unique</th>
-      <td>17</td>
-      <td>2</td>
-      <td>17</td>
-      <td>6</td>
-      <td>2</td>
-      <td>7</td>
-      <td>34</td>
-      <td>12</td>
-      <td>27</td>
-      <td>13</td>
-      <td>...</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>21</td>
-      <td>23</td>
-      <td>8</td>
-    </tr>
-    <tr>
-      <th>top</th>
-      <td>(20 a 24)</td>
-      <td>b) Mayores de Edad (&gt;18 años)</td>
-      <td>(20 a 24)</td>
-      <td>(29 a 59) Adultez</td>
-      <td>Hombre</td>
-      <td>Soltero(a)</td>
-      <td>Colombia</td>
-      <td>Educación básica primaria</td>
-      <td>Ninguno</td>
-      <td>Mayo</td>
-      <td>...</td>
-      <td>No aplica</td>
-      <td>No aplica</td>
-      <td>No aplica</td>
-      <td>No aplica</td>
-      <td>No aplica</td>
-      <td>No aplica</td>
-      <td>No aplica</td>
-      <td>Sin información</td>
-      <td>No aplica</td>
-      <td>Mestizo</td>
-    </tr>
-    <tr>
-      <th>freq</th>
-      <td>3413</td>
-      <td>21041</td>
-      <td>3413</td>
-      <td>10258</td>
-      <td>18928</td>
-      <td>11115</td>
-      <td>22973</td>
-      <td>6291</td>
-      <td>17026</td>
-      <td>2076</td>
-      <td>...</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>23544</td>
-      <td>12444</td>
-      <td>20171</td>
-      <td>19524</td>
-    </tr>
-  </tbody>
-</table>
-<p>4 rows × 31 columns</p>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2. Información general del dataset</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Información general ---&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Información general ---
-&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
-RangeIndex: 23544 entries, 0 to 23543
-Data columns (total 35 columns):
- #   Column                                Non-Null Count  Dtype 
----  ------                                --------------  ----- 
- 0   ID                                    23544 non-null  int64 
- 1   Año del hecho                         23544 non-null  int64 
- 2   Grupo de edad de la victima           23544 non-null  object
- 3   Grupo Mayor Menor de Edad             23544 non-null  object
- 4   Edad judicial                         23544 non-null  object
- 5   Ciclo Vital                           23544 non-null  object
- 6   Sexo de la victima                    23544 non-null  object
- 7   Estado Civil                          23544 non-null  object
- 8   País de Nacimiento de la Víctima      23544 non-null  object
- 9   Escolaridad                           23544 non-null  object
- 10  Pertenencia Grupal                    23544 non-null  object
- 11  Mes del hecho                         23544 non-null  object
- 12  Dia del hecho                         23544 non-null  object
- 13  Rango de Hora del Hecho X 3 Horas     23544 non-null  object
- 14  Código Dane Municipio                 23544 non-null  int64 
- 15  Municipio del hecho DANE              23544 non-null  object
- 16  Departamento del hecho DANE           23544 non-null  object
- 17  Código Dane Departamento              23544 non-null  int64 
- 18  Escenario del Hecho                   23544 non-null  object
- 19  Zona del Hecho                        23544 non-null  object
- 20  Actividad Durante el Hecho            23544 non-null  object
- 21  Circunstancia del Hecho               23544 non-null  object
- 22  Manera de Muerte                      23544 non-null  object
- 23  Mecanismo Causal                      23544 non-null  object
- 24  Diagnostico Topográfico de la Lesión  23544 non-null  object
- 25  Presunto Agresor                      23544 non-null  object
- 26  Condición de la Víctima               23544 non-null  object
- 27  Medio de Desplazamiento o Transporte  23544 non-null  object
- 28  Servicio del Vehículo                 23544 non-null  object
- 29  Clase o Tipo de Accidente             23544 non-null  object
- 30  Objeto de Colisión                    23544 non-null  object
- 31  Servicio del Objeto de Colisión       23544 non-null  object
- 32  Razón del Suicidio                    23544 non-null  object
- 33  Localidad del Hecho                   23544 non-null  object
- 34  Ancestro Racial                       23544 non-null  object
-dtypes: int64(4), object(31)
-memory usage: 6.3+ MB
-None
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 3. Estadísticas descriptivas</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Estadísticas descriptivas ---&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Estadísticas descriptivas ---
-                  ID  Año del hecho Grupo de edad de la victima  \
-count   23544.000000   23544.000000                       23544   
-unique           NaN            NaN                          17   
-top              NaN            NaN                   (20 a 24)   
-freq             NaN            NaN                        3413   
-mean    11772.500000    2019.271577                         NaN   
-std      6796.711705       2.574016                         NaN   
-min         1.000000    2015.000000                         NaN   
-25%      5886.750000    2017.000000                         NaN   
-50%     11772.500000    2019.000000                         NaN   
-75%     17658.250000    2022.000000                         NaN   
-max     23544.000000    2023.000000                         NaN   
+       Rango de Hora del Hecho X 3 Horas Municipio del hecho DANE  \
+count                              23544                    23544   
+unique                                10                      978   
+top                      Sin información             Bogotá, D.C.   
+freq                               16130                     3373   
 
-            Grupo Mayor Menor de Edad Edad judicial        Ciclo Vital  \
-count                           23544         23544              23544   
-unique                              2            17                  6   
-top     b) Mayores de Edad (&gt;18 años)     (20 a 24)  (29 a 59) Adultez   
-freq                            21041          3413              10258   
-mean                              NaN           NaN                NaN   
-std                               NaN           NaN                NaN   
-min                               NaN           NaN                NaN   
-25%                               NaN           NaN                NaN   
-50%                               NaN           NaN                NaN   
-75%                               NaN           NaN                NaN   
-max                               NaN           NaN                NaN   
+       Departamento del hecho DANE Escenario del Hecho      Zona del Hecho  \
+count                        23544               23544               23544   
+unique                          34                  51                   4   
+top                      Antioquia            Vivienda  Cabecera municipal   
+freq                          3913               17380               17466   
 
-       Sexo de la victima Estado Civil País de Nacimiento de la Víctima  \
-count               23544        23544                            23544   
-unique                  2            7                               34   
-top                Hombre   Soltero(a)                         Colombia   
-freq                18928        11115                            22973   
-mean                  NaN          NaN                              NaN   
-std                   NaN          NaN                              NaN   
-min                   NaN          NaN                              NaN   
-25%                   NaN          NaN                              NaN   
-50%                   NaN          NaN                              NaN   
-75%                   NaN          NaN                              NaN   
-max                   NaN          NaN                              NaN   
+       Actividad Durante el Hecho Circunstancia del Hecho  \
+count                       23544                   23544   
+unique                         17                       1   
+top                          Otra   Autolesión voluntaria   
+freq                         7552                   23544   
 
-                      Escolaridad  ... Presunto Agresor  \
-count                       23544  ...            23544   
-unique                         12  ...                1   
-top     Educación básica primaria  ...        No aplica   
-freq                         6291  ...            23544   
-mean                          NaN  ...              NaN   
-std                           NaN  ...              NaN   
-min                           NaN  ...              NaN   
-25%                           NaN  ...              NaN   
-50%                           NaN  ...              NaN   
-75%                           NaN  ...              NaN   
-max                           NaN  ...              NaN   
+           Manera de Muerte        Mecanismo Causal  \
+count                 23544                   23544   
+unique                    1                      14   
+top     Violenta - Suicidio  Generadores de asfixia   
+freq                  23544                   15410   
+
+       Diagnostico Topográfico de la Lesión Presunto Agresor  \
+count                                 23544            23544   
+unique                                   12                1   
+top                        Trauma de cuello        No aplica   
+freq                                  14471            23544   
 
        Condición de la Víctima Medio de Desplazamiento o Transporte  \
 count                    23544                                23544   
 unique                       1                                    1   
 top                  No aplica                            No aplica   
 freq                     23544                                23544   
-mean                       NaN                                  NaN   
-std                        NaN                                  NaN   
-min                        NaN                                  NaN   
-25%                        NaN                                  NaN   
-50%                        NaN                                  NaN   
-75%                        NaN                                  NaN   
-max                        NaN                                  NaN   
 
-       Servicio del Vehículo  Clase o Tipo de Accidente Objeto de Colisión  \
-count                  23544                      23544              23544   
-unique                     1                          1                  1   
-top                No aplica                  No aplica          No aplica   
-freq                   23544                      23544              23544   
-mean                     NaN                        NaN                NaN   
-std                      NaN                        NaN                NaN   
-min                      NaN                        NaN                NaN   
-25%                      NaN                        NaN                NaN   
-50%                      NaN                        NaN                NaN   
-75%                      NaN                        NaN                NaN   
-max                      NaN                        NaN                NaN   
+       Servicio del Vehículo Clase o Tipo de Accidente Objeto de Colisión  \
+count                  23544                     23544              23544   
+unique                     1                         1                  1   
+top                No aplica                 No aplica          No aplica   
+freq                   23544                     23544              23544   
 
-       Servicio del Objeto de Colisión  Razón del Suicidio  \
-count                            23544               23544   
-unique                               1                  21   
-top                          No aplica     Sin información   
-freq                             23544               12444   
-mean                               NaN                 NaN   
-std                                NaN                 NaN   
-min                                NaN                 NaN   
-25%                                NaN                 NaN   
-50%                                NaN                 NaN   
-75%                                NaN                 NaN   
-max                                NaN                 NaN   
+       Servicio del Objeto de Colisión Razón del Suicidio Localidad del Hecho  \
+count                            23544              23544               23544   
+unique                               1                 21                  23   
+top                          No aplica    Sin información           No aplica   
+freq                             23544              12444               20171   
 
-       Localidad del Hecho Ancestro Racial  
-count                23544           23544  
-unique                  23               8  
-top              No aplica         Mestizo  
-freq                 20171           19524  
-mean                   NaN             NaN  
-std                    NaN             NaN  
-min                    NaN             NaN  
-25%                    NaN             NaN  
-50%                    NaN             NaN  
-75%                    NaN             NaN  
-max                    NaN             NaN  
-
-[11 rows x 35 columns]
+       Ancestro Racial      Muni_Nom  Depto_Nom  
+count            23544         23536      23536  
+unique               8           947         33  
+top            Mestizo  BOGOTÁ, D.C.  ANTIOQUIA  
+freq             19524          3373       3913  
 </pre></div>
 </div>
 </div>
 </div>
+<ul class="simple">
+<li><ol class="arabic simple" start="7">
+<li><p><em>Valores nulos por columna</em>:
+Número de valores nulos por columna</p></li>
+</ol>
+</li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 4. Valores nulos por columna</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 7. Valores nulos por columna</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Valores nulos ---&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
 </pre></div>
@@ -1499,30 +974,44 @@ Servicio del Objeto de Colisión         0
 Razón del Suicidio                      0
 Localidad del Hecho                     0
 Ancestro Racial                         0
+Codigo_Dane_Municipio_norm              0
+Muni_Cod                                8
+Muni_Nom                                8
+Depto_Cod                               8
+Depto_Nom                               8
+latitud                                 8
+longitud                                8
 dtype: int64
 </pre></div>
 </div>
 </div>
 </div>
+<ul class="simple">
+<li><ol class="arabic simple" start="8">
+<li><p><em>Valores Faltantes</em>:
+Número total de valores faltantes en el DataFrame no tiene valores faltantes</p></li>
+</ol>
+</li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 5 Valores Faltantes</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 8 Valores Faltantes</span>
 <span class="n">valores_faltantes</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
+<ul class="simple">
+<li><ol class="arabic simple" start="9">
+<li><p><em>Mecanismos Causales</em>:
+Conteo de frecuencias de mecanismos causales variable para análisis posterior como variable dependinete en el modelo</p></li>
+</ol>
+</li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 6 Valores únicos por columna</span>
-<span class="n">valores_unicos</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Contar frecuencias de mecanismos</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 9. Contar frecuencias de mecanismos</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="n">conteo_mecanismos</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Mecanismo Causal&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">conteo_mecanismos</span><span class="p">)</span>
@@ -1548,6 +1037,193 @@ Mecanismo o agente explosivo        1
 Name: count, dtype: int64
 </pre></div>
 </div>
+</div>
+</div>
+<ul class="simple">
+<li><ol class="arabic simple" start="10">
+<li><p><em>Distribución por sexo</em>:
+Distribución de suicidios por sexo</p></li>
+</ol>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Detecta la columna de sexo</span>
+<span class="n">col_sexo</span> <span class="o">=</span> <span class="nb">next</span><span class="p">((</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="s1">&#39;sexo&#39;</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">lower</span><span class="p">()),</span> <span class="kc">None</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">col_sexo</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No encuentro una columna que contenga &#39;sexo&#39; en su nombre.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Tabla n y %</span>
+<span class="n">serie</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col_sexo</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
+         <span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;Nan&#39;</span><span class="p">:</span><span class="s1">&#39;Desconocido&#39;</span><span class="p">}))</span>
+<span class="n">vc</span> <span class="o">=</span> <span class="n">serie</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">dropna</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">pct</span> <span class="o">=</span> <span class="p">(</span><span class="n">vc</span> <span class="o">/</span> <span class="n">vc</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">tabla</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Frecuencia Absoluta&#39;</span><span class="p">:</span> <span class="n">vc</span><span class="p">,</span> <span class="s1">&#39;Frecuencia Porcentual %&#39;</span><span class="p">:</span> <span class="n">pct</span><span class="p">})</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span>
+<span class="n">display</span><span class="p">(</span><span class="n">tabla</span><span class="p">)</span>
+
+<span class="c1"># Gráfico</span>
+<span class="c1">#fig, ax = plt.subplots()</span>
+<span class="c1">#ax.bar(vc.index, vc.values)</span>
+<span class="c1">#ax.set_title(&quot;Distribución por sexo&quot;)</span>
+<span class="c1">#ax.set_ylabel(&quot;Número de casos&quot;)</span>
+<span class="c1">#for i, v in enumerate(vc.values):</span>
+    <span class="c1">#ax.text(i, v, f&quot;{v}\n{pct.iloc[i]}%&quot;, ha=&#39;center&#39;, va=&#39;bottom&#39;, fontsize=9)</span>
+<span class="c1">#plt.show()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Frecuencia Absoluta</th>
+      <th>Frecuencia Porcentual %</th>
+    </tr>
+    <tr>
+      <th>Sexo de la victima</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Hombre</th>
+      <td>18928</td>
+      <td>80.4</td>
+    </tr>
+    <tr>
+      <th>Mujer</th>
+      <td>4616</td>
+      <td>19.6</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.ticker</span><span class="w"> </span><span class="kn">import</span> <span class="n">StrMethodFormatter</span>
+
+<span class="c1"># Serie limpia</span>
+<span class="n">col_sexo</span> <span class="o">=</span> <span class="nb">next</span><span class="p">((</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="s1">&#39;sexo&#39;</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">lower</span><span class="p">()))</span>
+<span class="n">s</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col_sexo</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
+     <span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;Nan&#39;</span><span class="p">:</span><span class="s1">&#39;Desconocido&#39;</span><span class="p">}))</span>
+<span class="n">vc</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">dropna</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">pct</span> <span class="o">=</span> <span class="p">(</span><span class="n">vc</span> <span class="o">/</span> <span class="n">vc</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Ordena por frecuencia</span>
+<span class="n">vc</span> <span class="o">=</span> <span class="n">vc</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">pct</span> <span class="o">=</span> <span class="n">pct</span><span class="p">[</span><span class="n">vc</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+
+<span class="c1"># Gráfico</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">bars</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">vc</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">vc</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Distribución por sexo&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Número de casos&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">StrMethodFormatter</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{x:,.0f}</span><span class="s1">&#39;</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Anota n y %</span>
+<span class="k">for</span> <span class="n">rect</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">bars</span><span class="p">,</span> <span class="n">vc</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">pct</span><span class="o">.</span><span class="n">values</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">rect</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">rect</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">rect</span><span class="o">.</span><span class="n">get_height</span><span class="p">(),</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="n">p</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">margins</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/326f5af2cedb33d648b8bc1a745f51d7fadcb902335afbf645dc12bb7cb2ba5d.png" src="_images/326f5af2cedb33d648b8bc1a745f51d7fadcb902335afbf645dc12bb7cb2ba5d.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Gráfica con estilo monocrómatico ===</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.ticker</span><span class="w"> </span><span class="kn">import</span> <span class="n">MultipleLocator</span><span class="p">,</span> <span class="n">PercentFormatter</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+
+<span class="c1"># Paleta monocrómica (Blues). Ajusta el colormap si prefieres otra gama.</span>
+<span class="n">cats</span> <span class="o">=</span> <span class="n">rowpct</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Blues</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cats</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">cmap</span><span class="p">(</span><span class="mf">0.35</span> <span class="o">+</span> <span class="mf">0.6</span><span class="o">*</span><span class="n">i</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cats</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cats</span><span class="p">))]</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">cmap</span><span class="p">(</span><span class="mf">0.7</span><span class="p">)]</span>
+
+<span class="p">(</span><span class="n">rowpct</span>
+ <span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;barh&#39;</span><span class="p">,</span> <span class="n">stacked</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span>
+       <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">))</span>
+
+<span class="c1"># Estética</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mi">20</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">PercentFormatter</span><span class="p">(</span><span class="n">xmax</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.35</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Porcentaje (%)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Ciclo vital&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Distribución de sexo por ciclo vital (100%)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Quita spines superiores y derecha</span>
+<span class="k">for</span> <span class="n">spine</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="s1">&#39;right&#39;</span><span class="p">]:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">spine</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Leyenda externa, sin borde</span>
+<span class="n">leg</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Sexo&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.03</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Etiquetas internas de porcentaje</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">row</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rowpct</span><span class="o">.</span><span class="n">iterrows</span><span class="p">()):</span>
+    <span class="n">cum</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">row</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">val</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>  <span class="c1"># evita ruido visual</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">cum</span> <span class="o">+</span> <span class="n">val</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">val</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1">%&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1f1f1f&#39;</span><span class="p">)</span>
+        <span class="n">cum</span> <span class="o">+=</span> <span class="n">val</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="n">line</span> <span class="mi">9</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="c1"># Paleta monocrómica (Blues). Ajusta el colormap si prefieres otra gama.</span>
+<span class="ne">----&gt; </span><span class="mi">9</span> <span class="n">cats</span> <span class="o">=</span> <span class="n">rowpct</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Blues</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cats</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+
+<span class="ne">NameError</span>: name &#39;rowpct&#39; is not defined
+</pre></div>
+</div>
+<img alt="_images/b4aac2c331c424811f83abc3f96b445fdc40d745f8347326664950512f9f259f.png" src="_images/b4aac2c331c424811f83abc3f96b445fdc40d745f8347326664950512f9f259f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1636,10 +1312,6 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/instructorzamora/miniconda3/envs/ml_venv/lib/python3.9/site-packages/scipy/__init__.py:155: UserWarning: A NumPy version &gt;=1.18.5 and &lt;1.25.0 is required for this version of SciPy (detected version 1.26.4
-  warnings.warn(f&quot;A NumPy version &gt;={np_minversion} and &lt;{np_maxversion}&quot;
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Matriz de confusión:
 [[ 232 2208]
  [ 188 4436]]
@@ -1698,6 +1370,199 @@ AUC: 0.6080241097765047
 36                     Zona del Hecho_Sin información    -1.474512  0.228890
 </pre></div>
 </div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+
+<span class="c1"># url = &quot;https://raw.githubusercontent.com/jthowinsson/Suicidio_Colombia/main/Presuntos_Suicidios_con_Coor.csv&quot;</span>
+
+<span class="c1"># Carga y limpieza básica</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Año del hecho&#39;</span><span class="p">,</span><span class="s1">&#39;Mecanismo Causal&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Año del hecho&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Año del hecho&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Año del hecho&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">({</span><span class="s1">&#39;Año del hecho&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">})</span>
+
+<span class="c1"># Agregación</span>
+<span class="n">ct</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Año del hecho&#39;</span><span class="p">,</span><span class="s1">&#39;Mecanismo Causal&#39;</span><span class="p">])</span>
+        <span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;casos&#39;</span><span class="p">))</span>
+
+<span class="c1"># Opcional: limitar a los 6 mecanismos más frecuentes para no saturar la gráfica</span>
+<span class="n">top_mec</span> <span class="o">=</span> <span class="p">(</span><span class="n">ct</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Mecanismo Causal&#39;</span><span class="p">)[</span><span class="s1">&#39;casos&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+             <span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">ct</span> <span class="o">=</span> <span class="n">ct</span><span class="p">[</span><span class="n">ct</span><span class="p">[</span><span class="s1">&#39;Mecanismo Causal&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">top_mec</span><span class="p">)]</span>
+
+<span class="c1"># Pivot y gráfico</span>
+<span class="n">pvt</span> <span class="o">=</span> <span class="p">(</span><span class="n">ct</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;Año del hecho&#39;</span><span class="p">,</span>
+                <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;Mecanismo Causal&#39;</span><span class="p">,</span>
+                <span class="n">values</span><span class="o">=</span><span class="s1">&#39;casos&#39;</span><span class="p">)</span>
+         <span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sort_index</span><span class="p">())</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">pvt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Año del hecho&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Número de casos&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Serie de tiempo por Mecanismo Causal&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Mecanismo Causal&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.02</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/be561af1b09e9cfb2514f916544a9176377179f01f3c0573b8b6dd891b2a5ad1.png" src="_images/be561af1b09e9cfb2514f916544a9176377179f01f3c0573b8b6dd891b2a5ad1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">unicodedata</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/jthowinsson/Suicidio_Colombia/main/Presuntos_Suicidios_con_Coor.csv&quot;</span>
+
+<span class="c1"># ---- Carga robusta ----</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">UnicodeDecodeError</span><span class="p">:</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;latin1&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+
+<span class="c1"># ---- Normalizar nombres de columnas (minúsculas, sin tildes/espacios) ----</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">norm</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">unicodedata</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="s1">&#39;NFKD&#39;</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">unicodedata</span><span class="o">.</span><span class="n">combining</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;  &quot;</span><span class="p">,</span><span class="s2">&quot; &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">s</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">norm</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+
+<span class="c1"># Intentar mapear posibles nombres</span>
+<span class="n">mapa</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;sexo_de_la_victima&#39;</span><span class="p">:</span> <span class="s1">&#39;sexo&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sexo_de_la_víctima&#39;</span><span class="p">:</span> <span class="s1">&#39;sexo&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sexo&#39;</span><span class="p">:</span> <span class="s1">&#39;sexo&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;edad_judicial&#39;</span><span class="p">:</span> <span class="s1">&#39;edad&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;edad&#39;</span><span class="p">:</span> <span class="s1">&#39;edad&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">mapa</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+    <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="n">k</span><span class="p">:</span><span class="n">v</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># ---- Selección y limpieza ----</span>
+<span class="c1"># Primero verificar las columnas disponibles</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Columnas disponibles:&quot;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+
+<span class="c1"># Verificar si tenemos las columnas necesarias o sus posibles variantes</span>
+<span class="n">sexo_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="s1">&#39;sexo&#39;</span> <span class="ow">in</span> <span class="n">col</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span>
+<span class="n">edad_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="s1">&#39;edad&#39;</span> <span class="ow">in</span> <span class="n">col</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Posibles columnas de sexo:&quot;</span><span class="p">,</span> <span class="n">sexo_cols</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Posibles columnas de edad:&quot;</span><span class="p">,</span> <span class="n">edad_cols</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">sexo_cols</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">edad_cols</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No se encontraron columnas de sexo o edad&quot;</span><span class="p">)</span>
+
+<span class="c1"># Seleccionar las columnas apropiadas</span>
+<span class="n">sexo_col</span> <span class="o">=</span> <span class="n">sexo_cols</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># usar la primera columna que contenga &#39;sexo&#39;</span>
+<span class="n">edad_col</span> <span class="o">=</span> <span class="s1">&#39;edad_judicial&#39;</span> <span class="k">if</span> <span class="s1">&#39;edad_judicial&#39;</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">else</span> <span class="n">edad_cols</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Crear DataFrame base</span>
+<span class="n">base</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="n">sexo_col</span><span class="p">,</span> <span class="n">edad_col</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">base</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sexo&#39;</span><span class="p">,</span> <span class="s1">&#39;edad&#39;</span><span class="p">]</span>  <span class="c1"># renombrar columnas</span>
+
+<span class="c1"># Limpiar y convertir edad</span>
+<span class="c1"># Si edad es una categoría como &#39;(18 a 19)&#39;, extraer el primer número</span>
+<span class="n">base</span><span class="p">[</span><span class="s1">&#39;edad&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">base</span><span class="p">[</span><span class="s1">&#39;edad&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="s1">&#39;(\d+)&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="c1"># Filtrar edades plausibles y datos faltantes</span>
+<span class="n">base</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;sexo&#39;</span><span class="p">,</span> <span class="s1">&#39;edad&#39;</span><span class="p">])</span>
+<span class="n">base</span> <span class="o">=</span> <span class="n">base</span><span class="p">[(</span><span class="n">base</span><span class="p">[</span><span class="s1">&#39;edad&#39;</span><span class="p">]</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">base</span><span class="p">[</span><span class="s1">&#39;edad&#39;</span><span class="p">]</span><span class="o">&lt;=</span><span class="mi">120</span><span class="p">)]</span>
+
+<span class="c1"># Verificar que tenemos datos</span>
+<span class="k">if</span> <span class="n">base</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No quedaron datos después de la limpieza. Verifica los datos originales&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Datos después de la limpieza: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">base</span><span class="p">)</span><span class="si">}</span><span class="s2"> filas&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Distribución de sexo:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">base</span><span class="p">[</span><span class="s1">&#39;sexo&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Estadísticas de edad:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">base</span><span class="p">[</span><span class="s1">&#39;edad&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+
+<span class="c1"># --- Add this section ---</span>
+<span class="k">if</span> <span class="n">base</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DataFrame &#39;base&#39; is empty after cleaning.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Check for missing or invalid data in &#39;sexo&#39; and &#39;edad&#39; columns.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;sexo&#39;</span><span class="p">,</span> <span class="s1">&#39;edad&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>  <span class="c1"># Display the first few rows before cleaning</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No data available after cleaning. Check the data.&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">base</span><span class="p">[</span><span class="s1">&#39;sexo&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No unique values in &#39;sexo&#39; column after cleaning.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Check the values in the &#39;sexo&#39; column.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">base</span><span class="p">[</span><span class="s1">&#39;sexo&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">dropna</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>  <span class="c1"># Show value counts including NaN</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No unique values in &#39;sexo&#39; column after cleaning.&quot;</span><span class="p">)</span>
+<span class="c1"># --- End of added section ---</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No unique values in &#39;sexo&#39; column after cleaning.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Check the values in the &#39;sexo&#39; column.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">base</span><span class="p">[</span><span class="s1">&#39;sexo&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">dropna</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>  <span class="c1"># Show value counts including NaN</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No unique values in &#39;sexo&#39; column after cleaning.&quot;</span><span class="p">)</span>
+<span class="c1"># --- End of added section ---</span>
+
+<span class="c1"># ==============================</span>
+<span class="c1"># 1) Boxplot edad por sexo</span>
+<span class="c1"># ==============================</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;edad&#39;</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s1">&#39;sexo&#39;</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Edad por sexo&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Sexo&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Edad (años)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># ==============================</span>
+<span class="c1"># 2) Histogramas comparados de edad por sexo</span>
+<span class="c1"># ==============================</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">base</span><span class="p">[</span><span class="s1">&#39;sexo&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+    <span class="n">base</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">base</span><span class="p">[</span><span class="s1">&#39;sexo&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">s</span><span class="p">,</span> <span class="s1">&#39;edad&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;hist&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Edad (años)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frecuencia&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribución de edad por sexo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Sexo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Columnas disponibles: [&#39;id&#39;, &#39;ano_del_hecho&#39;, &#39;grupo_de_edad_de_la_victima&#39;, &#39;grupo_mayor_menor_de_edad&#39;, &#39;edad&#39;, &#39;ciclo_vital&#39;, &#39;sexo&#39;, &#39;estado_civil&#39;, &#39;pais_de_nacimiento_de_la_victima&#39;, &#39;escolaridad&#39;, &#39;pertenencia_grupal&#39;, &#39;mes_del_hecho&#39;, &#39;dia_del_hecho&#39;, &#39;rango_de_hora_del_hecho_x_3_horas&#39;, &#39;codigo_dane_municipio&#39;, &#39;municipio_del_hecho_dane&#39;, &#39;departamento_del_hecho_dane&#39;, &#39;codigo_dane_departamento&#39;, &#39;escenario_del_hecho&#39;, &#39;zona_del_hecho&#39;, &#39;actividad_durante_el_hecho&#39;, &#39;circunstancia_del_hecho&#39;, &#39;manera_de_muerte&#39;, &#39;mecanismo_causal&#39;, &#39;diagnostico_topografico_de_la_lesion&#39;, &#39;presunto_agresor&#39;, &#39;condicion_de_la_victima&#39;, &#39;medio_de_desplazamiento_o_transporte&#39;, &#39;servicio_del_vehiculo&#39;, &#39;clase_o_tipo_de_accidente&#39;, &#39;objeto_de_colision&#39;, &#39;servicio_del_objeto_de_colision&#39;, &#39;razon_del_suicidio&#39;, &#39;localidad_del_hecho&#39;, &#39;ancestro_racial&#39;, &#39;codigo_dane_municipio_norm&#39;, &#39;muni_cod&#39;, &#39;muni_nom&#39;, &#39;depto_cod&#39;, &#39;depto_nom&#39;, &#39;latitud&#39;, &#39;longitud&#39;]
+
+Posibles columnas de sexo: [&#39;sexo&#39;]
+Posibles columnas de edad: [&#39;grupo_de_edad_de_la_victima&#39;, &#39;grupo_mayor_menor_de_edad&#39;, &#39;edad&#39;]
+
+Datos después de la limpieza: 23544 filas
+
+Distribución de sexo:
+sexo
+Hombre    18928
+Mujer      4616
+Name: count, dtype: int64
+
+Estadísticas de edad:
+count    23544.000000
+mean        36.149805
+std         18.381903
+min          5.000000
+25%         20.000000
+50%         30.000000
+75%         50.000000
+max         80.000000
+Name: edad, dtype: float64
+</pre></div>
+</div>
+<img alt="_images/93ad577daa909e1e774eedcf76683952f0f33d6b5f43236ac64bdaf2b24e27ab.png" src="_images/93ad577daa909e1e774eedcf76683952f0f33d6b5f43236ac64bdaf2b24e27ab.png" />
+<img alt="_images/4d9494ef6d5d4d28e551e7fd99c92d290a968106e4eeff2bb54dee6a7e02f0de.png" src="_images/4d9494ef6d5d4d28e551e7fd99c92d290a968106e4eeff2bb54dee6a7e02f0de.png" />
 </div>
 </div>
 </section>
