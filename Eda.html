@@ -715,58 +715,58 @@ None
   </tbody>
 </table>
 </div></div><div class="output text_html"><style type="text/css">
-#T_ec146_row0_col1, #T_ec146_row1_col1, #T_ec146_row2_col1, #T_ec146_row3_col1 {
+#T_3ff24_row0_col1, #T_3ff24_row1_col1, #T_3ff24_row2_col1, #T_3ff24_row3_col1 {
   text-align: right;
 }
-#T_ec146_row0_col2 {
+#T_3ff24_row0_col2 {
   text-align: right;
   background-color: #bfd8ed;
   color: #000000;
 }
-#T_ec146_row1_col2 {
+#T_3ff24_row1_col2 {
   text-align: right;
   background-color: #08306b;
   color: #f1f1f1;
 }
-#T_ec146_row2_col2, #T_ec146_row3_col2 {
+#T_3ff24_row2_col2, #T_3ff24_row3_col2 {
   text-align: right;
   background-color: #f7fbff;
   color: #000000;
 }
 </style>
-<table id="T_ec146">
+<table id="T_3ff24">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_ec146_level0_col0" class="col_heading level0 col0" >Tipo de variable</th>
-      <th id="T_ec146_level0_col1" class="col_heading level0 col1" >Conteo</th>
-      <th id="T_ec146_level0_col2" class="col_heading level0 col2" >% sobre total</th>
+      <th id="T_3ff24_level0_col0" class="col_heading level0 col0" >Tipo de variable</th>
+      <th id="T_3ff24_level0_col1" class="col_heading level0 col1" >Conteo</th>
+      <th id="T_3ff24_level0_col2" class="col_heading level0 col2" >% sobre total</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_ec146_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_ec146_row0_col0" class="data row0 col0" >Numéricas</td>
-      <td id="T_ec146_row0_col1" class="data row0 col1" >9</td>
-      <td id="T_ec146_row0_col2" class="data row0 col2" >21.4</td>
+      <th id="T_3ff24_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_3ff24_row0_col0" class="data row0 col0" >Numéricas</td>
+      <td id="T_3ff24_row0_col1" class="data row0 col1" >9</td>
+      <td id="T_3ff24_row0_col2" class="data row0 col2" >21.4</td>
     </tr>
     <tr>
-      <th id="T_ec146_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_ec146_row1_col0" class="data row1 col0" >Categóricas</td>
-      <td id="T_ec146_row1_col1" class="data row1 col1" >33</td>
-      <td id="T_ec146_row1_col2" class="data row1 col2" >78.6</td>
+      <th id="T_3ff24_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_3ff24_row1_col0" class="data row1 col0" >Categóricas</td>
+      <td id="T_3ff24_row1_col1" class="data row1 col1" >33</td>
+      <td id="T_3ff24_row1_col2" class="data row1 col2" >78.6</td>
     </tr>
     <tr>
-      <th id="T_ec146_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_ec146_row2_col0" class="data row2 col0" >Lógicas</td>
-      <td id="T_ec146_row2_col1" class="data row2 col1" >0</td>
-      <td id="T_ec146_row2_col2" class="data row2 col2" >0.0</td>
+      <th id="T_3ff24_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_3ff24_row2_col0" class="data row2 col0" >Lógicas</td>
+      <td id="T_3ff24_row2_col1" class="data row2 col1" >0</td>
+      <td id="T_3ff24_row2_col2" class="data row2 col2" >0.0</td>
     </tr>
     <tr>
-      <th id="T_ec146_level0_row3" class="row_heading level0 row3" >3</th>
-      <td id="T_ec146_row3_col0" class="data row3 col0" >Fecha / Fecha-hora</td>
-      <td id="T_ec146_row3_col1" class="data row3 col1" >0</td>
-      <td id="T_ec146_row3_col2" class="data row3 col2" >0.0</td>
+      <th id="T_3ff24_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_3ff24_row3_col0" class="data row3 col0" >Fecha / Fecha-hora</td>
+      <td id="T_3ff24_row3_col1" class="data row3 col1" >0</td>
+      <td id="T_3ff24_row3_col2" class="data row3 col2" >0.0</td>
     </tr>
   </tbody>
 </table>
@@ -1166,6 +1166,17 @@ Distribución de suicidios por sexo</p></li>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.ticker</span><span class="w"> </span><span class="kn">import</span> <span class="n">MultipleLocator</span><span class="p">,</span> <span class="n">PercentFormatter</span>
 
+<span class="c1"># Definir rowpct = porcentajes por ciclo vital (filas suman 100)</span>
+<span class="n">col_sexo</span>  <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="s1">&#39;sexo&#39;</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+<span class="n">col_ciclo</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="s1">&#39;ciclo&#39;</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+
+<span class="n">sexo</span>  <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col_sexo</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">title</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;Nan&#39;</span><span class="p">:</span><span class="s1">&#39;Desconocido&#39;</span><span class="p">})</span>
+<span class="n">ciclo</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col_ciclo</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">title</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;Nan&#39;</span><span class="p">:</span><span class="s1">&#39;Desconocido&#39;</span><span class="p">})</span>
+
+<span class="n">tab</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">ciclo</span><span class="p">,</span> <span class="n">sexo</span><span class="p">)</span>                  <span class="c1"># conteos</span>
+<span class="n">rowpct</span> <span class="o">=</span> <span class="p">(</span><span class="n">tab</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="n">tab</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># % por fila</span>
+
+
 <span class="c1"># --- Construye rowpct si no existe ---</span>
 <span class="k">if</span> <span class="s1">&#39;rowpct&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">globals</span><span class="p">():</span>
     <span class="n">col_sexo</span>  <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="s1">&#39;sexo&#39;</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
@@ -1206,7 +1217,7 @@ Distribución de suicidios por sexo</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/7d686cf18fafb1b57e12b0fc4125796d90488678b2c79be7ff81694b119514f0.png" src="_images/7d686cf18fafb1b57e12b0fc4125796d90488678b2c79be7ff81694b119514f0.png" />
+<img alt="_images/83f9a5b6d068ff404c6e9fe39ee89ac77fc47db364890217cecec7654aa48dcb.png" src="_images/83f9a5b6d068ff404c6e9fe39ee89ac77fc47db364890217cecec7654aa48dcb.png" />
 </div>
 </div>
 <div class="cell docutils container">
