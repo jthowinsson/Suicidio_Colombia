@@ -22,63 +22,232 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-# === Gráfica con estilo monocrómatico ===
-import matplotlib.pyplot as plt
+import pandas as pd
+import plotly.express as px
+import requests
 import numpy as np
-from matplotlib.ticker import MultipleLocator, PercentFormatter
 
-fig, ax = plt.subplots(figsize=(10,6), dpi=150)
+# 0. Detectar automáticamente la columna de departamento
+print("Columnas disponibles:")
+print(list(df.columns))
 
-# Paleta monocrómica (Blues). Ajusta el colormap si prefieres otra gama.
-cats = rowpct.columns.tolist()
-cmap = plt.cm.Blues
-if len(cats) > 1:
-    colors = [cmap(0.35 + 0.6*i/(len(cats)-1)) for i in range(len(cats))]
+# Buscar la columna correcta de departamento
+dept_col_candidates = [
+    'Departamento del hecho DANE', 'Depto_Nom', 'Departamento_ocurrencia',
+    'Departamento', 'DEPARTAMENTO', 'Depto', 'departamento'
+]
+
+dept_col = None
+for col in dept_col_candidates:
+    if col in df.columns:
+        dept_col = col
+        break
+
+# Si no encuentra ninguna, buscar por palabras clave
+if dept_col is None:
+    dept_matches = [col for col in df.columns if 'depart' in col.lower()]
+    if dept_matches:
+        dept_col = dept_matches[0]
+        print(f"🔍 Columna detectada automáticamente: '{dept_col}'")
+    else:
+        raise KeyError("No se encontró columna de departamento. Columnas disponibles: " + str(list(df.columns)))
 else:
-    colors = [cmap(0.7)]
+    print(f"✅ Usando columna: '{dept_col}'")
 
-(rowpct
- .plot(kind='barh', stacked=True, ax=ax, color=colors,
-       edgecolor='white', linewidth=0.8))
+# 1. Usar mapa de puntos (más confiable)
+# Coordenadas de las capitales/centros de los departamentos colombianos
+dept_coords = {
+    'Amazonas': [4.2, -69.9], 'Antioquia': [6.2, -75.6], 'Arauca': [7.1, -70.7],
+    'Atlántico': [10.8, -74.8], 'Bogotá, D.C.': [4.6, -74.1], 'Bolívar': [8.7, -74.0],
+    'Boyacá': [5.5, -73.4], 'Caldas': [5.3, -75.5], 'Caquetá': [1.9, -75.7],
+    'Casanare': [5.8, -72.0], 'Cauca': [2.5, -76.8], 'Cesar': [9.3, -73.7],
+    'Chocó': [5.7, -76.6], 'Córdoba': [8.8, -75.9], 'Cundinamarca': [4.6, -74.4],
+    'Guainía': [2.6, -67.9], 'Guaviare': [2.6, -72.6], 'Huila': [2.5, -75.5],
+    'La Guajira': [11.5, -72.9], 'Magdalena': [10.4, -74.4], 'Meta': [4.1, -73.6],
+    'Nariño': [1.3, -77.3], 'Norte de Santander': [7.9, -72.5], 'Putumayo': [0.5, -76.5],
+    'Quindío': [4.5, -75.7], 'Risaralda': [5.3, -75.7], 'Santander': [6.6, -73.1],
+    'Sucre': [9.3, -75.4], 'Tolima': [4.4, -75.2], 'Valle del Cauca': [3.4, -76.5],
+    'Vaupés': [1.3, -70.8], 'Vichada': [5.3, -67.4], 
+    'Archipiélago de San Andrés, Providencia y Santa Catalina': [12.5, -81.7],
+    'Sin información': [4.6, -74.1]  # Por si acaso queda alguno
+}
 
-# Estética
-ax.set_xlim(0, 100)
-ax.xaxis.set_major_locator(MultipleLocator(20))
-ax.xaxis.set_major_formatter(PercentFormatter(xmax=100, decimals=0))
-ax.grid(axis='x', linestyle='--', alpha=0.35)
-ax.set_xlabel('Porcentaje (%)', fontsize=11)
-ax.set_ylabel('Ciclo vital', fontsize=11)
-ax.set_title('Distribución de sexo por ciclo vital (100%)', fontsize=13, pad=10)
+# 2. Limpiar nombres y excluir "Sin información"
+map_data = (df[df[dept_col] != "Sin información"]
+            .groupby(dept_col)
+            .size()
+            .reset_index(name="casos"))
 
-# Quita spines superiores y derecha
-for spine in ['top', 'right']:
-    ax.spines[spine].set_visible(False)
+map_data[dept_col] = map_data[dept_col].str.strip()
 
-# Leyenda externa, sin borde
-leg = ax.legend(title='Sexo', bbox_to_anchor=(1.03, 1), loc='upper left', frameon=False)
+print(f"\nDepartamentos en tus datos (columna: {dept_col}):")
+print(map_data.sort_values("casos", ascending=False))
 
-# Etiquetas internas de porcentaje
-for i, (idx, row) in enumerate(rowpct.iterrows()):
-    cum = 0
-    for val in row:
-        if val >= 3:  # evita ruido visual
-            ax.text(cum + val/2, i, f'{val:.0f}%', va='center', ha='center', fontsize=9, color='#1f1f1f')
-        cum += val
+# 3. Agregar coordenadas y escala de tamaños normalizada
+map_data['lat'] = map_data["Departamento del hecho DANE"].map(
+    lambda x: dept_coords.get(x, [4.6, -74.1])[0]  # Default: Bogotá
+)
+map_data['lon'] = map_data["Departamento del hecho DANE"].map(
+    lambda x: dept_coords.get(x, [4.6, -74.1])[1]  # Default: Bogotá
+)
 
-plt.tight_layout()
-plt.show()
+# Crear tamaño normalizado para mejor visualización
+import numpy as np
+map_data['size_normalized'] = np.sqrt(map_data['casos'])  # Raíz cuadrada para suavizar diferencias
 
+# Verificar departamentos sin coordenadas
+sin_coords = map_data[
+    (map_data['lat'] == 4.6) & 
+    (map_data['lon'] == -74.1) & 
+    (map_data["Departamento del hecho DANE"] != "Bogotá, D.C.")
+]["Departamento del hecho DANE"].tolist()
+
+if sin_coords:
+    print(f"⚠️  Departamentos sin coordenadas específicas (usando Bogotá): {sin_coords}")
+else:
+    print("✅ Todos los departamentos tienen coordenadas específicas")
+
+# 4. Crear mapa de puntos usando scatter_map (versión actualizada)
+fig = px.scatter_map(
+    map_data,
+    lat="lat",
+    lon="lon",
+    size="size_normalized",  # Usar tamaño normalizado
+    color="casos",           # Color sigue siendo el valor real
+    hover_name=dept_col,
+    hover_data={"casos": ":,", "size_normalized": False, "lat": False, "lon": False},
+    color_continuous_scale="Reds",
+    size_max=30,  # Tamaño máximo moderado
+    zoom=5.5,     # Aumentar zoom para ver mejor
+    center=dict(lat=4.6, lon=-74.1),  # Centrado en Colombia
+    map_style="open-street-map",
+    title="Presuntos suicidios por departamento (Colombia)"
+)
+
+# 5. Configuración del mapa
+fig.update_layout(
+    title={
+        'text': f"Presuntos suicidios por departamento (Colombia) - Total: {map_data['casos'].sum():,} casos",
+        'x': 0.5,
+        'xanchor': 'center'
+    },
+    font_size=12,
+    width=900,
+    height=700
+)
+
+fig.show()
+
+# 6. Estadísticas adicionales
+total_casos = map_data["casos"].sum()
+if len(map_data) > 0:
+    top_dept = map_data.loc[map_data["casos"].idxmax()]
+    
+    print(f"\n📊 Resumen:")
+    print(f"Total de casos: {total_casos:,}")
+    print(f"Departamentos con datos: {len(map_data)}")
+    print(f"Departamento con más casos: {top_dept[dept_col]} ({top_dept['casos']:,} casos)")
+    print(f"Promedio por departamento: {map_data['casos'].mean():.1f} casos")
+    
+    # Top 10 departamentos
+    print(f"\n🏆 Top 10 departamentos:")
+    top10 = map_data.sort_values("casos", ascending=False).head(10)
+    for idx, (_, row) in enumerate(top10.iterrows(), 1):
+        print(f"{idx:2d}. {row[dept_col]:30s}: {row['casos']:4,} casos")
 ------------------
 
+----- stdout -----
+Columnas disponibles:
+['id', 'ano_del_hecho', 'grupo_de_edad_de_la_victima', 'grupo_mayor_menor_de_edad', 'edad_judicial', 'ciclo_vital', 'sexo_de_la_victima', 'estado_civil', 'pais_de_nacimiento_de_la_victima', 'escolaridad', 'pertenencia_grupal', 'mes_del_hecho', 'dia_del_hecho', 'rango_de_hora_del_hecho_x_3_horas', 'codigo_dane_municipio', 'municipio_del_hecho_dane', 'departamento_del_hecho_dane', 'codigo_dane_departamento', 'escenario_del_hecho', 'zona_del_hecho', 'actividad_durante_el_hecho', 'circunstancia_del_hecho', 'manera_de_muerte', 'mecanismo_causal', 'diagnostico_topografico_de_la_lesion', 'presunto_agresor', 'condicion_de_la_victima', 'medio_de_desplazamiento_o_transporte', 'servicio_del_vehiculo', 'clase_o_tipo_de_accidente', 'objeto_de_colision', 'servicio_del_objeto_de_colision', 'razon_del_suicidio', 'localidad_del_hecho', 'ancestro_racial', 'codigo_dane_municipio_norm', 'muni_cod', 'muni_nom', 'depto_cod', 'depto_nom', 'latitud', 'longitud']
+🔍 Columna detectada automáticamente: 'departamento_del_hecho_dane'
+
+Departamentos en tus datos (columna: departamento_del_hecho_dane):
+                                 departamento_del_hecho_dane  casos
+1                                                  Antioquia   3913
+5                                               Bogotá, D.C.   3373
+30                                           Valle del Cauca   2060
+14                                              Cundinamarca   1446
+27                                                 Santander   1140
+29                                                    Tolima    909
+23                                        Norte de Santander    837
+4                                                  Atlántico    809
+22                                                    Nariño    755
+18                                                     Huila    736
+8                                                     Caldas    712
+7                                                     Boyacá    709
+26                                                 Risaralda    664
+11                                                     Cauca    634
+6                                                    Bolívar    623
+12                                                     Cesar    600
+21                                                      Meta    536
+15                                                   Córdoba    448
+20                                                 Magdalena    425
+28                                                     Sucre    402
+25                                                   Quindío    399
+2                                                     Arauca    247
+10                                                  Casanare    232
+19                                                La Guajira    231
+24                                                  Putumayo    228
+9                                                    Caquetá    192
+13                                                     Chocó     93
+17                                                  Guaviare     46
+31                                                    Vaupés     46
+0                                                   Amazonas     42
+32                                                   Vichada     19
+3   Archipiélago de San Andrés, Providencia y Santa Catalina     18
+16                                                   Guainía     17
+------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mNameError[0m                                 Traceback (most recent call last)
-Cell [0;32mIn[12], line 9[0m
-[1;32m      6[0m fig, ax [38;5;241m=[39m plt[38;5;241m.[39msubplots(figsize[38;5;241m=[39m([38;5;241m10[39m,[38;5;241m6[39m), dpi[38;5;241m=[39m[38;5;241m150[39m)
-[1;32m      8[0m [38;5;66;03m# Paleta monocrómica (Blues). Ajusta el colormap si prefieres otra gama.[39;00m
-[0;32m----> 9[0m cats [38;5;241m=[39m [43mrowpct[49m[38;5;241m.[39mcolumns[38;5;241m.[39mtolist()
-[1;32m     10[0m cmap [38;5;241m=[39m plt[38;5;241m.[39mcm[38;5;241m.[39mBlues
-[1;32m     11[0m [38;5;28;01mif[39;00m [38;5;28mlen[39m(cats) [38;5;241m>[39m [38;5;241m1[39m:
+[0;31mKeyError[0m                                  Traceback (most recent call last)
+File [0;32m~/miniconda3/envs/ml_venv/lib/python3.9/site-packages/pandas/core/indexes/base.py:3805[0m, in [0;36mIndex.get_loc[0;34m(self, key)[0m
+[1;32m   3804[0m [38;5;28;01mtry[39;00m:
+[0;32m-> 3805[0m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_engine[49m[38;5;241;43m.[39;49m[43mget_loc[49m[43m([49m[43mcasted_key[49m[43m)[49m
+[1;32m   3806[0m [38;5;28;01mexcept[39;00m [38;5;167;01mKeyError[39;00m [38;5;28;01mas[39;00m err:
 
-[0;31mNameError[0m: name 'rowpct' is not defined
+File [0;32mindex.pyx:167[0m, in [0;36mpandas._libs.index.IndexEngine.get_loc[0;34m()[0m
+
+File [0;32mindex.pyx:196[0m, in [0;36mpandas._libs.index.IndexEngine.get_loc[0;34m()[0m
+
+File [0;32mpandas/_libs/hashtable_class_helper.pxi:7081[0m, in [0;36mpandas._libs.hashtable.PyObjectHashTable.get_item[0;34m()[0m
+
+File [0;32mpandas/_libs/hashtable_class_helper.pxi:7089[0m, in [0;36mpandas._libs.hashtable.PyObjectHashTable.get_item[0;34m()[0m
+
+[0;31mKeyError[0m: 'Departamento del hecho DANE'
+
+The above exception was the direct cause of the following exception:
+
+[0;31mKeyError[0m                                  Traceback (most recent call last)
+Cell [0;32mIn[22], line 63[0m
+[1;32m     60[0m [38;5;28mprint[39m(map_data[38;5;241m.[39msort_values([38;5;124m"[39m[38;5;124mcasos[39m[38;5;124m"[39m, ascending[38;5;241m=[39m[38;5;28;01mFalse[39;00m))
+[1;32m     62[0m [38;5;66;03m# 3. Agregar coordenadas y escala de tamaños normalizada[39;00m
+[0;32m---> 63[0m map_data[[38;5;124m'[39m[38;5;124mlat[39m[38;5;124m'[39m] [38;5;241m=[39m [43mmap_data[49m[43m[[49m[38;5;124;43m"[39;49m[38;5;124;43mDepartamento del hecho DANE[39;49m[38;5;124;43m"[39;49m[43m][49m[38;5;241m.[39mmap(
+[1;32m     64[0m     [38;5;28;01mlambda[39;00m x: dept_coords[38;5;241m.[39mget(x, [[38;5;241m4.6[39m, [38;5;241m-[39m[38;5;241m74.1[39m])[[38;5;241m0[39m]  [38;5;66;03m# Default: Bogotá[39;00m
+[1;32m     65[0m )
+[1;32m     66[0m map_data[[38;5;124m'[39m[38;5;124mlon[39m[38;5;124m'[39m] [38;5;241m=[39m map_data[[38;5;124m"[39m[38;5;124mDepartamento del hecho DANE[39m[38;5;124m"[39m][38;5;241m.[39mmap(
+[1;32m     67[0m     [38;5;28;01mlambda[39;00m x: dept_coords[38;5;241m.[39mget(x, [[38;5;241m4.6[39m, [38;5;241m-[39m[38;5;241m74.1[39m])[[38;5;241m1[39m]  [38;5;66;03m# Default: Bogotá[39;00m
+[1;32m     68[0m )
+[1;32m     70[0m [38;5;66;03m# Crear tamaño normalizado para mejor visualización[39;00m
+
+File [0;32m~/miniconda3/envs/ml_venv/lib/python3.9/site-packages/pandas/core/frame.py:4102[0m, in [0;36mDataFrame.__getitem__[0;34m(self, key)[0m
+[1;32m   4100[0m [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mcolumns[38;5;241m.[39mnlevels [38;5;241m>[39m [38;5;241m1[39m:
+[1;32m   4101[0m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m[38;5;241m.[39m_getitem_multilevel(key)
+[0;32m-> 4102[0m indexer [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mcolumns[49m[38;5;241;43m.[39;49m[43mget_loc[49m[43m([49m[43mkey[49m[43m)[49m
+[1;32m   4103[0m [38;5;28;01mif[39;00m is_integer(indexer):
+[1;32m   4104[0m     indexer [38;5;241m=[39m [indexer]
+
+File [0;32m~/miniconda3/envs/ml_venv/lib/python3.9/site-packages/pandas/core/indexes/base.py:3812[0m, in [0;36mIndex.get_loc[0;34m(self, key)[0m
+[1;32m   3807[0m     [38;5;28;01mif[39;00m [38;5;28misinstance[39m(casted_key, [38;5;28mslice[39m) [38;5;129;01mor[39;00m (
+[1;32m   3808[0m         [38;5;28misinstance[39m(casted_key, abc[38;5;241m.[39mIterable)
+[1;32m   3809[0m         [38;5;129;01mand[39;00m [38;5;28many[39m([38;5;28misinstance[39m(x, [38;5;28mslice[39m) [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m casted_key)
+[1;32m   3810[0m     ):
+[1;32m   3811[0m         [38;5;28;01mraise[39;00m InvalidIndexError(key)
+[0;32m-> 3812[0m     [38;5;28;01mraise[39;00m [38;5;167;01mKeyError[39;00m(key) [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01merr[39;00m
+[1;32m   3813[0m [38;5;28;01mexcept[39;00m [38;5;167;01mTypeError[39;00m:
+[1;32m   3814[0m     [38;5;66;03m# If we have a listlike key, _check_indexing_error will raise[39;00m
+[1;32m   3815[0m     [38;5;66;03m#  InvalidIndexError. Otherwise we fall through and re-raise[39;00m
+[1;32m   3816[0m     [38;5;66;03m#  the TypeError.[39;00m
+[1;32m   3817[0m     [38;5;28mself[39m[38;5;241m.[39m_check_indexing_error(key)
+
+[0;31mKeyError[0m: 'Departamento del hecho DANE'
 
