@@ -189,9 +189,9 @@
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Datos y metodología</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Eda.html">Análisis Exploratorio de Datos</a></li>
 
+
 <li class="toctree-l1"><a class="reference internal" href="referencias.html">Citations</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="Ejercicios.html">Mapas</a></li>
 </ul>
 
     </div>
@@ -406,7 +406,7 @@ document.write(`
 <h2>Fuente de los datos<a class="headerlink" href="#fuente-de-los-datos" title="Link to this heading">#</a></h2>
 <p>Se utilizó la base de datos “Presuntos Suicidios en Colombia, 2015–2023 (cifras definitivas)”, disponible en el portal oficial de datos abiertos <span id="id1">[<a class="reference internal" href="referencias.html#id7" title="Datos Abiertos Colombia. Presuntos suicidios – colombia, 2015 a 2023 (cifras definitivas). 2024. Conjunto de datos de acceso público, última actualización en 2024. URL: https://www.datos.gov.co/Justicia-y-Derecho/Presuntos-Suicidios-Colombia-2015-a-2023-Cifras-de/f75u-mirk.">6</a>]</span>. Esta fuente contiene 23.544 registros anonimizados, correspondientes a casos de suicidio consumado en el país durante el periodo de estudio.</p>
 <ul>
-<li><p><strong>Unidad de análisi</strong></p>
+<li><p><strong>Unidad de análisis</strong></p>
 <p>Cada registro representa un caso de suicidio con información individual sobre características sociodemográficas, contexto del hecho y mecanismo causal.</p>
 </li>
 <li><p><strong>Población y periodo</strong></p>
@@ -431,35 +431,31 @@ document.write(`
 <li><p>Recodificación de la columna Mecanismo Causal en una variable binaria.</p></li>
 </ul>
 </li>
-<li><p><strong>Modelado estadístico</strong>:</p>
-<ul class="simple">
-<li><p>Se empleó un modelo de regresión logística binaria para estimar los odds ratios (OR) asociados al uso de generadores de asfixia frente a otros mecanismos.</p></li>
-<li><p>Forma del modelo:</p></li>
-</ul>
-</li>
+<li><p><strong>Modelado estadístico</strong>:</p></li>
 </ol>
+<p>Para el análisis de los factores asociados al mecanismo causal, se implementará un modelo de aprendizaje automático avanzado basado en el algoritmo XGBoost (Extreme Gradient Boosting). Específicamente, se utilizará un XGBoost Regressor configurado para una tarea de clasificación logística.</p>
+<p>Este modelo se elige por su alta capacidad predictiva y su robustez en el manejo de relaciones complejas y no lineales entre las variables. A diferencia de los modelos de regresión tradicionales. El objetivo del modelo será predecir la probabilidad de que ocurra un mecanismo causal específico (por ejemplo, “Generadores de asfixia” frente a otros) en función de un conjunto de variables predictoras, tales como el sexo, la edad, el estado civil, la escolaridad y la zona del hecho.</p>
+<p>De esta manera, se buscará identificar cuáles son los factores con mayor poder de discriminación entre los diferentes mecanismos.</p>
+<ul class="simple">
+<li><p>La estructura general de la predicción se puede expresar de la siguiente manera:</p></li>
+</ul>
 <div class="math notranslate nohighlight">
-\[
-\log \left( \frac{P(Y=1)}{1 - P(Y=1)} \right) 
-= \beta_0 + \beta_1 \text{(Sexo)} + \beta_2 \text{(Edad)} + \beta_3 \text{(Estado Civil)} + \beta_4 \text{(Escolaridad)} + \beta_5 \text{(Zona)} + \beta_6 \text{(Escenario)} + \cdots
-\]</div>
-<p>donde <span class="math notranslate nohighlight">\(p\)</span> es la probabilidad de que el mecanismo sea <em>asfixia</em></p>
+\[\hat{y}_i = \sum_{k=1}^{K} f_k(x_i)\]</div>
+<p>Donde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{y}_i\)</span> es la predicción bruta (sin transformar) para una observación i.</p></li>
+<li><p><span class="math notranslate nohighlight">\(K\)</span> es el número total de árboles de decisión construidos por el modelo.</p></li>
+<li><p><span class="math notranslate nohighlight">\(f_k\)</span> representa el k-ésimo árbol de decisión.</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_i\)</span> es el conjunto de variables predictoras (edad, sexo, etc.) para la observación i.</p></li>
+</ul>
+<p>Dado que nuestro modelo es de regresión logística (clasificación), esta predicción bruta se transforma en una probabilidad (un valor entre 0 y 1) mediante la función logistica o sigmoide:</p>
+<div class="math notranslate nohighlight">
+\[P(Y=1 | x_i) = \sigma(\hat{y}_i) = \frac{1}{1 + e^{-\hat{y}_i}}\]</div>
 <ol class="arabic simple" start="4">
-<li><p><strong>Evaluación del Modelo</strong></p>
-<ul class="simple">
-<li><p>Discriminación: curva ROC y área bajo la curva (AUC).</p></li>
-<li><p>Calibración: prueba de Hosmer–Lemeshow y curvas de calibración.</p></li>
-<li><p>Bondad de ajuste: pseudo-R² de McFadden.</p></li>
-<li><p>Diagnóstico de multicolinealidad: factor de inflación de la varianza (VIF).</p></li>
-</ul>
-</li>
-<li><p><strong>Análisis de sensibilidad</strong></p>
-<ul class="simple">
-<li><p>Exclusión de categorías “sin información”.</p></li>
-<li><p>Evaluación de interacciones entre variables (ej. sexo×edad, zona×escenario).</p></li>
-</ul>
-</li>
+<li><p><strong>Métricas de Clasificación</strong></p></li>
 </ol>
+<p>La validez y capacidad predictiva del modelo se comprobaron mediante un riguroso proceso de validación cruzada. Para ello, el conjunto de datos se particionó en un subconjunto de entrenamiento (80%) y otro de prueba (20%). El modelo fue ajustado utilizando el primer grupo, mientras que su desempeño fue evaluado objetivamente sobre el segundo para asegurar que los resultados fueran generalizables.</p>
+<p>La eficacia del modelo se cuantificó mediante un conjunto de métricas de clasificación estándar, calculadas a partir de la matriz de confusión. Se emplearon la exactitud (<code class="docutils literal notranslate"><span class="pre">accuracy</span></code>), precisión (<code class="docutils literal notranslate"><span class="pre">precision</span></code>), sensibilidad (<code class="docutils literal notranslate"><span class="pre">recall</span></code>) y la puntuación F1 (<code class="docutils literal notranslate"><span class="pre">F1-Score</span></code>) para valorar el equilibrio entre la correcta identificación de los casos y la minimización de errores de clasificación. Adicionalmente, se utilizó la curva ROC y el área bajo la misma (<code class="docutils literal notranslate"><span class="pre">AUC</span></code>) como medida global de la capacidad discriminativa del modelo para distinguir entre las diferentes categorías de mecanismos.</p>
 </section>
 </section>
 
