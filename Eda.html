@@ -459,7 +459,116 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(23544, 42)
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/jthowinsson/Suicidio_Colombia/main/Presuntos_Suicidios_con_Coor.csv&quot;</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>  <span class="c1"># separador coma</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/ml_venv/lib/python3.9/site-packages/pandas/io/parsers/readers.py:1026,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1013</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1014</span>     <span class="n">dialect</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1015</span>     <span class="n">delimiter</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1022</span>     <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1023</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1024</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1026</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/ml_venv/lib/python3.9/site-packages/pandas/io/parsers/readers.py:620,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">617</span> <span class="n">_validate_names</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;names&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">619</span> <span class="c1"># Create the parser.</span>
+<span class="ne">--&gt; </span><span class="mi">620</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">622</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">623</span>     <span class="k">return</span> <span class="n">parser</span>
+
+<span class="nn">File ~/miniconda3/envs/ml_venv/lib/python3.9/site-packages/pandas/io/parsers/readers.py:1620,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1617</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1619</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">-&gt; </span><span class="mi">1620</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/ml_venv/lib/python3.9/site-packages/pandas/io/parsers/readers.py:1880,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1878</span>     <span class="k">if</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1879</span>         <span class="n">mode</span> <span class="o">+=</span> <span class="s2">&quot;b&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1880</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1881</span>     <span class="n">f</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1882</span>     <span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1883</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1884</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1885</span>     <span class="n">memory_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1886</span>     <span class="n">is_text</span><span class="o">=</span><span class="n">is_text</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1887</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1888</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1889</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1890</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1891</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span>
+
+<span class="nn">File ~/miniconda3/envs/ml_venv/lib/python3.9/site-packages/pandas/io/common.py:728,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">725</span>     <span class="n">codecs</span><span class="o">.</span><span class="n">lookup_error</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">727</span> <span class="c1"># open URLs</span>
+<span class="ne">--&gt; </span><span class="mi">728</span> <span class="n">ioargs</span> <span class="o">=</span> <span class="n">_get_filepath_or_buffer</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">729</span>     <span class="n">path_or_buf</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">730</span>     <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">731</span>     <span class="n">compression</span><span class="o">=</span><span class="n">compression</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">732</span>     <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">733</span>     <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">734</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">736</span> <span class="n">handle</span> <span class="o">=</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">filepath_or_buffer</span>
+<span class="g g-Whitespace">    </span><span class="mi">737</span> <span class="n">handles</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">BaseBuffer</span><span class="p">]</span>
+
+<span class="nn">File ~/miniconda3/envs/ml_venv/lib/python3.9/site-packages/pandas/io/common.py:389,</span> in <span class="ni">_get_filepath_or_buffer</span><span class="nt">(filepath_or_buffer, encoding, compression, mode, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">386</span>         <span class="k">if</span> <span class="n">content_encoding</span> <span class="o">==</span> <span class="s2">&quot;gzip&quot;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">387</span>             <span class="c1"># Override compression based on Content-Encoding header</span>
+<span class="g g-Whitespace">    </span><span class="mi">388</span>             <span class="n">compression</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;method&quot;</span><span class="p">:</span> <span class="s2">&quot;gzip&quot;</span><span class="p">}</span>
+<span class="ne">--&gt; </span><span class="mi">389</span>         <span class="n">reader</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+<span class="g g-Whitespace">    </span><span class="mi">390</span>     <span class="k">return</span> <span class="n">IOArgs</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">391</span>         <span class="n">filepath_or_buffer</span><span class="o">=</span><span class="n">reader</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">392</span>         <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">395</span>         <span class="n">mode</span><span class="o">=</span><span class="n">fsspec_mode</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">396</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">398</span> <span class="k">if</span> <span class="n">is_fsspec_url</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">):</span>
+
+<span class="nn">File ~/miniconda3/envs/ml_venv/lib/python3.9/http/client.py:476,</span> in <span class="ni">HTTPResponse.read</span><span class="nt">(self, amt)</span>
+<span class="g g-Whitespace">    </span><span class="mi">474</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">475</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">476</span>         <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_safe_read</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">length</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">477</span>     <span class="k">except</span> <span class="n">IncompleteRead</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">478</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_close_conn</span><span class="p">()</span>
+
+<span class="nn">File ~/miniconda3/envs/ml_venv/lib/python3.9/http/client.py:626,</span> in <span class="ni">HTTPResponse._safe_read</span><span class="nt">(self, amt)</span>
+<span class="g g-Whitespace">    </span><span class="mi">624</span> <span class="n">s</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="g g-Whitespace">    </span><span class="mi">625</span> <span class="k">while</span> <span class="n">amt</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">626</span>     <span class="n">chunk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">amt</span><span class="p">,</span> <span class="n">MAXAMOUNT</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">627</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">chunk</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">628</span>         <span class="k">raise</span> <span class="n">IncompleteRead</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="n">amt</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/ml_venv/lib/python3.9/socket.py:704,</span> in <span class="ni">SocketIO.readinto</span><span class="nt">(self, b)</span>
+<span class="g g-Whitespace">    </span><span class="mi">702</span> <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">703</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">704</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sock</span><span class="o">.</span><span class="n">recv_into</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">705</span>     <span class="k">except</span> <span class="n">timeout</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">706</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_timeout_occurred</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="nn">File ~/miniconda3/envs/ml_venv/lib/python3.9/ssl.py:1242,</span> in <span class="ni">SSLSocket.recv_into</span><span class="nt">(self, buffer, nbytes, flags)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1238</span>     <span class="k">if</span> <span class="n">flags</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1239</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1240</span>           <span class="s2">&quot;non-zero flags not allowed in calls to recv_into() on </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
+<span class="g g-Whitespace">   </span><span class="mi">1241</span>           <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1242</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">nbytes</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1243</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1244</span>     <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">recv_into</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">nbytes</span><span class="p">,</span> <span class="n">flags</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/ml_venv/lib/python3.9/ssl.py:1100,</span> in <span class="ni">SSLSocket.read</span><span class="nt">(self, len, buffer)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1098</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1099</span>     <span class="k">if</span> <span class="n">buffer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1100</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sslobj</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="nb">len</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1101</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1102</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sslobj</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="nb">len</span><span class="p">)</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>
@@ -752,58 +861,58 @@ None
   </tbody>
 </table>
 </div></div><div class="output text_html"><style type="text/css">
-#T_3d0c8_row0_col1, #T_3d0c8_row1_col1, #T_3d0c8_row2_col1, #T_3d0c8_row3_col1 {
+#T_c9810_row0_col1, #T_c9810_row1_col1, #T_c9810_row2_col1, #T_c9810_row3_col1 {
   text-align: right;
 }
-#T_3d0c8_row0_col2 {
+#T_c9810_row0_col2 {
   text-align: right;
   background-color: #bfd8ed;
   color: #000000;
 }
-#T_3d0c8_row1_col2 {
+#T_c9810_row1_col2 {
   text-align: right;
   background-color: #08306b;
   color: #f1f1f1;
 }
-#T_3d0c8_row2_col2, #T_3d0c8_row3_col2 {
+#T_c9810_row2_col2, #T_c9810_row3_col2 {
   text-align: right;
   background-color: #f7fbff;
   color: #000000;
 }
 </style>
-<table id="T_3d0c8">
+<table id="T_c9810">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_3d0c8_level0_col0" class="col_heading level0 col0" >Tipo de variable</th>
-      <th id="T_3d0c8_level0_col1" class="col_heading level0 col1" >Conteo</th>
-      <th id="T_3d0c8_level0_col2" class="col_heading level0 col2" >% sobre total</th>
+      <th id="T_c9810_level0_col0" class="col_heading level0 col0" >Tipo de variable</th>
+      <th id="T_c9810_level0_col1" class="col_heading level0 col1" >Conteo</th>
+      <th id="T_c9810_level0_col2" class="col_heading level0 col2" >% sobre total</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_3d0c8_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_3d0c8_row0_col0" class="data row0 col0" >Numéricas</td>
-      <td id="T_3d0c8_row0_col1" class="data row0 col1" >9</td>
-      <td id="T_3d0c8_row0_col2" class="data row0 col2" >21.4</td>
+      <th id="T_c9810_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_c9810_row0_col0" class="data row0 col0" >Numéricas</td>
+      <td id="T_c9810_row0_col1" class="data row0 col1" >9</td>
+      <td id="T_c9810_row0_col2" class="data row0 col2" >21.4</td>
     </tr>
     <tr>
-      <th id="T_3d0c8_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_3d0c8_row1_col0" class="data row1 col0" >Categóricas</td>
-      <td id="T_3d0c8_row1_col1" class="data row1 col1" >33</td>
-      <td id="T_3d0c8_row1_col2" class="data row1 col2" >78.6</td>
+      <th id="T_c9810_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_c9810_row1_col0" class="data row1 col0" >Categóricas</td>
+      <td id="T_c9810_row1_col1" class="data row1 col1" >33</td>
+      <td id="T_c9810_row1_col2" class="data row1 col2" >78.6</td>
     </tr>
     <tr>
-      <th id="T_3d0c8_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_3d0c8_row2_col0" class="data row2 col0" >Lógicas</td>
-      <td id="T_3d0c8_row2_col1" class="data row2 col1" >0</td>
-      <td id="T_3d0c8_row2_col2" class="data row2 col2" >0.0</td>
+      <th id="T_c9810_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_c9810_row2_col0" class="data row2 col0" >Lógicas</td>
+      <td id="T_c9810_row2_col1" class="data row2 col1" >0</td>
+      <td id="T_c9810_row2_col2" class="data row2 col2" >0.0</td>
     </tr>
     <tr>
-      <th id="T_3d0c8_level0_row3" class="row_heading level0 row3" >3</th>
-      <td id="T_3d0c8_row3_col0" class="data row3 col0" >Fecha / Fecha-hora</td>
-      <td id="T_3d0c8_row3_col1" class="data row3 col1" >0</td>
-      <td id="T_3d0c8_row3_col2" class="data row3 col2" >0.0</td>
+      <th id="T_c9810_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_c9810_row3_col0" class="data row3 col0" >Fecha / Fecha-hora</td>
+      <td id="T_c9810_row3_col1" class="data row3 col1" >0</td>
+      <td id="T_c9810_row3_col2" class="data row3 col2" >0.0</td>
     </tr>
   </tbody>
 </table>
@@ -1450,7 +1559,7 @@ Total de registros válidos: 23544
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ky/w_yrzmks6yv4tnlq0djdqvyh0000gn/T/ipykernel_40463/972984195.py:50: MatplotlibDeprecationWarning: The &#39;labels&#39; parameter of boxplot() has been renamed &#39;tick_labels&#39; since Matplotlib 3.9; support for the old name will be dropped in 3.11.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ky/w_yrzmks6yv4tnlq0djdqvyh0000gn/T/ipykernel_53591/972984195.py:50: MatplotlibDeprecationWarning: The &#39;labels&#39; parameter of boxplot() has been renamed &#39;tick_labels&#39; since Matplotlib 3.9; support for the old name will be dropped in 3.11.
   ax.boxplot(grupos,
 </pre></div>
 </div>
@@ -1879,9 +1988,9 @@ Desv. Est. = 18.5
         </script>
         <script type="module">import "https://cdn.plot.ly/plotly-3.1.0.min"</script>
         </div><div class="output text_html"><div>            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG"></script><script type="text/javascript">if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}</script>                <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
-        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.1.0.min.js" integrity="sha256-Ei4740bWZhaUTQuD6q9yQlgVCMPBz6CZWhevDYPv93A=" crossorigin="anonymous"></script>                <div id="303a6ac7-ae07-46fb-95e2-51d7a9683d57" class="plotly-graph-div" style="height:700px; width:950px;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("303a6ac7-ae07-46fb-95e2-51d7a9683d57")) {                    Plotly.newPlot(                        "303a6ac7-ae07-46fb-95e2-51d7a9683d57",                        [{"customdata":{"dtype":"f8","bdata":"AAAAAAAARUAkKH6MucsQwDY9KChFfFHADbGPEDSRNkAAAAAAAJKuQIoNgcNaiRlArUiaoNXlUsCQByxWI9FIQAAAAAAA4G5AvHxEbB+KG0C8rw+EYtdRwI3Q7DJQikBAAAAAAAAAMkCoHJPF\u002fScpQJHWGHRCbVTAYYaDhKiqMUAAAAAAAEiJQIjL4KQFzyVAp8dMdf60UsAwwmWCUhdEQAAAAAAAWqpAyJQPQdWYEkDBO\u002fn02IZSwL6HLL0eX0hAAAAAAAB4g0CGGWEHXSQkQHq730j50FLA6trQpvZOQ0AAAAAAACiGQP2G\u002fHjCoxZABZ6rQ8lRUsD\u002foH+dH7JDQAAAAAAAQIZAqI50\u002fubHFEDyNSHrudtSwLwTZZpctUNAAAAAAAAAaECgAIqRJXX6P2ksdDhJ1FLAk\u002fU9\u002fH2TP0AAAAAAAABtQNa0iS2hZBVAdpN8ItYTUsDH6K3EZVpAQAAAAAAA0INAwziSbW2nBEB5AL15FidTwCutxE1iXENAAAAAAADAgkD2V4G4rm4jQNO5n6tAXFLAOYrw8x4yQ0AAAAAAAEBXQFGbRwEgPxdAY8L4G7UsU8Bmn3szgEI7QAAAAAAAmJZAp2q1DLn0EkAc9WIkrY5SwFZR\u002fB7t1EVAAAAAAAAAfEAnefMXWZ0hQHbKoxud8FLAU1RQjjFSQkAAAAAAAAAxQBN5iDw\u002fwg5APPd6U+0BUcAkrdBrnFcxQAAAAAAAAEdAyLDojb1CA0D\u002fN4PuCiZSwIi0rKPTGTdAAAAAAAAAh0ATzWGub9cDQGQXVVwB51LAnsGtmcnOQ0AAAAAAAOBsQChnmvKrhyZAJsNV9cAvUsCXnyMkGFdAQAAAAAAAkHpAgmFGtA8yJUDN1B1zPJFSwBiHAzbPKUJAAAAAAADAgEAXH9SwDzUPQN7Nrf8SZFLA1OZrg6XbQkAAAAAAAJiHQO08+tWpUvQ\u002fO4ylFWhlU8CErXn1VeJDQAAAAAAAKIpAnm8dzGsEIEC+hCUVGjJSwFMQtwFsMURAAAAAAACAbEBlY0fYzdnkP7+IocbiIlPAknY2NxlNQEAAAAAAAPB4QAV2\u002fM6EIhJAUeGvPvPrUsCt6pbccflBQAAAAAAAwIRAS36I6OKNE0DUquH8Qe9SwJu+ZyHWf0NAAAAAAADQkUDPjkYhypkbQOP+6j6BUVLADdHEinUeRUAAAAAAACB5QJXwWMFRlSJAcWX9VhPUUsDgBGnrLv9BQAAAAAAAaIxAfhKHM9aUEUCBElJb7sZSwHcFQLe5cERAAAAAAAAYoEDIwjb4XqENQIWLwv3jGVPAtlc3JZHkRkAAAAAAAABHQKk8Rb9U9\u002fM\u002fMBkiAmmQUcCItKyj0xk3QAAAAAAAADNAYgetkOBxFUBXvlXCBEBRwK3qltxx+TFA","shape":"33, 4"},"hovertemplate":"\u003cb\u003e%{hovertext}\u003c\u002fb\u003e\u003cbr\u003e\u003cbr\u003ecasos=%{marker.color:,}\u003cextra\u003e\u003c\u002fextra\u003e","hovertext":["Amazonas","Antioquia","Arauca","Archipi\u00e9lago de San Andr\u00e9s, Providencia y Santa Catalina","Atl\u00e1ntico","Bogot\u00e1, D.C.","Bol\u00edvar","Boyac\u00e1","Caldas","Caquet\u00e1","Casanare","Cauca","Cesar","Choc\u00f3","Cundinamarca","C\u00f3rdoba","Guain\u00eda","Guaviare","Huila","la Guajira","Magdalena","Meta","Nari\u00f1o","Norte de Santander","Putumayo","Quind\u00edo","Risaralda","Santander","Sucre","Tolima","Valle del Cauca","Vaup\u00e9s","Vichada"],"lat":{"dtype":"f8","bdata":"JCh+jLnLEMCKDYHDWokZQLx8RGwfihtAqByTxf0nKUCIy+CkBc8lQMiUD0HVmBJAhhlhB10kJED9hvx4wqMWQKiOdP7mxxRAoACKkSV1+j\u002fWtIktoWQVQMM4km1tpwRA9leBuK5uI0BRm0cBID8XQKdqtQy59BJAJ3nzF1mdIUATeYg8P8IOQMiw6I29QgNAE81hrm\u002fXA0AoZ5ryq4cmQIJhRrQPMiVAFx\u002fUsA81D0DtPPrVqVL0P55vHcxrBCBAZWNH2M3Z5D8FdvzOhCISQEt+iOjijRNAz45GIcqZG0CV8FjBUZUiQH4ShzPWlBFAyMI2+F6hDUCpPEW\u002fVPfzP2IHrZDgcRVA"},"legendgroup":"","lon":{"dtype":"f8","bdata":"Nj0oKEV8UcCtSJqg1eVSwLyvD4Ri11HAkdYYdEJtVMCnx0x1\u002frRSwME7+fTYhlLAervfSPnQUsAFnqtDyVFSwPI1Ieu521LAaSx0OEnUUsB2k3wi1hNSwHkAvXkWJ1PA07mfq0BcUsBjwvgbtSxTwBz1YiStjlLAdsqjG53wUsA893pT7QFRwP83g+4KJlLAZBdVXAHnUsAmw1X1wC9SwM3UHXM8kVLA3s2t\u002fxJkUsA7jKUVaGVTwL6EJRUaMlLAv4ihxuIiU8BR4a8+8+tSwNSq4fxB71LA4\u002f7qPoFRUsBxZf1WE9RSwIESUlvuxlLAhYvC\u002feMZU8AwGSICaZBRwFe+VcIEQFHA"},"marker":{"color":{"dtype":"i2","bdata":"KgBJD\u002fcAEgApAy0NbwLFAsgCwADoAHoCWAJdAKYFwAERAC4A4ALnAKkBGALzAkUD5ACPAZgCdASSAY0DDAguABMA"},"coloraxis":"coloraxis","size":{"dtype":"f8","bdata":"DbGPEDSRNkCQByxWI9FIQI3Q7DJQikBAYYaDhKiqMUAwwmWCUhdEQL6HLL0eX0hA6trQpvZOQ0D\u002foH+dH7JDQLwTZZpctUNAk\u002fU9\u002fH2TP0DH6K3EZVpAQCutxE1iXENAOYrw8x4yQ0Bmn3szgEI7QFZR\u002fB7t1EVAU1RQjjFSQkAkrdBrnFcxQIi0rKPTGTdAnsGtmcnOQ0CXnyMkGFdAQBiHAzbPKUJA1OZrg6XbQkCErXn1VeJDQFMQtwFsMURAknY2NxlNQECt6pbccflBQJu+ZyHWf0NADdHEinUeRUDgBGnrLv9BQHcFQLe5cERAtlc3JZHkRkCItKyj0xk3QK3qltxx+TFA"},"sizemode":"area","sizeref":0.0633085342955818},"mode":"markers","name":"","showlegend":false,"subplot":"map","type":"scattermap"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"map":{"domain":{"x":[0.0,1.0],"y":[0.0,1.0]},"center":{"lat":4.6,"lon":-74.1},"zoom":5,"style":"open-street-map"},"coloraxis":{"colorbar":{"title":{"text":"casos"}},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]]},"legend":{"tracegroupgap":0,"itemsizing":"constant"},"title":{"text":"Presuntos suicidios por departamento \u2014 Total: 23,541 casos"},"mapbox":{"center":{"lat":4.6,"lon":-74.1},"zoom":5,"style":"open-street-map"},"margin":{"l":0,"r":0,"t":60,"b":0},"height":700,"width":950},                        {"responsive": true}                    ).then(function(){
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.1.0.min.js" integrity="sha256-Ei4740bWZhaUTQuD6q9yQlgVCMPBz6CZWhevDYPv93A=" crossorigin="anonymous"></script>                <div id="9d03c792-a959-4bdc-9349-16c09183939e" class="plotly-graph-div" style="height:700px; width:950px;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("9d03c792-a959-4bdc-9349-16c09183939e")) {                    Plotly.newPlot(                        "9d03c792-a959-4bdc-9349-16c09183939e",                        [{"customdata":{"dtype":"f8","bdata":"AAAAAAAARUAkKH6MucsQwDY9KChFfFHADbGPEDSRNkAAAAAAAJKuQIoNgcNaiRlArUiaoNXlUsCQByxWI9FIQAAAAAAA4G5AvHxEbB+KG0C8rw+EYtdRwI3Q7DJQikBAAAAAAAAAMkCoHJPF\u002fScpQJHWGHRCbVTAYYaDhKiqMUAAAAAAAEiJQIjL4KQFzyVAp8dMdf60UsAwwmWCUhdEQAAAAAAAWqpAyJQPQdWYEkDBO\u002fn02IZSwL6HLL0eX0hAAAAAAAB4g0CGGWEHXSQkQHq730j50FLA6trQpvZOQ0AAAAAAACiGQP2G\u002fHjCoxZABZ6rQ8lRUsD\u002foH+dH7JDQAAAAAAAQIZAqI50\u002fubHFEDyNSHrudtSwLwTZZpctUNAAAAAAAAAaECgAIqRJXX6P2ksdDhJ1FLAk\u002fU9\u002fH2TP0AAAAAAAABtQNa0iS2hZBVAdpN8ItYTUsDH6K3EZVpAQAAAAAAA0INAwziSbW2nBEB5AL15FidTwCutxE1iXENAAAAAAADAgkD2V4G4rm4jQNO5n6tAXFLAOYrw8x4yQ0AAAAAAAEBXQFGbRwEgPxdAY8L4G7UsU8Bmn3szgEI7QAAAAAAAmJZAp2q1DLn0EkAc9WIkrY5SwFZR\u002fB7t1EVAAAAAAAAAfEAnefMXWZ0hQHbKoxud8FLAU1RQjjFSQkAAAAAAAAAxQBN5iDw\u002fwg5APPd6U+0BUcAkrdBrnFcxQAAAAAAAAEdAyLDojb1CA0D\u002fN4PuCiZSwIi0rKPTGTdAAAAAAAAAh0ATzWGub9cDQGQXVVwB51LAnsGtmcnOQ0AAAAAAAOBsQChnmvKrhyZAJsNV9cAvUsCXnyMkGFdAQAAAAAAAkHpAgmFGtA8yJUDN1B1zPJFSwBiHAzbPKUJAAAAAAADAgEAXH9SwDzUPQN7Nrf8SZFLA1OZrg6XbQkAAAAAAAJiHQO08+tWpUvQ\u002fO4ylFWhlU8CErXn1VeJDQAAAAAAAKIpAnm8dzGsEIEC+hCUVGjJSwFMQtwFsMURAAAAAAACAbEBlY0fYzdnkP7+IocbiIlPAknY2NxlNQEAAAAAAAPB4QAV2\u002fM6EIhJAUeGvPvPrUsCt6pbccflBQAAAAAAAwIRAS36I6OKNE0DUquH8Qe9SwJu+ZyHWf0NAAAAAAADQkUDPjkYhypkbQOP+6j6BUVLADdHEinUeRUAAAAAAACB5QJXwWMFRlSJAcWX9VhPUUsDgBGnrLv9BQAAAAAAAaIxAfhKHM9aUEUCBElJb7sZSwHcFQLe5cERAAAAAAAAYoEDIwjb4XqENQIWLwv3jGVPAtlc3JZHkRkAAAAAAAABHQKk8Rb9U9\u002fM\u002fMBkiAmmQUcCItKyj0xk3QAAAAAAAADNAYgetkOBxFUBXvlXCBEBRwK3qltxx+TFA","shape":"33, 4"},"hovertemplate":"\u003cb\u003e%{hovertext}\u003c\u002fb\u003e\u003cbr\u003e\u003cbr\u003ecasos=%{marker.color:,}\u003cextra\u003e\u003c\u002fextra\u003e","hovertext":["Amazonas","Antioquia","Arauca","Archipi\u00e9lago de San Andr\u00e9s, Providencia y Santa Catalina","Atl\u00e1ntico","Bogot\u00e1, D.C.","Bol\u00edvar","Boyac\u00e1","Caldas","Caquet\u00e1","Casanare","Cauca","Cesar","Choc\u00f3","Cundinamarca","C\u00f3rdoba","Guain\u00eda","Guaviare","Huila","la Guajira","Magdalena","Meta","Nari\u00f1o","Norte de Santander","Putumayo","Quind\u00edo","Risaralda","Santander","Sucre","Tolima","Valle del Cauca","Vaup\u00e9s","Vichada"],"lat":{"dtype":"f8","bdata":"JCh+jLnLEMCKDYHDWokZQLx8RGwfihtAqByTxf0nKUCIy+CkBc8lQMiUD0HVmBJAhhlhB10kJED9hvx4wqMWQKiOdP7mxxRAoACKkSV1+j\u002fWtIktoWQVQMM4km1tpwRA9leBuK5uI0BRm0cBID8XQKdqtQy59BJAJ3nzF1mdIUATeYg8P8IOQMiw6I29QgNAE81hrm\u002fXA0AoZ5ryq4cmQIJhRrQPMiVAFx\u002fUsA81D0DtPPrVqVL0P55vHcxrBCBAZWNH2M3Z5D8FdvzOhCISQEt+iOjijRNAz45GIcqZG0CV8FjBUZUiQH4ShzPWlBFAyMI2+F6hDUCpPEW\u002fVPfzP2IHrZDgcRVA"},"legendgroup":"","lon":{"dtype":"f8","bdata":"Nj0oKEV8UcCtSJqg1eVSwLyvD4Ri11HAkdYYdEJtVMCnx0x1\u002frRSwME7+fTYhlLAervfSPnQUsAFnqtDyVFSwPI1Ieu521LAaSx0OEnUUsB2k3wi1hNSwHkAvXkWJ1PA07mfq0BcUsBjwvgbtSxTwBz1YiStjlLAdsqjG53wUsA893pT7QFRwP83g+4KJlLAZBdVXAHnUsAmw1X1wC9SwM3UHXM8kVLA3s2t\u002fxJkUsA7jKUVaGVTwL6EJRUaMlLAv4ihxuIiU8BR4a8+8+tSwNSq4fxB71LA4\u002f7qPoFRUsBxZf1WE9RSwIESUlvuxlLAhYvC\u002feMZU8AwGSICaZBRwFe+VcIEQFHA"},"marker":{"color":{"dtype":"i2","bdata":"KgBJD\u002fcAEgApAy0NbwLFAsgCwADoAHoCWAJdAKYFwAERAC4A4ALnAKkBGALzAkUD5ACPAZgCdASSAY0DDAguABMA"},"coloraxis":"coloraxis","size":{"dtype":"f8","bdata":"DbGPEDSRNkCQByxWI9FIQI3Q7DJQikBAYYaDhKiqMUAwwmWCUhdEQL6HLL0eX0hA6trQpvZOQ0D\u002foH+dH7JDQLwTZZpctUNAk\u002fU9\u002fH2TP0DH6K3EZVpAQCutxE1iXENAOYrw8x4yQ0Bmn3szgEI7QFZR\u002fB7t1EVAU1RQjjFSQkAkrdBrnFcxQIi0rKPTGTdAnsGtmcnOQ0CXnyMkGFdAQBiHAzbPKUJA1OZrg6XbQkCErXn1VeJDQFMQtwFsMURAknY2NxlNQECt6pbccflBQJu+ZyHWf0NADdHEinUeRUDgBGnrLv9BQHcFQLe5cERAtlc3JZHkRkCItKyj0xk3QK3qltxx+TFA"},"sizemode":"area","sizeref":0.0633085342955818},"mode":"markers","name":"","showlegend":false,"subplot":"map","type":"scattermap"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"map":{"domain":{"x":[0.0,1.0],"y":[0.0,1.0]},"center":{"lat":4.6,"lon":-74.1},"zoom":5,"style":"open-street-map"},"coloraxis":{"colorbar":{"title":{"text":"casos"}},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]]},"legend":{"tracegroupgap":0,"itemsizing":"constant"},"title":{"text":"Presuntos suicidios por departamento \u2014 Total: 23,541 casos"},"mapbox":{"center":{"lat":4.6,"lon":-74.1},"zoom":5,"style":"open-street-map"},"margin":{"l":0,"r":0,"t":60,"b":0},"height":700,"width":950},                        {"responsive": true}                    ).then(function(){
                             
-var gd = document.getElementById('303a6ac7-ae07-46fb-95e2-51d7a9683d57');
+var gd = document.getElementById('9d03c792-a959-4bdc-9349-16c09183939e');
 var x = new MutationObserver(function (mutations, observer) {{
         var display = window.getComputedStyle(gd).display;
         if (!display || display === 'none') {{
@@ -1904,782 +2013,782 @@ if (outputEl) {{
 }}
 
                         })                };            </script>        </div></div><div class="output text_html"><style type="text/css">
-#T_fab48 th {
+#T_0c7c4 th {
   text-align: left;
   font-weight: 500;
 }
-#T_fab48_row0_col0, #T_fab48_row0_col1, #T_fab48_row0_col2, #T_fab48_row0_col3, #T_fab48_row0_col5, #T_fab48_row0_col6, #T_fab48_row1_col0, #T_fab48_row1_col1, #T_fab48_row1_col2, #T_fab48_row1_col3, #T_fab48_row1_col5, #T_fab48_row1_col6, #T_fab48_row2_col0, #T_fab48_row2_col1, #T_fab48_row2_col2, #T_fab48_row2_col3, #T_fab48_row2_col5, #T_fab48_row2_col6, #T_fab48_row3_col0, #T_fab48_row3_col1, #T_fab48_row3_col2, #T_fab48_row3_col3, #T_fab48_row3_col5, #T_fab48_row3_col6, #T_fab48_row4_col0, #T_fab48_row4_col1, #T_fab48_row4_col2, #T_fab48_row4_col3, #T_fab48_row4_col5, #T_fab48_row4_col6, #T_fab48_row5_col0, #T_fab48_row5_col1, #T_fab48_row5_col2, #T_fab48_row5_col3, #T_fab48_row5_col5, #T_fab48_row5_col6, #T_fab48_row6_col0, #T_fab48_row6_col1, #T_fab48_row6_col2, #T_fab48_row6_col3, #T_fab48_row6_col5, #T_fab48_row6_col6, #T_fab48_row7_col0, #T_fab48_row7_col1, #T_fab48_row7_col2, #T_fab48_row7_col3, #T_fab48_row7_col5, #T_fab48_row7_col6, #T_fab48_row8_col0, #T_fab48_row8_col1, #T_fab48_row8_col2, #T_fab48_row8_col3, #T_fab48_row8_col5, #T_fab48_row8_col6, #T_fab48_row9_col0, #T_fab48_row9_col1, #T_fab48_row9_col2, #T_fab48_row9_col3, #T_fab48_row9_col5, #T_fab48_row9_col6, #T_fab48_row10_col0, #T_fab48_row10_col1, #T_fab48_row10_col2, #T_fab48_row10_col3, #T_fab48_row10_col5, #T_fab48_row10_col6, #T_fab48_row11_col0, #T_fab48_row11_col1, #T_fab48_row11_col2, #T_fab48_row11_col3, #T_fab48_row11_col5, #T_fab48_row11_col6, #T_fab48_row12_col0, #T_fab48_row12_col1, #T_fab48_row12_col2, #T_fab48_row12_col3, #T_fab48_row12_col5, #T_fab48_row12_col6, #T_fab48_row13_col0, #T_fab48_row13_col1, #T_fab48_row13_col2, #T_fab48_row13_col3, #T_fab48_row13_col5, #T_fab48_row13_col6, #T_fab48_row14_col0, #T_fab48_row14_col1, #T_fab48_row14_col2, #T_fab48_row14_col3, #T_fab48_row14_col5, #T_fab48_row14_col6, #T_fab48_row15_col0, #T_fab48_row15_col1, #T_fab48_row15_col2, #T_fab48_row15_col3, #T_fab48_row15_col5, #T_fab48_row15_col6, #T_fab48_row16_col0, #T_fab48_row16_col1, #T_fab48_row16_col2, #T_fab48_row16_col3, #T_fab48_row16_col5, #T_fab48_row16_col6, #T_fab48_row17_col0, #T_fab48_row17_col1, #T_fab48_row17_col2, #T_fab48_row17_col3, #T_fab48_row17_col5, #T_fab48_row17_col6, #T_fab48_row18_col0, #T_fab48_row18_col1, #T_fab48_row18_col2, #T_fab48_row18_col3, #T_fab48_row18_col5, #T_fab48_row18_col6, #T_fab48_row19_col0, #T_fab48_row19_col1, #T_fab48_row19_col2, #T_fab48_row19_col3, #T_fab48_row19_col5, #T_fab48_row19_col6, #T_fab48_row20_col0, #T_fab48_row20_col1, #T_fab48_row20_col2, #T_fab48_row20_col3, #T_fab48_row20_col5, #T_fab48_row20_col6, #T_fab48_row21_col0, #T_fab48_row21_col1, #T_fab48_row21_col2, #T_fab48_row21_col3, #T_fab48_row21_col5, #T_fab48_row21_col6, #T_fab48_row22_col0, #T_fab48_row22_col1, #T_fab48_row22_col2, #T_fab48_row22_col3, #T_fab48_row22_col5, #T_fab48_row22_col6, #T_fab48_row23_col0, #T_fab48_row23_col1, #T_fab48_row23_col2, #T_fab48_row23_col3, #T_fab48_row23_col5, #T_fab48_row23_col6, #T_fab48_row24_col0, #T_fab48_row24_col1, #T_fab48_row24_col2, #T_fab48_row24_col3, #T_fab48_row24_col5, #T_fab48_row24_col6, #T_fab48_row25_col0, #T_fab48_row25_col1, #T_fab48_row25_col2, #T_fab48_row25_col3, #T_fab48_row25_col5, #T_fab48_row25_col6, #T_fab48_row26_col0, #T_fab48_row26_col1, #T_fab48_row26_col2, #T_fab48_row26_col3, #T_fab48_row26_col5, #T_fab48_row26_col6, #T_fab48_row27_col0, #T_fab48_row27_col1, #T_fab48_row27_col2, #T_fab48_row27_col3, #T_fab48_row27_col5, #T_fab48_row27_col6, #T_fab48_row28_col0, #T_fab48_row28_col1, #T_fab48_row28_col2, #T_fab48_row28_col3, #T_fab48_row28_col5, #T_fab48_row28_col6, #T_fab48_row29_col0, #T_fab48_row29_col1, #T_fab48_row29_col2, #T_fab48_row29_col3, #T_fab48_row29_col5, #T_fab48_row29_col6, #T_fab48_row30_col0, #T_fab48_row30_col1, #T_fab48_row30_col2, #T_fab48_row30_col3, #T_fab48_row30_col5, #T_fab48_row30_col6, #T_fab48_row31_col0, #T_fab48_row31_col1, #T_fab48_row31_col2, #T_fab48_row31_col3, #T_fab48_row31_col5, #T_fab48_row31_col6, #T_fab48_row32_col0, #T_fab48_row32_col1, #T_fab48_row32_col2, #T_fab48_row32_col3, #T_fab48_row32_col5, #T_fab48_row32_col6 {
+#T_0c7c4_row0_col0, #T_0c7c4_row0_col1, #T_0c7c4_row0_col2, #T_0c7c4_row0_col3, #T_0c7c4_row0_col5, #T_0c7c4_row0_col6, #T_0c7c4_row1_col0, #T_0c7c4_row1_col1, #T_0c7c4_row1_col2, #T_0c7c4_row1_col3, #T_0c7c4_row1_col5, #T_0c7c4_row1_col6, #T_0c7c4_row2_col0, #T_0c7c4_row2_col1, #T_0c7c4_row2_col2, #T_0c7c4_row2_col3, #T_0c7c4_row2_col5, #T_0c7c4_row2_col6, #T_0c7c4_row3_col0, #T_0c7c4_row3_col1, #T_0c7c4_row3_col2, #T_0c7c4_row3_col3, #T_0c7c4_row3_col5, #T_0c7c4_row3_col6, #T_0c7c4_row4_col0, #T_0c7c4_row4_col1, #T_0c7c4_row4_col2, #T_0c7c4_row4_col3, #T_0c7c4_row4_col5, #T_0c7c4_row4_col6, #T_0c7c4_row5_col0, #T_0c7c4_row5_col1, #T_0c7c4_row5_col2, #T_0c7c4_row5_col3, #T_0c7c4_row5_col5, #T_0c7c4_row5_col6, #T_0c7c4_row6_col0, #T_0c7c4_row6_col1, #T_0c7c4_row6_col2, #T_0c7c4_row6_col3, #T_0c7c4_row6_col5, #T_0c7c4_row6_col6, #T_0c7c4_row7_col0, #T_0c7c4_row7_col1, #T_0c7c4_row7_col2, #T_0c7c4_row7_col3, #T_0c7c4_row7_col5, #T_0c7c4_row7_col6, #T_0c7c4_row8_col0, #T_0c7c4_row8_col1, #T_0c7c4_row8_col2, #T_0c7c4_row8_col3, #T_0c7c4_row8_col5, #T_0c7c4_row8_col6, #T_0c7c4_row9_col0, #T_0c7c4_row9_col1, #T_0c7c4_row9_col2, #T_0c7c4_row9_col3, #T_0c7c4_row9_col5, #T_0c7c4_row9_col6, #T_0c7c4_row10_col0, #T_0c7c4_row10_col1, #T_0c7c4_row10_col2, #T_0c7c4_row10_col3, #T_0c7c4_row10_col5, #T_0c7c4_row10_col6, #T_0c7c4_row11_col0, #T_0c7c4_row11_col1, #T_0c7c4_row11_col2, #T_0c7c4_row11_col3, #T_0c7c4_row11_col5, #T_0c7c4_row11_col6, #T_0c7c4_row12_col0, #T_0c7c4_row12_col1, #T_0c7c4_row12_col2, #T_0c7c4_row12_col3, #T_0c7c4_row12_col5, #T_0c7c4_row12_col6, #T_0c7c4_row13_col0, #T_0c7c4_row13_col1, #T_0c7c4_row13_col2, #T_0c7c4_row13_col3, #T_0c7c4_row13_col5, #T_0c7c4_row13_col6, #T_0c7c4_row14_col0, #T_0c7c4_row14_col1, #T_0c7c4_row14_col2, #T_0c7c4_row14_col3, #T_0c7c4_row14_col5, #T_0c7c4_row14_col6, #T_0c7c4_row15_col0, #T_0c7c4_row15_col1, #T_0c7c4_row15_col2, #T_0c7c4_row15_col3, #T_0c7c4_row15_col5, #T_0c7c4_row15_col6, #T_0c7c4_row16_col0, #T_0c7c4_row16_col1, #T_0c7c4_row16_col2, #T_0c7c4_row16_col3, #T_0c7c4_row16_col5, #T_0c7c4_row16_col6, #T_0c7c4_row17_col0, #T_0c7c4_row17_col1, #T_0c7c4_row17_col2, #T_0c7c4_row17_col3, #T_0c7c4_row17_col5, #T_0c7c4_row17_col6, #T_0c7c4_row18_col0, #T_0c7c4_row18_col1, #T_0c7c4_row18_col2, #T_0c7c4_row18_col3, #T_0c7c4_row18_col5, #T_0c7c4_row18_col6, #T_0c7c4_row19_col0, #T_0c7c4_row19_col1, #T_0c7c4_row19_col2, #T_0c7c4_row19_col3, #T_0c7c4_row19_col5, #T_0c7c4_row19_col6, #T_0c7c4_row20_col0, #T_0c7c4_row20_col1, #T_0c7c4_row20_col2, #T_0c7c4_row20_col3, #T_0c7c4_row20_col5, #T_0c7c4_row20_col6, #T_0c7c4_row21_col0, #T_0c7c4_row21_col1, #T_0c7c4_row21_col2, #T_0c7c4_row21_col3, #T_0c7c4_row21_col5, #T_0c7c4_row21_col6, #T_0c7c4_row22_col0, #T_0c7c4_row22_col1, #T_0c7c4_row22_col2, #T_0c7c4_row22_col3, #T_0c7c4_row22_col5, #T_0c7c4_row22_col6, #T_0c7c4_row23_col0, #T_0c7c4_row23_col1, #T_0c7c4_row23_col2, #T_0c7c4_row23_col3, #T_0c7c4_row23_col5, #T_0c7c4_row23_col6, #T_0c7c4_row24_col0, #T_0c7c4_row24_col1, #T_0c7c4_row24_col2, #T_0c7c4_row24_col3, #T_0c7c4_row24_col5, #T_0c7c4_row24_col6, #T_0c7c4_row25_col0, #T_0c7c4_row25_col1, #T_0c7c4_row25_col2, #T_0c7c4_row25_col3, #T_0c7c4_row25_col5, #T_0c7c4_row25_col6, #T_0c7c4_row26_col0, #T_0c7c4_row26_col1, #T_0c7c4_row26_col2, #T_0c7c4_row26_col3, #T_0c7c4_row26_col5, #T_0c7c4_row26_col6, #T_0c7c4_row27_col0, #T_0c7c4_row27_col1, #T_0c7c4_row27_col2, #T_0c7c4_row27_col3, #T_0c7c4_row27_col5, #T_0c7c4_row27_col6, #T_0c7c4_row28_col0, #T_0c7c4_row28_col1, #T_0c7c4_row28_col2, #T_0c7c4_row28_col3, #T_0c7c4_row28_col5, #T_0c7c4_row28_col6, #T_0c7c4_row29_col0, #T_0c7c4_row29_col1, #T_0c7c4_row29_col2, #T_0c7c4_row29_col3, #T_0c7c4_row29_col5, #T_0c7c4_row29_col6, #T_0c7c4_row30_col0, #T_0c7c4_row30_col1, #T_0c7c4_row30_col2, #T_0c7c4_row30_col3, #T_0c7c4_row30_col5, #T_0c7c4_row30_col6, #T_0c7c4_row31_col0, #T_0c7c4_row31_col1, #T_0c7c4_row31_col2, #T_0c7c4_row31_col3, #T_0c7c4_row31_col5, #T_0c7c4_row31_col6, #T_0c7c4_row32_col0, #T_0c7c4_row32_col1, #T_0c7c4_row32_col2, #T_0c7c4_row32_col3, #T_0c7c4_row32_col5, #T_0c7c4_row32_col6 {
   text-align: left;
 }
-#T_fab48_row0_col4 {
+#T_0c7c4_row0_col4 {
   width: 10em;
   background: linear-gradient(90deg, #b3d1ff 100.0%, transparent 100.0%);
   text-align: left;
 }
-#T_fab48_row0_col7 {
+#T_0c7c4_row0_col7 {
   background-color: #800026;
   color: #f1f1f1;
   text-align: left;
 }
-#T_fab48_row1_col4 {
+#T_0c7c4_row1_col4 {
   width: 10em;
   background: linear-gradient(90deg, #b3d1ff 86.2%, transparent 86.2%);
   text-align: left;
 }
-#T_fab48_row1_col7 {
+#T_0c7c4_row1_col7 {
   background-color: #c10325;
   color: #f1f1f1;
   text-align: left;
 }
-#T_fab48_row2_col4 {
+#T_0c7c4_row2_col4 {
   width: 10em;
   background: linear-gradient(90deg, #b3d1ff 52.6%, transparent 52.6%);
   text-align: left;
 }
-#T_fab48_row2_col7 {
+#T_0c7c4_row2_col7 {
   background-color: #fd8038;
   color: #f1f1f1;
   text-align: left;
 }
-#T_fab48_row3_col4 {
+#T_0c7c4_row3_col4 {
   width: 10em;
   background: linear-gradient(90deg, #b3d1ff 37.0%, transparent 37.0%);
   text-align: left;
 }
-#T_fab48_row3_col7 {
+#T_0c7c4_row3_col7 {
   background-color: #feb54f;
   color: #000000;
   text-align: left;
 }
-#T_fab48_row4_col4 {
+#T_0c7c4_row4_col4 {
   width: 10em;
   background: linear-gradient(90deg, #b3d1ff 29.1%, transparent 29.1%);
   text-align: left;
 }
-#T_fab48_row4_col7 {
+#T_0c7c4_row4_col7 {
   background-color: #fece6a;
   color: #000000;
   text-align: left;
 }
-#T_fab48_row5_col4 {
+#T_0c7c4_row5_col4 {
   width: 10em;
   background: linear-gradient(90deg, #b3d1ff 23.2%, transparent 23.2%);
   text-align: left;
 }
-#T_fab48_row5_col7 {
+#T_0c7c4_row5_col7 {
   background-color: #fedd7e;
   color: #000000;
   text-align: left;
 }
-#T_fab48_row6_col4 {
+#T_0c7c4_row6_col4 {
   width: 10em;
   background: linear-gradient(90deg, #b3d1ff 21.4%, transparent 21.4%);
   text-align: left;
 }
-#T_fab48_row6_col7 {
+#T_0c7c4_row6_col7 {
   background-color: #fee084;
   color: #000000;
   text-align: left;
 }
-#T_fab48_row7_col4 {
+#T_0c7c4_row7_col4 {
   width: 10em;
   background: linear-gradient(90deg, #b3d1ff 20.7%, transparent 20.7%);
   text-align: left;
 }
-#T_fab48_row7_col7 {
+#T_0c7c4_row7_col7 {
   background-color: #fee085;
   color: #000000;
   text-align: left;
 }
-#T_fab48_row8_col4 {
+#T_0c7c4_row8_col4 {
   width: 10em;
   background: linear-gradient(90deg, #b3d1ff 19.3%, transparent 19.3%);
   text-align: left;
 }
-#T_fab48_row8_col7 {
+#T_0c7c4_row8_col7 {
   background-color: #fee38b;
   color: #000000;
   text-align: left;
 }
-#T_fab48_row9_col4 {
+#T_0c7c4_row9_col4 {
   width: 10em;
   background: linear-gradient(90deg, #b3d1ff 18.8%, transparent 18.8%);
   text-align: left;
 }
-#T_fab48_row9_col7 {
+#T_0c7c4_row9_col7 {
   background-color: #ffe48c;
   color: #000000;
   text-align: left;
 }
-#T_fab48_row10_col4 {
+#T_0c7c4_row10_col4 {
   width: 10em;
   background: linear-gradient(90deg, #b3d1ff 18.2%, transparent 18.2%);
   text-align: left;
 }
-#T_fab48_row10_col7, #T_fab48_row11_col7 {
+#T_0c7c4_row10_col7, #T_0c7c4_row11_col7 {
   background-color: #ffe58f;
   color: #000000;
   text-align: left;
 }
-#T_fab48_row11_col4 {
+#T_0c7c4_row11_col4 {
   width: 10em;
   background: linear-gradient(90deg, #b3d1ff 18.1%, transparent 18.1%);
   text-align: left;
 }
-#T_fab48_row12_col4 {
+#T_0c7c4_row12_col4 {
   width: 10em;
   background: linear-gradient(90deg, #b3d1ff 17.0%, transparent 17.0%);
   text-align: left;
 }
-#T_fab48_row12_col7 {
+#T_0c7c4_row12_col7 {
   background-color: #ffe793;
   color: #000000;
   text-align: left;
 }
-#T_fab48_row13_col4 {
+#T_0c7c4_row13_col4 {
   width: 10em;
   background: linear-gradient(90deg, #b3d1ff 16.2%, transparent 16.2%);
   text-align: left;
 }
-#T_fab48_row13_col7 {
+#T_0c7c4_row13_col7 {
   background-color: #ffe895;
   color: #000000;
   text-align: left;
 }
-#T_fab48_row14_col4 {
+#T_0c7c4_row14_col4 {
   width: 10em;
   background: linear-gradient(90deg, #b3d1ff 15.9%, transparent 15.9%);
   text-align: left;
 }
-#T_fab48_row14_col7 {
+#T_0c7c4_row14_col7 {
   background-color: #ffe997;
   color: #000000;
   text-align: left;
 }
-#T_fab48_row15_col4 {
+#T_0c7c4_row15_col4 {
   width: 10em;
   background: linear-gradient(90deg, #b3d1ff 15.3%, transparent 15.3%);
   text-align: left;
 }
-#T_fab48_row15_col7 {
+#T_0c7c4_row15_col7 {
   background-color: #ffe998;
   color: #000000;
   text-align: left;
 }
-#T_fab48_row16_col4 {
+#T_0c7c4_row16_col4 {
   width: 10em;
   background: linear-gradient(90deg, #b3d1ff 13.7%, transparent 13.7%);
   text-align: left;
 }
-#T_fab48_row16_col7 {
+#T_0c7c4_row16_col7 {
   background-color: #ffec9d;
   color: #000000;
   text-align: left;
 }
-#T_fab48_row17_col4 {
+#T_0c7c4_row17_col4 {
   width: 10em;
   background: linear-gradient(90deg, #b3d1ff 11.4%, transparent 11.4%);
   text-align: left;
 }
-#T_fab48_row17_col7 {
+#T_0c7c4_row17_col7 {
   background-color: #ffefa5;
   color: #000000;
   text-align: left;
 }
-#T_fab48_row18_col4 {
+#T_0c7c4_row18_col4 {
   width: 10em;
   background: linear-gradient(90deg, #b3d1ff 10.9%, transparent 10.9%);
   text-align: left;
 }
-#T_fab48_row18_col7 {
+#T_0c7c4_row18_col7 {
   background-color: #fff0a8;
   color: #000000;
   text-align: left;
 }
-#T_fab48_row19_col4 {
+#T_0c7c4_row19_col4 {
   width: 10em;
   background: linear-gradient(90deg, #b3d1ff 10.3%, transparent 10.3%);
   text-align: left;
 }
-#T_fab48_row19_col7, #T_fab48_row20_col7 {
+#T_0c7c4_row19_col7, #T_0c7c4_row20_col7 {
   background-color: #fff1a9;
   color: #000000;
   text-align: left;
 }
-#T_fab48_row20_col4 {
+#T_0c7c4_row20_col4 {
   width: 10em;
   background: linear-gradient(90deg, #b3d1ff 10.2%, transparent 10.2%);
   text-align: left;
 }
-#T_fab48_row21_col4 {
+#T_0c7c4_row21_col4 {
   width: 10em;
   background: linear-gradient(90deg, #b3d1ff 6.3%, transparent 6.3%);
   text-align: left;
 }
-#T_fab48_row21_col7 {
+#T_0c7c4_row21_col7 {
   background-color: #fff7b7;
   color: #000000;
   text-align: left;
 }
-#T_fab48_row22_col4, #T_fab48_row23_col4 {
+#T_0c7c4_row22_col4, #T_0c7c4_row23_col4 {
   width: 10em;
   background: linear-gradient(90deg, #b3d1ff 5.9%, transparent 5.9%);
   text-align: left;
 }
-#T_fab48_row22_col7, #T_fab48_row23_col7 {
+#T_0c7c4_row22_col7, #T_0c7c4_row23_col7 {
   background-color: #fff7b9;
   color: #000000;
   text-align: left;
 }
-#T_fab48_row24_col4 {
+#T_0c7c4_row24_col4 {
   width: 10em;
   background: linear-gradient(90deg, #b3d1ff 5.8%, transparent 5.8%);
   text-align: left;
 }
-#T_fab48_row24_col7 {
+#T_0c7c4_row24_col7 {
   background-color: #fff8ba;
   color: #000000;
   text-align: left;
 }
-#T_fab48_row25_col4 {
+#T_0c7c4_row25_col4 {
   width: 10em;
   background: linear-gradient(90deg, #b3d1ff 4.9%, transparent 4.9%);
   text-align: left;
 }
-#T_fab48_row25_col7 {
+#T_0c7c4_row25_col7 {
   background-color: #fff9bd;
   color: #000000;
   text-align: left;
 }
-#T_fab48_row26_col4 {
+#T_0c7c4_row26_col4 {
   width: 10em;
   background: linear-gradient(90deg, #b3d1ff 2.4%, transparent 2.4%);
   text-align: left;
 }
-#T_fab48_row26_col7 {
+#T_0c7c4_row26_col7 {
   background-color: #fffdc6;
   color: #000000;
   text-align: left;
 }
-#T_fab48_row27_col4, #T_fab48_row28_col4 {
+#T_0c7c4_row27_col4, #T_0c7c4_row28_col4 {
   width: 10em;
   background: linear-gradient(90deg, #b3d1ff 1.2%, transparent 1.2%);
   text-align: left;
 }
-#T_fab48_row27_col7, #T_fab48_row28_col7, #T_fab48_row29_col7 {
+#T_0c7c4_row27_col7, #T_0c7c4_row28_col7, #T_0c7c4_row29_col7 {
   background-color: #fffecb;
   color: #000000;
   text-align: left;
 }
-#T_fab48_row29_col4 {
+#T_0c7c4_row29_col4 {
   width: 10em;
   background: linear-gradient(90deg, #b3d1ff 1.1%, transparent 1.1%);
   text-align: left;
 }
-#T_fab48_row30_col4, #T_fab48_row31_col4 {
+#T_0c7c4_row30_col4, #T_0c7c4_row31_col4 {
   width: 10em;
   background: linear-gradient(90deg, #b3d1ff 0.5%, transparent 0.5%);
   text-align: left;
 }
-#T_fab48_row30_col7, #T_fab48_row31_col7, #T_fab48_row32_col7 {
+#T_0c7c4_row30_col7, #T_0c7c4_row31_col7, #T_0c7c4_row32_col7 {
   background-color: #ffffcc;
   color: #000000;
   text-align: left;
 }
-#T_fab48_row32_col4 {
+#T_0c7c4_row32_col4 {
   width: 10em;
   background: linear-gradient(90deg, #b3d1ff 0.4%, transparent 0.4%);
   text-align: left;
 }
 </style>
-<table id="T_fab48">
+<table id="T_0c7c4">
   <thead>
     <tr>
-      <th id="T_fab48_level0_col0" class="col_heading level0 col0" >Rank</th>
-      <th id="T_fab48_level0_col1" class="col_heading level0 col1" >Departamento</th>
-      <th id="T_fab48_level0_col2" class="col_heading level0 col2" >lat</th>
-      <th id="T_fab48_level0_col3" class="col_heading level0 col3" >lon</th>
-      <th id="T_fab48_level0_col4" class="col_heading level0 col4" >Casos</th>
-      <th id="T_fab48_level0_col5" class="col_heading level0 col5" >dept_clean</th>
-      <th id="T_fab48_level0_col6" class="col_heading level0 col6" >size_norm</th>
-      <th id="T_fab48_level0_col7" class="col_heading level0 col7" >Participación</th>
+      <th id="T_0c7c4_level0_col0" class="col_heading level0 col0" >Rank</th>
+      <th id="T_0c7c4_level0_col1" class="col_heading level0 col1" >Departamento</th>
+      <th id="T_0c7c4_level0_col2" class="col_heading level0 col2" >lat</th>
+      <th id="T_0c7c4_level0_col3" class="col_heading level0 col3" >lon</th>
+      <th id="T_0c7c4_level0_col4" class="col_heading level0 col4" >Casos</th>
+      <th id="T_0c7c4_level0_col5" class="col_heading level0 col5" >dept_clean</th>
+      <th id="T_0c7c4_level0_col6" class="col_heading level0 col6" >size_norm</th>
+      <th id="T_0c7c4_level0_col7" class="col_heading level0 col7" >Participación</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td id="T_fab48_row0_col0" class="data row0 col0" >1</td>
-      <td id="T_fab48_row0_col1" class="data row0 col1" >Antioquia</td>
-      <td id="T_fab48_row0_col2" class="data row0 col2" >6.384135</td>
-      <td id="T_fab48_row0_col3" class="data row0 col3" >-75.591164</td>
-      <td id="T_fab48_row0_col4" class="data row0 col4" >3,913</td>
-      <td id="T_fab48_row0_col5" class="data row0 col5" >Antioquia</td>
-      <td id="T_fab48_row0_col6" class="data row0 col6" >49.633891</td>
-      <td id="T_fab48_row0_col7" class="data row0 col7" >16.6%</td>
+      <td id="T_0c7c4_row0_col0" class="data row0 col0" >1</td>
+      <td id="T_0c7c4_row0_col1" class="data row0 col1" >Antioquia</td>
+      <td id="T_0c7c4_row0_col2" class="data row0 col2" >6.384135</td>
+      <td id="T_0c7c4_row0_col3" class="data row0 col3" >-75.591164</td>
+      <td id="T_0c7c4_row0_col4" class="data row0 col4" >3,913</td>
+      <td id="T_0c7c4_row0_col5" class="data row0 col5" >Antioquia</td>
+      <td id="T_0c7c4_row0_col6" class="data row0 col6" >49.633891</td>
+      <td id="T_0c7c4_row0_col7" class="data row0 col7" >16.6%</td>
     </tr>
     <tr>
-      <td id="T_fab48_row1_col0" class="data row1 col0" >2</td>
-      <td id="T_fab48_row1_col1" class="data row1 col1" >Bogotá, D.C.</td>
-      <td id="T_fab48_row1_col2" class="data row1 col2" >4.649251</td>
-      <td id="T_fab48_row1_col3" class="data row1 col3" >-74.106992</td>
-      <td id="T_fab48_row1_col4" class="data row1 col4" >3,373</td>
-      <td id="T_fab48_row1_col5" class="data row1 col5" >Bogotá, D.C.</td>
-      <td id="T_fab48_row1_col6" class="data row1 col6" >48.743126</td>
-      <td id="T_fab48_row1_col7" class="data row1 col7" >14.3%</td>
+      <td id="T_0c7c4_row1_col0" class="data row1 col0" >2</td>
+      <td id="T_0c7c4_row1_col1" class="data row1 col1" >Bogotá, D.C.</td>
+      <td id="T_0c7c4_row1_col2" class="data row1 col2" >4.649251</td>
+      <td id="T_0c7c4_row1_col3" class="data row1 col3" >-74.106992</td>
+      <td id="T_0c7c4_row1_col4" class="data row1 col4" >3,373</td>
+      <td id="T_0c7c4_row1_col5" class="data row1 col5" >Bogotá, D.C.</td>
+      <td id="T_0c7c4_row1_col6" class="data row1 col6" >48.743126</td>
+      <td id="T_0c7c4_row1_col7" class="data row1 col7" >14.3%</td>
     </tr>
     <tr>
-      <td id="T_fab48_row2_col0" class="data row2 col0" >3</td>
-      <td id="T_fab48_row2_col1" class="data row2 col1" >Valle del Cauca</td>
-      <td id="T_fab48_row2_col2" class="data row2 col2" >3.703794</td>
-      <td id="T_fab48_row2_col3" class="data row2 col3" >-76.404540</td>
-      <td id="T_fab48_row2_col4" class="data row2 col4" >2,060</td>
-      <td id="T_fab48_row2_col5" class="data row2 col5" >Valle del Cauca</td>
-      <td id="T_fab48_row2_col6" class="data row2 col6" >45.785679</td>
-      <td id="T_fab48_row2_col7" class="data row2 col7" >8.8%</td>
+      <td id="T_0c7c4_row2_col0" class="data row2 col0" >3</td>
+      <td id="T_0c7c4_row2_col1" class="data row2 col1" >Valle del Cauca</td>
+      <td id="T_0c7c4_row2_col2" class="data row2 col2" >3.703794</td>
+      <td id="T_0c7c4_row2_col3" class="data row2 col3" >-76.404540</td>
+      <td id="T_0c7c4_row2_col4" class="data row2 col4" >2,060</td>
+      <td id="T_0c7c4_row2_col5" class="data row2 col5" >Valle del Cauca</td>
+      <td id="T_0c7c4_row2_col6" class="data row2 col6" >45.785679</td>
+      <td id="T_0c7c4_row2_col7" class="data row2 col7" >8.8%</td>
     </tr>
     <tr>
-      <td id="T_fab48_row3_col0" class="data row3 col0" >4</td>
-      <td id="T_fab48_row3_col1" class="data row3 col1" >Cundinamarca</td>
-      <td id="T_fab48_row3_col2" class="data row3 col2" >4.738987</td>
-      <td id="T_fab48_row3_col3" class="data row3 col3" >-74.229318</td>
-      <td id="T_fab48_row3_col4" class="data row3 col4" >1,446</td>
-      <td id="T_fab48_row3_col5" class="data row3 col5" >Cundinamarca</td>
-      <td id="T_fab48_row3_col6" class="data row3 col6" >43.663486</td>
-      <td id="T_fab48_row3_col7" class="data row3 col7" >6.1%</td>
+      <td id="T_0c7c4_row3_col0" class="data row3 col0" >4</td>
+      <td id="T_0c7c4_row3_col1" class="data row3 col1" >Cundinamarca</td>
+      <td id="T_0c7c4_row3_col2" class="data row3 col2" >4.738987</td>
+      <td id="T_0c7c4_row3_col3" class="data row3 col3" >-74.229318</td>
+      <td id="T_0c7c4_row3_col4" class="data row3 col4" >1,446</td>
+      <td id="T_0c7c4_row3_col5" class="data row3 col5" >Cundinamarca</td>
+      <td id="T_0c7c4_row3_col6" class="data row3 col6" >43.663486</td>
+      <td id="T_0c7c4_row3_col7" class="data row3 col7" >6.1%</td>
     </tr>
     <tr>
-      <td id="T_fab48_row4_col0" class="data row4 col0" >5</td>
-      <td id="T_fab48_row4_col1" class="data row4 col1" >Santander</td>
-      <td id="T_fab48_row4_col2" class="data row4 col2" >6.900185</td>
-      <td id="T_fab48_row4_col3" class="data row4 col3" >-73.273514</td>
-      <td id="T_fab48_row4_col4" class="data row4 col4" >1,140</td>
-      <td id="T_fab48_row4_col5" class="data row4 col5" >Santander</td>
-      <td id="T_fab48_row4_col6" class="data row4 col6" >42.237962</td>
-      <td id="T_fab48_row4_col7" class="data row4 col7" >4.8%</td>
+      <td id="T_0c7c4_row4_col0" class="data row4 col0" >5</td>
+      <td id="T_0c7c4_row4_col1" class="data row4 col1" >Santander</td>
+      <td id="T_0c7c4_row4_col2" class="data row4 col2" >6.900185</td>
+      <td id="T_0c7c4_row4_col3" class="data row4 col3" >-73.273514</td>
+      <td id="T_0c7c4_row4_col4" class="data row4 col4" >1,140</td>
+      <td id="T_0c7c4_row4_col5" class="data row4 col5" >Santander</td>
+      <td id="T_0c7c4_row4_col6" class="data row4 col6" >42.237962</td>
+      <td id="T_0c7c4_row4_col7" class="data row4 col7" >4.8%</td>
     </tr>
     <tr>
-      <td id="T_fab48_row5_col0" class="data row5 col0" >6</td>
-      <td id="T_fab48_row5_col1" class="data row5 col1" >Tolima</td>
-      <td id="T_fab48_row5_col2" class="data row5 col2" >4.395348</td>
-      <td id="T_fab48_row5_col3" class="data row5 col3" >-75.108298</td>
-      <td id="T_fab48_row5_col4" class="data row5 col4" >909</td>
-      <td id="T_fab48_row5_col5" class="data row5 col5" >Tolima</td>
-      <td id="T_fab48_row5_col6" class="data row5 col6" >40.880668</td>
-      <td id="T_fab48_row5_col7" class="data row5 col7" >3.9%</td>
+      <td id="T_0c7c4_row5_col0" class="data row5 col0" >6</td>
+      <td id="T_0c7c4_row5_col1" class="data row5 col1" >Tolima</td>
+      <td id="T_0c7c4_row5_col2" class="data row5 col2" >4.395348</td>
+      <td id="T_0c7c4_row5_col3" class="data row5 col3" >-75.108298</td>
+      <td id="T_0c7c4_row5_col4" class="data row5 col4" >909</td>
+      <td id="T_0c7c4_row5_col5" class="data row5 col5" >Tolima</td>
+      <td id="T_0c7c4_row5_col6" class="data row5 col6" >40.880668</td>
+      <td id="T_0c7c4_row5_col7" class="data row5 col7" >3.9%</td>
     </tr>
     <tr>
-      <td id="T_fab48_row6_col0" class="data row6 col0" >7</td>
-      <td id="T_fab48_row6_col1" class="data row6 col1" >Norte de Santander</td>
-      <td id="T_fab48_row6_col2" class="data row6 col2" >8.008635</td>
-      <td id="T_fab48_row6_col3" class="data row6 col3" >-72.782842</td>
-      <td id="T_fab48_row6_col4" class="data row6 col4" >837</td>
-      <td id="T_fab48_row6_col5" class="data row6 col5" >Norte de Santander</td>
-      <td id="T_fab48_row6_col6" class="data row6 col6" >40.386109</td>
-      <td id="T_fab48_row6_col7" class="data row6 col7" >3.6%</td>
+      <td id="T_0c7c4_row6_col0" class="data row6 col0" >7</td>
+      <td id="T_0c7c4_row6_col1" class="data row6 col1" >Norte de Santander</td>
+      <td id="T_0c7c4_row6_col2" class="data row6 col2" >8.008635</td>
+      <td id="T_0c7c4_row6_col3" class="data row6 col3" >-72.782842</td>
+      <td id="T_0c7c4_row6_col4" class="data row6 col4" >837</td>
+      <td id="T_0c7c4_row6_col5" class="data row6 col5" >Norte de Santander</td>
+      <td id="T_0c7c4_row6_col6" class="data row6 col6" >40.386109</td>
+      <td id="T_0c7c4_row6_col7" class="data row6 col7" >3.6%</td>
     </tr>
     <tr>
-      <td id="T_fab48_row7_col0" class="data row7 col0" >8</td>
-      <td id="T_fab48_row7_col1" class="data row7 col1" >Atlántico</td>
-      <td id="T_fab48_row7_col2" class="data row7 col2" >10.904340</td>
-      <td id="T_fab48_row7_col3" class="data row7 col3" >-74.828031</td>
-      <td id="T_fab48_row7_col4" class="data row7 col4" >809</td>
-      <td id="T_fab48_row7_col5" class="data row7 col5" >Atlántico</td>
-      <td id="T_fab48_row7_col6" class="data row7 col6" >40.182205</td>
-      <td id="T_fab48_row7_col7" class="data row7 col7" >3.4%</td>
+      <td id="T_0c7c4_row7_col0" class="data row7 col0" >8</td>
+      <td id="T_0c7c4_row7_col1" class="data row7 col1" >Atlántico</td>
+      <td id="T_0c7c4_row7_col2" class="data row7 col2" >10.904340</td>
+      <td id="T_0c7c4_row7_col3" class="data row7 col3" >-74.828031</td>
+      <td id="T_0c7c4_row7_col4" class="data row7 col4" >809</td>
+      <td id="T_0c7c4_row7_col5" class="data row7 col5" >Atlántico</td>
+      <td id="T_0c7c4_row7_col6" class="data row7 col6" >40.182205</td>
+      <td id="T_0c7c4_row7_col7" class="data row7 col7" >3.4%</td>
     </tr>
     <tr>
-      <td id="T_fab48_row8_col0" class="data row8 col0" >9</td>
-      <td id="T_fab48_row8_col1" class="data row8 col1" >Nariño</td>
-      <td id="T_fab48_row8_col2" class="data row8 col2" >1.270181</td>
-      <td id="T_fab48_row8_col3" class="data row8 col3" >-77.584478</td>
-      <td id="T_fab48_row8_col4" class="data row8 col4" >755</td>
-      <td id="T_fab48_row8_col5" class="data row8 col5" >Nariño</td>
-      <td id="T_fab48_row8_col6" class="data row8 col6" >39.768248</td>
-      <td id="T_fab48_row8_col7" class="data row8 col7" >3.2%</td>
+      <td id="T_0c7c4_row8_col0" class="data row8 col0" >9</td>
+      <td id="T_0c7c4_row8_col1" class="data row8 col1" >Nariño</td>
+      <td id="T_0c7c4_row8_col2" class="data row8 col2" >1.270181</td>
+      <td id="T_0c7c4_row8_col3" class="data row8 col3" >-77.584478</td>
+      <td id="T_0c7c4_row8_col4" class="data row8 col4" >755</td>
+      <td id="T_0c7c4_row8_col5" class="data row8 col5" >Nariño</td>
+      <td id="T_0c7c4_row8_col6" class="data row8 col6" >39.768248</td>
+      <td id="T_0c7c4_row8_col7" class="data row8 col7" >3.2%</td>
     </tr>
     <tr>
-      <td id="T_fab48_row9_col0" class="data row9 col0" >10</td>
-      <td id="T_fab48_row9_col1" class="data row9 col1" >Huila</td>
-      <td id="T_fab48_row9_col2" class="data row9 col2" >2.480193</td>
-      <td id="T_fab48_row9_col3" class="data row9 col3" >-75.609458</td>
-      <td id="T_fab48_row9_col4" class="data row9 col4" >736</td>
-      <td id="T_fab48_row9_col5" class="data row9 col5" >Huila</td>
-      <td id="T_fab48_row9_col6" class="data row9 col6" >39.615527</td>
-      <td id="T_fab48_row9_col7" class="data row9 col7" >3.1%</td>
+      <td id="T_0c7c4_row9_col0" class="data row9 col0" >10</td>
+      <td id="T_0c7c4_row9_col1" class="data row9 col1" >Huila</td>
+      <td id="T_0c7c4_row9_col2" class="data row9 col2" >2.480193</td>
+      <td id="T_0c7c4_row9_col3" class="data row9 col3" >-75.609458</td>
+      <td id="T_0c7c4_row9_col4" class="data row9 col4" >736</td>
+      <td id="T_0c7c4_row9_col5" class="data row9 col5" >Huila</td>
+      <td id="T_0c7c4_row9_col6" class="data row9 col6" >39.615527</td>
+      <td id="T_0c7c4_row9_col7" class="data row9 col7" >3.1%</td>
     </tr>
     <tr>
-      <td id="T_fab48_row10_col0" class="data row10 col0" >11</td>
-      <td id="T_fab48_row10_col1" class="data row10 col1" >Caldas</td>
-      <td id="T_fab48_row10_col2" class="data row10 col2" >5.195217</td>
-      <td id="T_fab48_row10_col3" class="data row10 col3" >-75.433223</td>
-      <td id="T_fab48_row10_col4" class="data row10 col4" >712</td>
-      <td id="T_fab48_row10_col5" class="data row10 col5" >Caldas</td>
-      <td id="T_fab48_row10_col6" class="data row10 col6" >39.416889</td>
-      <td id="T_fab48_row10_col7" class="data row10 col7" >3.0%</td>
+      <td id="T_0c7c4_row10_col0" class="data row10 col0" >11</td>
+      <td id="T_0c7c4_row10_col1" class="data row10 col1" >Caldas</td>
+      <td id="T_0c7c4_row10_col2" class="data row10 col2" >5.195217</td>
+      <td id="T_0c7c4_row10_col3" class="data row10 col3" >-75.433223</td>
+      <td id="T_0c7c4_row10_col4" class="data row10 col4" >712</td>
+      <td id="T_0c7c4_row10_col5" class="data row10 col5" >Caldas</td>
+      <td id="T_0c7c4_row10_col6" class="data row10 col6" >39.416889</td>
+      <td id="T_0c7c4_row10_col7" class="data row10 col7" >3.0%</td>
     </tr>
     <tr>
-      <td id="T_fab48_row11_col0" class="data row11 col0" >12</td>
-      <td id="T_fab48_row11_col1" class="data row11 col1" >Boyacá</td>
-      <td id="T_fab48_row11_col2" class="data row11 col2" >5.659922</td>
-      <td id="T_fab48_row11_col3" class="data row11 col3" >-73.277909</td>
-      <td id="T_fab48_row11_col4" class="data row11 col4" >709</td>
-      <td id="T_fab48_row11_col5" class="data row11 col5" >Boyacá</td>
-      <td id="T_fab48_row11_col6" class="data row11 col6" >39.391590</td>
-      <td id="T_fab48_row11_col7" class="data row11 col7" >3.0%</td>
+      <td id="T_0c7c4_row11_col0" class="data row11 col0" >12</td>
+      <td id="T_0c7c4_row11_col1" class="data row11 col1" >Boyacá</td>
+      <td id="T_0c7c4_row11_col2" class="data row11 col2" >5.659922</td>
+      <td id="T_0c7c4_row11_col3" class="data row11 col3" >-73.277909</td>
+      <td id="T_0c7c4_row11_col4" class="data row11 col4" >709</td>
+      <td id="T_0c7c4_row11_col5" class="data row11 col5" >Boyacá</td>
+      <td id="T_0c7c4_row11_col6" class="data row11 col6" >39.391590</td>
+      <td id="T_0c7c4_row11_col7" class="data row11 col7" >3.0%</td>
     </tr>
     <tr>
-      <td id="T_fab48_row12_col0" class="data row12 col0" >13</td>
-      <td id="T_fab48_row12_col1" class="data row12 col1" >Risaralda</td>
-      <td id="T_fab48_row12_col2" class="data row12 col2" >4.888561</td>
-      <td id="T_fab48_row12_col3" class="data row12 col3" >-75.738403</td>
-      <td id="T_fab48_row12_col4" class="data row12 col4" >664</td>
-      <td id="T_fab48_row12_col5" class="data row12 col5" >Risaralda</td>
-      <td id="T_fab48_row12_col6" class="data row12 col6" >38.998722</td>
-      <td id="T_fab48_row12_col7" class="data row12 col7" >2.8%</td>
+      <td id="T_0c7c4_row12_col0" class="data row12 col0" >13</td>
+      <td id="T_0c7c4_row12_col1" class="data row12 col1" >Risaralda</td>
+      <td id="T_0c7c4_row12_col2" class="data row12 col2" >4.888561</td>
+      <td id="T_0c7c4_row12_col3" class="data row12 col3" >-75.738403</td>
+      <td id="T_0c7c4_row12_col4" class="data row12 col4" >664</td>
+      <td id="T_0c7c4_row12_col5" class="data row12 col5" >Risaralda</td>
+      <td id="T_0c7c4_row12_col6" class="data row12 col6" >38.998722</td>
+      <td id="T_0c7c4_row12_col7" class="data row12 col7" >2.8%</td>
     </tr>
     <tr>
-      <td id="T_fab48_row13_col0" class="data row13 col0" >14</td>
-      <td id="T_fab48_row13_col1" class="data row13 col1" >Cauca</td>
-      <td id="T_fab48_row13_col2" class="data row13 col2" >2.581752</td>
-      <td id="T_fab48_row13_col3" class="data row13 col3" >-76.610747</td>
-      <td id="T_fab48_row13_col4" class="data row13 col4" >634</td>
-      <td id="T_fab48_row13_col5" class="data row13 col5" >Cauca</td>
-      <td id="T_fab48_row13_col6" class="data row13 col6" >38.721750</td>
-      <td id="T_fab48_row13_col7" class="data row13 col7" >2.7%</td>
+      <td id="T_0c7c4_row13_col0" class="data row13 col0" >14</td>
+      <td id="T_0c7c4_row13_col1" class="data row13 col1" >Cauca</td>
+      <td id="T_0c7c4_row13_col2" class="data row13 col2" >2.581752</td>
+      <td id="T_0c7c4_row13_col3" class="data row13 col3" >-76.610747</td>
+      <td id="T_0c7c4_row13_col4" class="data row13 col4" >634</td>
+      <td id="T_0c7c4_row13_col5" class="data row13 col5" >Cauca</td>
+      <td id="T_0c7c4_row13_col6" class="data row13 col6" >38.721750</td>
+      <td id="T_0c7c4_row13_col7" class="data row13 col7" >2.7%</td>
     </tr>
     <tr>
-      <td id="T_fab48_row14_col0" class="data row14 col0" >15</td>
-      <td id="T_fab48_row14_col1" class="data row14 col1" >Bolívar</td>
-      <td id="T_fab48_row14_col2" class="data row14 col2" >10.071022</td>
-      <td id="T_fab48_row14_col3" class="data row14 col3" >-75.265215</td>
-      <td id="T_fab48_row14_col4" class="data row14 col4" >623</td>
-      <td id="T_fab48_row14_col5" class="data row14 col5" >Bolívar</td>
-      <td id="T_fab48_row14_col6" class="data row14 col6" >38.616902</td>
-      <td id="T_fab48_row14_col7" class="data row14 col7" >2.6%</td>
+      <td id="T_0c7c4_row14_col0" class="data row14 col0" >15</td>
+      <td id="T_0c7c4_row14_col1" class="data row14 col1" >Bolívar</td>
+      <td id="T_0c7c4_row14_col2" class="data row14 col2" >10.071022</td>
+      <td id="T_0c7c4_row14_col3" class="data row14 col3" >-75.265215</td>
+      <td id="T_0c7c4_row14_col4" class="data row14 col4" >623</td>
+      <td id="T_0c7c4_row14_col5" class="data row14 col5" >Bolívar</td>
+      <td id="T_0c7c4_row14_col6" class="data row14 col6" >38.616902</td>
+      <td id="T_0c7c4_row14_col7" class="data row14 col7" >2.6%</td>
     </tr>
     <tr>
-      <td id="T_fab48_row15_col0" class="data row15 col0" >16</td>
-      <td id="T_fab48_row15_col1" class="data row15 col1" >Cesar</td>
-      <td id="T_fab48_row15_col2" class="data row15 col2" >9.716177</td>
-      <td id="T_fab48_row15_col3" class="data row15 col3" >-73.441447</td>
-      <td id="T_fab48_row15_col4" class="data row15 col4" >600</td>
-      <td id="T_fab48_row15_col5" class="data row15 col5" >Cesar</td>
-      <td id="T_fab48_row15_col6" class="data row15 col6" >38.391570</td>
-      <td id="T_fab48_row15_col7" class="data row15 col7" >2.5%</td>
+      <td id="T_0c7c4_row15_col0" class="data row15 col0" >16</td>
+      <td id="T_0c7c4_row15_col1" class="data row15 col1" >Cesar</td>
+      <td id="T_0c7c4_row15_col2" class="data row15 col2" >9.716177</td>
+      <td id="T_0c7c4_row15_col3" class="data row15 col3" >-73.441447</td>
+      <td id="T_0c7c4_row15_col4" class="data row15 col4" >600</td>
+      <td id="T_0c7c4_row15_col5" class="data row15 col5" >Cesar</td>
+      <td id="T_0c7c4_row15_col6" class="data row15 col6" >38.391570</td>
+      <td id="T_0c7c4_row15_col7" class="data row15 col7" >2.5%</td>
     </tr>
     <tr>
-      <td id="T_fab48_row16_col0" class="data row16 col0" >17</td>
-      <td id="T_fab48_row16_col1" class="data row16 col1" >Meta</td>
-      <td id="T_fab48_row16_col2" class="data row16 col2" >3.900909</td>
-      <td id="T_fab48_row16_col3" class="data row16 col3" >-73.563660</td>
-      <td id="T_fab48_row16_col4" class="data row16 col4" >536</td>
-      <td id="T_fab48_row16_col5" class="data row16 col5" >Meta</td>
-      <td id="T_fab48_row16_col6" class="data row16 col6" >37.715989</td>
-      <td id="T_fab48_row16_col7" class="data row16 col7" >2.3%</td>
+      <td id="T_0c7c4_row16_col0" class="data row16 col0" >17</td>
+      <td id="T_0c7c4_row16_col1" class="data row16 col1" >Meta</td>
+      <td id="T_0c7c4_row16_col2" class="data row16 col2" >3.900909</td>
+      <td id="T_0c7c4_row16_col3" class="data row16 col3" >-73.563660</td>
+      <td id="T_0c7c4_row16_col4" class="data row16 col4" >536</td>
+      <td id="T_0c7c4_row16_col5" class="data row16 col5" >Meta</td>
+      <td id="T_0c7c4_row16_col6" class="data row16 col6" >37.715989</td>
+      <td id="T_0c7c4_row16_col7" class="data row16 col7" >2.3%</td>
     </tr>
     <tr>
-      <td id="T_fab48_row17_col0" class="data row17 col0" >18</td>
-      <td id="T_fab48_row17_col1" class="data row17 col1" >Córdoba</td>
-      <td id="T_fab48_row17_col2" class="data row17 col2" >8.807320</td>
-      <td id="T_fab48_row17_col3" class="data row17 col3" >-75.759589</td>
-      <td id="T_fab48_row17_col4" class="data row17 col4" >448</td>
-      <td id="T_fab48_row17_col5" class="data row17 col5" >Córdoba</td>
-      <td id="T_fab48_row17_col6" class="data row17 col6" >36.642137</td>
-      <td id="T_fab48_row17_col7" class="data row17 col7" >1.9%</td>
+      <td id="T_0c7c4_row17_col0" class="data row17 col0" >18</td>
+      <td id="T_0c7c4_row17_col1" class="data row17 col1" >Córdoba</td>
+      <td id="T_0c7c4_row17_col2" class="data row17 col2" >8.807320</td>
+      <td id="T_0c7c4_row17_col3" class="data row17 col3" >-75.759589</td>
+      <td id="T_0c7c4_row17_col4" class="data row17 col4" >448</td>
+      <td id="T_0c7c4_row17_col5" class="data row17 col5" >Córdoba</td>
+      <td id="T_0c7c4_row17_col6" class="data row17 col6" >36.642137</td>
+      <td id="T_0c7c4_row17_col7" class="data row17 col7" >1.9%</td>
     </tr>
     <tr>
-      <td id="T_fab48_row18_col0" class="data row18 col0" >19</td>
-      <td id="T_fab48_row18_col1" class="data row18 col1" >Magdalena</td>
-      <td id="T_fab48_row18_col2" class="data row18 col2" >10.597776</td>
-      <td id="T_fab48_row18_col3" class="data row18 col3" >-74.269315</td>
-      <td id="T_fab48_row18_col4" class="data row18 col4" >425</td>
-      <td id="T_fab48_row18_col5" class="data row18 col5" >Magdalena</td>
-      <td id="T_fab48_row18_col6" class="data row18 col6" >36.326636</td>
-      <td id="T_fab48_row18_col7" class="data row18 col7" >1.8%</td>
+      <td id="T_0c7c4_row18_col0" class="data row18 col0" >19</td>
+      <td id="T_0c7c4_row18_col1" class="data row18 col1" >Magdalena</td>
+      <td id="T_0c7c4_row18_col2" class="data row18 col2" >10.597776</td>
+      <td id="T_0c7c4_row18_col3" class="data row18 col3" >-74.269315</td>
+      <td id="T_0c7c4_row18_col4" class="data row18 col4" >425</td>
+      <td id="T_0c7c4_row18_col5" class="data row18 col5" >Magdalena</td>
+      <td id="T_0c7c4_row18_col6" class="data row18 col6" >36.326636</td>
+      <td id="T_0c7c4_row18_col7" class="data row18 col7" >1.8%</td>
     </tr>
     <tr>
-      <td id="T_fab48_row19_col0" class="data row19 col0" >20</td>
-      <td id="T_fab48_row19_col1" class="data row19 col1" >Sucre</td>
-      <td id="T_fab48_row19_col2" class="data row19 col2" >9.291639</td>
-      <td id="T_fab48_row19_col3" class="data row19 col3" >-75.313680</td>
-      <td id="T_fab48_row19_col4" class="data row19 col4" >402</td>
-      <td id="T_fab48_row19_col5" class="data row19 col5" >Sucre</td>
-      <td id="T_fab48_row19_col6" class="data row19 col6" >35.993619</td>
-      <td id="T_fab48_row19_col7" class="data row19 col7" >1.7%</td>
+      <td id="T_0c7c4_row19_col0" class="data row19 col0" >20</td>
+      <td id="T_0c7c4_row19_col1" class="data row19 col1" >Sucre</td>
+      <td id="T_0c7c4_row19_col2" class="data row19 col2" >9.291639</td>
+      <td id="T_0c7c4_row19_col3" class="data row19 col3" >-75.313680</td>
+      <td id="T_0c7c4_row19_col4" class="data row19 col4" >402</td>
+      <td id="T_0c7c4_row19_col5" class="data row19 col5" >Sucre</td>
+      <td id="T_0c7c4_row19_col6" class="data row19 col6" >35.993619</td>
+      <td id="T_0c7c4_row19_col7" class="data row19 col7" >1.7%</td>
     </tr>
     <tr>
-      <td id="T_fab48_row20_col0" class="data row20 col0" >21</td>
-      <td id="T_fab48_row20_col1" class="data row20 col1" >Quindío</td>
-      <td id="T_fab48_row20_col2" class="data row20 col2" >4.533710</td>
-      <td id="T_fab48_row20_col3" class="data row20 col3" >-75.686721</td>
-      <td id="T_fab48_row20_col4" class="data row20 col4" >399</td>
-      <td id="T_fab48_row20_col5" class="data row20 col5" >Quindío</td>
-      <td id="T_fab48_row20_col6" class="data row20 col6" >35.948787</td>
-      <td id="T_fab48_row20_col7" class="data row20 col7" >1.7%</td>
+      <td id="T_0c7c4_row20_col0" class="data row20 col0" >21</td>
+      <td id="T_0c7c4_row20_col1" class="data row20 col1" >Quindío</td>
+      <td id="T_0c7c4_row20_col2" class="data row20 col2" >4.533710</td>
+      <td id="T_0c7c4_row20_col3" class="data row20 col3" >-75.686721</td>
+      <td id="T_0c7c4_row20_col4" class="data row20 col4" >399</td>
+      <td id="T_0c7c4_row20_col5" class="data row20 col5" >Quindío</td>
+      <td id="T_0c7c4_row20_col6" class="data row20 col6" >35.948787</td>
+      <td id="T_0c7c4_row20_col7" class="data row20 col7" >1.7%</td>
     </tr>
     <tr>
-      <td id="T_fab48_row21_col0" class="data row21 col0" >22</td>
-      <td id="T_fab48_row21_col1" class="data row21 col1" >Arauca</td>
-      <td id="T_fab48_row21_col2" class="data row21 col2" >6.884885</td>
-      <td id="T_fab48_row21_col3" class="data row21 col3" >-71.365388</td>
-      <td id="T_fab48_row21_col4" class="data row21 col4" >247</td>
-      <td id="T_fab48_row21_col5" class="data row21 col5" >Arauca</td>
-      <td id="T_fab48_row21_col6" class="data row21 col6" >33.080572</td>
-      <td id="T_fab48_row21_col7" class="data row21 col7" >1.0%</td>
+      <td id="T_0c7c4_row21_col0" class="data row21 col0" >22</td>
+      <td id="T_0c7c4_row21_col1" class="data row21 col1" >Arauca</td>
+      <td id="T_0c7c4_row21_col2" class="data row21 col2" >6.884885</td>
+      <td id="T_0c7c4_row21_col3" class="data row21 col3" >-71.365388</td>
+      <td id="T_0c7c4_row21_col4" class="data row21 col4" >247</td>
+      <td id="T_0c7c4_row21_col5" class="data row21 col5" >Arauca</td>
+      <td id="T_0c7c4_row21_col6" class="data row21 col6" >33.080572</td>
+      <td id="T_0c7c4_row21_col7" class="data row21 col7" >1.0%</td>
     </tr>
     <tr>
-      <td id="T_fab48_row22_col0" class="data row22 col0" >23</td>
-      <td id="T_fab48_row22_col1" class="data row22 col1" >Casanare</td>
-      <td id="T_fab48_row22_col2" class="data row22 col2" >5.348271</td>
-      <td id="T_fab48_row22_col3" class="data row22 col3" >-72.309945</td>
-      <td id="T_fab48_row22_col4" class="data row22 col4" >232</td>
-      <td id="T_fab48_row22_col5" class="data row22 col5" >Casanare</td>
-      <td id="T_fab48_row22_col6" class="data row22 col6" >32.706231</td>
-      <td id="T_fab48_row22_col7" class="data row22 col7" >1.0%</td>
+      <td id="T_0c7c4_row22_col0" class="data row22 col0" >23</td>
+      <td id="T_0c7c4_row22_col1" class="data row22 col1" >Casanare</td>
+      <td id="T_0c7c4_row22_col2" class="data row22 col2" >5.348271</td>
+      <td id="T_0c7c4_row22_col3" class="data row22 col3" >-72.309945</td>
+      <td id="T_0c7c4_row22_col4" class="data row22 col4" >232</td>
+      <td id="T_0c7c4_row22_col5" class="data row22 col5" >Casanare</td>
+      <td id="T_0c7c4_row22_col6" class="data row22 col6" >32.706231</td>
+      <td id="T_0c7c4_row22_col7" class="data row22 col7" >1.0%</td>
     </tr>
     <tr>
-      <td id="T_fab48_row23_col0" class="data row23 col0" >24</td>
-      <td id="T_fab48_row23_col1" class="data row23 col1" >La Guajira</td>
-      <td id="T_fab48_row23_col2" class="data row23 col2" >11.264984</td>
-      <td id="T_fab48_row23_col3" class="data row23 col3" >-72.746152</td>
-      <td id="T_fab48_row23_col4" class="data row23 col4" >231</td>
-      <td id="T_fab48_row23_col5" class="data row23 col5" >la Guajira</td>
-      <td id="T_fab48_row23_col6" class="data row23 col6" >32.680424</td>
-      <td id="T_fab48_row23_col7" class="data row23 col7" >1.0%</td>
+      <td id="T_0c7c4_row23_col0" class="data row23 col0" >24</td>
+      <td id="T_0c7c4_row23_col1" class="data row23 col1" >La Guajira</td>
+      <td id="T_0c7c4_row23_col2" class="data row23 col2" >11.264984</td>
+      <td id="T_0c7c4_row23_col3" class="data row23 col3" >-72.746152</td>
+      <td id="T_0c7c4_row23_col4" class="data row23 col4" >231</td>
+      <td id="T_0c7c4_row23_col5" class="data row23 col5" >la Guajira</td>
+      <td id="T_0c7c4_row23_col6" class="data row23 col6" >32.680424</td>
+      <td id="T_0c7c4_row23_col7" class="data row23 col7" >1.0%</td>
     </tr>
     <tr>
-      <td id="T_fab48_row24_col0" class="data row24 col0" >25</td>
-      <td id="T_fab48_row24_col1" class="data row24 col1" >Putumayo</td>
-      <td id="T_fab48_row24_col2" class="data row24 col2" >0.651587</td>
-      <td id="T_fab48_row24_col3" class="data row24 col3" >-76.545091</td>
-      <td id="T_fab48_row24_col4" class="data row24 col4" >228</td>
-      <td id="T_fab48_row24_col5" class="data row24 col5" >Putumayo</td>
-      <td id="T_fab48_row24_col6" class="data row24 col6" >32.602332</td>
-      <td id="T_fab48_row24_col7" class="data row24 col7" >1.0%</td>
+      <td id="T_0c7c4_row24_col0" class="data row24 col0" >25</td>
+      <td id="T_0c7c4_row24_col1" class="data row24 col1" >Putumayo</td>
+      <td id="T_0c7c4_row24_col2" class="data row24 col2" >0.651587</td>
+      <td id="T_0c7c4_row24_col3" class="data row24 col3" >-76.545091</td>
+      <td id="T_0c7c4_row24_col4" class="data row24 col4" >228</td>
+      <td id="T_0c7c4_row24_col5" class="data row24 col5" >Putumayo</td>
+      <td id="T_0c7c4_row24_col6" class="data row24 col6" >32.602332</td>
+      <td id="T_0c7c4_row24_col7" class="data row24 col7" >1.0%</td>
     </tr>
     <tr>
-      <td id="T_fab48_row25_col0" class="data row25 col0" >26</td>
-      <td id="T_fab48_row25_col1" class="data row25 col1" >Caquetá</td>
-      <td id="T_fab48_row25_col2" class="data row25 col2" >1.653600</td>
-      <td id="T_fab48_row25_col3" class="data row25 col3" >-75.316969</td>
-      <td id="T_fab48_row25_col4" class="data row25 col4" >192</td>
-      <td id="T_fab48_row25_col5" class="data row25 col5" >Caquetá</td>
-      <td id="T_fab48_row25_col6" class="data row25 col6" >31.576141</td>
-      <td id="T_fab48_row25_col7" class="data row25 col7" >0.8%</td>
+      <td id="T_0c7c4_row25_col0" class="data row25 col0" >26</td>
+      <td id="T_0c7c4_row25_col1" class="data row25 col1" >Caquetá</td>
+      <td id="T_0c7c4_row25_col2" class="data row25 col2" >1.653600</td>
+      <td id="T_0c7c4_row25_col3" class="data row25 col3" >-75.316969</td>
+      <td id="T_0c7c4_row25_col4" class="data row25 col4" >192</td>
+      <td id="T_0c7c4_row25_col5" class="data row25 col5" >Caquetá</td>
+      <td id="T_0c7c4_row25_col6" class="data row25 col6" >31.576141</td>
+      <td id="T_0c7c4_row25_col7" class="data row25 col7" >0.8%</td>
     </tr>
     <tr>
-      <td id="T_fab48_row26_col0" class="data row26 col0" >27</td>
-      <td id="T_fab48_row26_col1" class="data row26 col1" >Chocó</td>
-      <td id="T_fab48_row26_col2" class="data row26 col2" >5.811646</td>
-      <td id="T_fab48_row26_col3" class="data row26 col3" >-76.698554</td>
-      <td id="T_fab48_row26_col4" class="data row26 col4" >93</td>
-      <td id="T_fab48_row26_col5" class="data row26 col5" >Chocó</td>
-      <td id="T_fab48_row26_col6" class="data row26 col6" >27.259769</td>
-      <td id="T_fab48_row26_col7" class="data row26 col7" >0.4%</td>
+      <td id="T_0c7c4_row26_col0" class="data row26 col0" >27</td>
+      <td id="T_0c7c4_row26_col1" class="data row26 col1" >Chocó</td>
+      <td id="T_0c7c4_row26_col2" class="data row26 col2" >5.811646</td>
+      <td id="T_0c7c4_row26_col3" class="data row26 col3" >-76.698554</td>
+      <td id="T_0c7c4_row26_col4" class="data row26 col4" >93</td>
+      <td id="T_0c7c4_row26_col5" class="data row26 col5" >Chocó</td>
+      <td id="T_0c7c4_row26_col6" class="data row26 col6" >27.259769</td>
+      <td id="T_0c7c4_row26_col7" class="data row26 col7" >0.4%</td>
     </tr>
     <tr>
-      <td id="T_fab48_row27_col0" class="data row27 col0" >28</td>
-      <td id="T_fab48_row27_col1" class="data row27 col1" >Guaviare</td>
-      <td id="T_fab48_row27_col2" class="data row27 col2" >2.407588</td>
-      <td id="T_fab48_row27_col3" class="data row27 col3" >-72.594417</td>
-      <td id="T_fab48_row27_col4" class="data row27 col4" >46</td>
-      <td id="T_fab48_row27_col5" class="data row27 col5" >Guaviare</td>
-      <td id="T_fab48_row27_col6" class="data row27 col6" >23.100886</td>
-      <td id="T_fab48_row27_col7" class="data row27 col7" >0.2%</td>
+      <td id="T_0c7c4_row27_col0" class="data row27 col0" >28</td>
+      <td id="T_0c7c4_row27_col1" class="data row27 col1" >Guaviare</td>
+      <td id="T_0c7c4_row27_col2" class="data row27 col2" >2.407588</td>
+      <td id="T_0c7c4_row27_col3" class="data row27 col3" >-72.594417</td>
+      <td id="T_0c7c4_row27_col4" class="data row27 col4" >46</td>
+      <td id="T_0c7c4_row27_col5" class="data row27 col5" >Guaviare</td>
+      <td id="T_0c7c4_row27_col6" class="data row27 col6" >23.100886</td>
+      <td id="T_0c7c4_row27_col7" class="data row27 col7" >0.2%</td>
     </tr>
     <tr>
-      <td id="T_fab48_row28_col0" class="data row28 col0" >29</td>
-      <td id="T_fab48_row28_col1" class="data row28 col1" >Vaupés</td>
-      <td id="T_fab48_row28_col2" class="data row28 col2" >1.247884</td>
-      <td id="T_fab48_row28_col3" class="data row28 col3" >-70.256409</td>
-      <td id="T_fab48_row28_col4" class="data row28 col4" >46</td>
-      <td id="T_fab48_row28_col5" class="data row28 col5" >Vaupés</td>
-      <td id="T_fab48_row28_col6" class="data row28 col6" >23.100886</td>
-      <td id="T_fab48_row28_col7" class="data row28 col7" >0.2%</td>
+      <td id="T_0c7c4_row28_col0" class="data row28 col0" >29</td>
+      <td id="T_0c7c4_row28_col1" class="data row28 col1" >Vaupés</td>
+      <td id="T_0c7c4_row28_col2" class="data row28 col2" >1.247884</td>
+      <td id="T_0c7c4_row28_col3" class="data row28 col3" >-70.256409</td>
+      <td id="T_0c7c4_row28_col4" class="data row28 col4" >46</td>
+      <td id="T_0c7c4_row28_col5" class="data row28 col5" >Vaupés</td>
+      <td id="T_0c7c4_row28_col6" class="data row28 col6" >23.100886</td>
+      <td id="T_0c7c4_row28_col7" class="data row28 col7" >0.2%</td>
     </tr>
     <tr>
-      <td id="T_fab48_row29_col0" class="data row29 col0" >30</td>
-      <td id="T_fab48_row29_col1" class="data row29 col1" >Amazonas</td>
-      <td id="T_fab48_row29_col2" class="data row29 col2" >-4.198950</td>
-      <td id="T_fab48_row29_col3" class="data row29 col3" >-69.941721</td>
-      <td id="T_fab48_row29_col4" class="data row29 col4" >42</td>
-      <td id="T_fab48_row29_col5" class="data row29 col5" >Amazonas</td>
-      <td id="T_fab48_row29_col6" class="data row29 col6" >22.567201</td>
-      <td id="T_fab48_row29_col7" class="data row29 col7" >0.2%</td>
+      <td id="T_0c7c4_row29_col0" class="data row29 col0" >30</td>
+      <td id="T_0c7c4_row29_col1" class="data row29 col1" >Amazonas</td>
+      <td id="T_0c7c4_row29_col2" class="data row29 col2" >-4.198950</td>
+      <td id="T_0c7c4_row29_col3" class="data row29 col3" >-69.941721</td>
+      <td id="T_0c7c4_row29_col4" class="data row29 col4" >42</td>
+      <td id="T_0c7c4_row29_col5" class="data row29 col5" >Amazonas</td>
+      <td id="T_0c7c4_row29_col6" class="data row29 col6" >22.567201</td>
+      <td id="T_0c7c4_row29_col7" class="data row29 col7" >0.2%</td>
     </tr>
     <tr>
-      <td id="T_fab48_row30_col0" class="data row30 col0" >31</td>
-      <td id="T_fab48_row30_col1" class="data row30 col1" >Vichada</td>
-      <td id="T_fab48_row30_col2" class="data row30 col2" >5.361208</td>
-      <td id="T_fab48_row30_col3" class="data row30 col3" >-69.000290</td>
-      <td id="T_fab48_row30_col4" class="data row30 col4" >19</td>
-      <td id="T_fab48_row30_col5" class="data row30 col5" >Vichada</td>
-      <td id="T_fab48_row30_col6" class="data row30 col6" >17.974394</td>
-      <td id="T_fab48_row30_col7" class="data row30 col7" >0.1%</td>
+      <td id="T_0c7c4_row30_col0" class="data row30 col0" >31</td>
+      <td id="T_0c7c4_row30_col1" class="data row30 col1" >Vichada</td>
+      <td id="T_0c7c4_row30_col2" class="data row30 col2" >5.361208</td>
+      <td id="T_0c7c4_row30_col3" class="data row30 col3" >-69.000290</td>
+      <td id="T_0c7c4_row30_col4" class="data row30 col4" >19</td>
+      <td id="T_0c7c4_row30_col5" class="data row30 col5" >Vichada</td>
+      <td id="T_0c7c4_row30_col6" class="data row30 col6" >17.974394</td>
+      <td id="T_0c7c4_row30_col7" class="data row30 col7" >0.1%</td>
     </tr>
     <tr>
-      <td id="T_fab48_row31_col0" class="data row31 col0" >32</td>
-      <td id="T_fab48_row31_col1" class="data row31 col1" >Archipiélago de San Andrés, Providencia y Santa Catalina</td>
-      <td id="T_fab48_row31_col2" class="data row31 col2" >12.578108</td>
-      <td id="T_fab48_row31_col3" class="data row31 col3" >-81.707181</td>
-      <td id="T_fab48_row31_col4" class="data row31 col4" >18</td>
-      <td id="T_fab48_row31_col5" class="data row31 col5" >Archipiélago de San Andrés, Providencia y Santa Catalina</td>
-      <td id="T_fab48_row31_col6" class="data row31 col6" >17.666634</td>
-      <td id="T_fab48_row31_col7" class="data row31 col7" >0.1%</td>
+      <td id="T_0c7c4_row31_col0" class="data row31 col0" >32</td>
+      <td id="T_0c7c4_row31_col1" class="data row31 col1" >Archipiélago de San Andrés, Providencia y Santa Catalina</td>
+      <td id="T_0c7c4_row31_col2" class="data row31 col2" >12.578108</td>
+      <td id="T_0c7c4_row31_col3" class="data row31 col3" >-81.707181</td>
+      <td id="T_0c7c4_row31_col4" class="data row31 col4" >18</td>
+      <td id="T_0c7c4_row31_col5" class="data row31 col5" >Archipiélago de San Andrés, Providencia y Santa Catalina</td>
+      <td id="T_0c7c4_row31_col6" class="data row31 col6" >17.666634</td>
+      <td id="T_0c7c4_row31_col7" class="data row31 col7" >0.1%</td>
     </tr>
     <tr>
-      <td id="T_fab48_row32_col0" class="data row32 col0" >33</td>
-      <td id="T_fab48_row32_col1" class="data row32 col1" >Guainía</td>
-      <td id="T_fab48_row32_col2" class="data row32 col2" >3.844847</td>
-      <td id="T_fab48_row32_col3" class="data row32 col3" >-68.030110</td>
-      <td id="T_fab48_row32_col4" class="data row32 col4" >17</td>
-      <td id="T_fab48_row32_col5" class="data row32 col5" >Guainía</td>
-      <td id="T_fab48_row32_col6" class="data row32 col6" >17.342231</td>
-      <td id="T_fab48_row32_col7" class="data row32 col7" >0.1%</td>
+      <td id="T_0c7c4_row32_col0" class="data row32 col0" >33</td>
+      <td id="T_0c7c4_row32_col1" class="data row32 col1" >Guainía</td>
+      <td id="T_0c7c4_row32_col2" class="data row32 col2" >3.844847</td>
+      <td id="T_0c7c4_row32_col3" class="data row32 col3" >-68.030110</td>
+      <td id="T_0c7c4_row32_col4" class="data row32 col4" >17</td>
+      <td id="T_0c7c4_row32_col5" class="data row32 col5" >Guainía</td>
+      <td id="T_0c7c4_row32_col6" class="data row32 col6" >17.342231</td>
+      <td id="T_0c7c4_row32_col7" class="data row32 col7" >0.1%</td>
     </tr>
   </tbody>
 </table>
 </div><div class="output text_html"><style type="text/css">
-#T_97c73 th {
+#T_f9767 th {
   text-align: left;
   font-weight: 500;
 }
-#T_97c73_row0_col0, #T_97c73_row0_col1, #T_97c73_row0_col2, #T_97c73_row0_col3, #T_97c73_row0_col4, #T_97c73_row0_col5, #T_97c73_row0_col6, #T_97c73_row0_col7, #T_97c73_row1_col0, #T_97c73_row1_col1, #T_97c73_row1_col2, #T_97c73_row1_col3, #T_97c73_row1_col4, #T_97c73_row1_col5, #T_97c73_row1_col6, #T_97c73_row1_col7, #T_97c73_row2_col0, #T_97c73_row2_col1, #T_97c73_row2_col2, #T_97c73_row2_col3, #T_97c73_row2_col4, #T_97c73_row2_col5, #T_97c73_row2_col6, #T_97c73_row2_col7, #T_97c73_row3_col0, #T_97c73_row3_col1, #T_97c73_row3_col2, #T_97c73_row3_col3, #T_97c73_row3_col4, #T_97c73_row3_col5, #T_97c73_row3_col6, #T_97c73_row3_col7, #T_97c73_row4_col0, #T_97c73_row4_col1, #T_97c73_row4_col2, #T_97c73_row4_col3, #T_97c73_row4_col4, #T_97c73_row4_col5, #T_97c73_row4_col6, #T_97c73_row4_col7, #T_97c73_row5_col0, #T_97c73_row5_col1, #T_97c73_row5_col2, #T_97c73_row5_col3, #T_97c73_row5_col4, #T_97c73_row5_col5, #T_97c73_row5_col6, #T_97c73_row5_col7, #T_97c73_row6_col0, #T_97c73_row6_col1, #T_97c73_row6_col2, #T_97c73_row6_col3, #T_97c73_row6_col4, #T_97c73_row6_col5, #T_97c73_row6_col6, #T_97c73_row6_col7, #T_97c73_row7_col0, #T_97c73_row7_col1, #T_97c73_row7_col2, #T_97c73_row7_col3, #T_97c73_row7_col4, #T_97c73_row7_col5, #T_97c73_row7_col6, #T_97c73_row7_col7, #T_97c73_row8_col0, #T_97c73_row8_col1, #T_97c73_row8_col2, #T_97c73_row8_col3, #T_97c73_row8_col4, #T_97c73_row8_col5, #T_97c73_row8_col6, #T_97c73_row8_col7, #T_97c73_row9_col0, #T_97c73_row9_col1, #T_97c73_row9_col2, #T_97c73_row9_col3, #T_97c73_row9_col4, #T_97c73_row9_col5, #T_97c73_row9_col6, #T_97c73_row9_col7 {
+#T_f9767_row0_col0, #T_f9767_row0_col1, #T_f9767_row0_col2, #T_f9767_row0_col3, #T_f9767_row0_col4, #T_f9767_row0_col5, #T_f9767_row0_col6, #T_f9767_row0_col7, #T_f9767_row1_col0, #T_f9767_row1_col1, #T_f9767_row1_col2, #T_f9767_row1_col3, #T_f9767_row1_col4, #T_f9767_row1_col5, #T_f9767_row1_col6, #T_f9767_row1_col7, #T_f9767_row2_col0, #T_f9767_row2_col1, #T_f9767_row2_col2, #T_f9767_row2_col3, #T_f9767_row2_col4, #T_f9767_row2_col5, #T_f9767_row2_col6, #T_f9767_row2_col7, #T_f9767_row3_col0, #T_f9767_row3_col1, #T_f9767_row3_col2, #T_f9767_row3_col3, #T_f9767_row3_col4, #T_f9767_row3_col5, #T_f9767_row3_col6, #T_f9767_row3_col7, #T_f9767_row4_col0, #T_f9767_row4_col1, #T_f9767_row4_col2, #T_f9767_row4_col3, #T_f9767_row4_col4, #T_f9767_row4_col5, #T_f9767_row4_col6, #T_f9767_row4_col7, #T_f9767_row5_col0, #T_f9767_row5_col1, #T_f9767_row5_col2, #T_f9767_row5_col3, #T_f9767_row5_col4, #T_f9767_row5_col5, #T_f9767_row5_col6, #T_f9767_row5_col7, #T_f9767_row6_col0, #T_f9767_row6_col1, #T_f9767_row6_col2, #T_f9767_row6_col3, #T_f9767_row6_col4, #T_f9767_row6_col5, #T_f9767_row6_col6, #T_f9767_row6_col7, #T_f9767_row7_col0, #T_f9767_row7_col1, #T_f9767_row7_col2, #T_f9767_row7_col3, #T_f9767_row7_col4, #T_f9767_row7_col5, #T_f9767_row7_col6, #T_f9767_row7_col7, #T_f9767_row8_col0, #T_f9767_row8_col1, #T_f9767_row8_col2, #T_f9767_row8_col3, #T_f9767_row8_col4, #T_f9767_row8_col5, #T_f9767_row8_col6, #T_f9767_row8_col7, #T_f9767_row9_col0, #T_f9767_row9_col1, #T_f9767_row9_col2, #T_f9767_row9_col3, #T_f9767_row9_col4, #T_f9767_row9_col5, #T_f9767_row9_col6, #T_f9767_row9_col7 {
   text-align: left;
 }
 </style>
-<table id="T_97c73">
+<table id="T_f9767">
   <thead>
     <tr>
-      <th id="T_97c73_level0_col0" class="col_heading level0 col0" >Rank</th>
-      <th id="T_97c73_level0_col1" class="col_heading level0 col1" >Departamento</th>
-      <th id="T_97c73_level0_col2" class="col_heading level0 col2" >lat</th>
-      <th id="T_97c73_level0_col3" class="col_heading level0 col3" >lon</th>
-      <th id="T_97c73_level0_col4" class="col_heading level0 col4" >Casos</th>
-      <th id="T_97c73_level0_col5" class="col_heading level0 col5" >dept_clean</th>
-      <th id="T_97c73_level0_col6" class="col_heading level0 col6" >size_norm</th>
-      <th id="T_97c73_level0_col7" class="col_heading level0 col7" >Participación</th>
+      <th id="T_f9767_level0_col0" class="col_heading level0 col0" >Rank</th>
+      <th id="T_f9767_level0_col1" class="col_heading level0 col1" >Departamento</th>
+      <th id="T_f9767_level0_col2" class="col_heading level0 col2" >lat</th>
+      <th id="T_f9767_level0_col3" class="col_heading level0 col3" >lon</th>
+      <th id="T_f9767_level0_col4" class="col_heading level0 col4" >Casos</th>
+      <th id="T_f9767_level0_col5" class="col_heading level0 col5" >dept_clean</th>
+      <th id="T_f9767_level0_col6" class="col_heading level0 col6" >size_norm</th>
+      <th id="T_f9767_level0_col7" class="col_heading level0 col7" >Participación</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td id="T_97c73_row0_col0" class="data row0 col0" >1</td>
-      <td id="T_97c73_row0_col1" class="data row0 col1" >Antioquia</td>
-      <td id="T_97c73_row0_col2" class="data row0 col2" >6.384135</td>
-      <td id="T_97c73_row0_col3" class="data row0 col3" >-75.591164</td>
-      <td id="T_97c73_row0_col4" class="data row0 col4" >3,913</td>
-      <td id="T_97c73_row0_col5" class="data row0 col5" >Antioquia</td>
-      <td id="T_97c73_row0_col6" class="data row0 col6" >49.633891</td>
-      <td id="T_97c73_row0_col7" class="data row0 col7" >16.6%</td>
+      <td id="T_f9767_row0_col0" class="data row0 col0" >1</td>
+      <td id="T_f9767_row0_col1" class="data row0 col1" >Antioquia</td>
+      <td id="T_f9767_row0_col2" class="data row0 col2" >6.384135</td>
+      <td id="T_f9767_row0_col3" class="data row0 col3" >-75.591164</td>
+      <td id="T_f9767_row0_col4" class="data row0 col4" >3,913</td>
+      <td id="T_f9767_row0_col5" class="data row0 col5" >Antioquia</td>
+      <td id="T_f9767_row0_col6" class="data row0 col6" >49.633891</td>
+      <td id="T_f9767_row0_col7" class="data row0 col7" >16.6%</td>
     </tr>
     <tr>
-      <td id="T_97c73_row1_col0" class="data row1 col0" >2</td>
-      <td id="T_97c73_row1_col1" class="data row1 col1" >Bogotá, D.C.</td>
-      <td id="T_97c73_row1_col2" class="data row1 col2" >4.649251</td>
-      <td id="T_97c73_row1_col3" class="data row1 col3" >-74.106992</td>
-      <td id="T_97c73_row1_col4" class="data row1 col4" >3,373</td>
-      <td id="T_97c73_row1_col5" class="data row1 col5" >Bogotá, D.C.</td>
-      <td id="T_97c73_row1_col6" class="data row1 col6" >48.743126</td>
-      <td id="T_97c73_row1_col7" class="data row1 col7" >14.3%</td>
+      <td id="T_f9767_row1_col0" class="data row1 col0" >2</td>
+      <td id="T_f9767_row1_col1" class="data row1 col1" >Bogotá, D.C.</td>
+      <td id="T_f9767_row1_col2" class="data row1 col2" >4.649251</td>
+      <td id="T_f9767_row1_col3" class="data row1 col3" >-74.106992</td>
+      <td id="T_f9767_row1_col4" class="data row1 col4" >3,373</td>
+      <td id="T_f9767_row1_col5" class="data row1 col5" >Bogotá, D.C.</td>
+      <td id="T_f9767_row1_col6" class="data row1 col6" >48.743126</td>
+      <td id="T_f9767_row1_col7" class="data row1 col7" >14.3%</td>
     </tr>
     <tr>
-      <td id="T_97c73_row2_col0" class="data row2 col0" >3</td>
-      <td id="T_97c73_row2_col1" class="data row2 col1" >Valle del Cauca</td>
-      <td id="T_97c73_row2_col2" class="data row2 col2" >3.703794</td>
-      <td id="T_97c73_row2_col3" class="data row2 col3" >-76.404540</td>
-      <td id="T_97c73_row2_col4" class="data row2 col4" >2,060</td>
-      <td id="T_97c73_row2_col5" class="data row2 col5" >Valle del Cauca</td>
-      <td id="T_97c73_row2_col6" class="data row2 col6" >45.785679</td>
-      <td id="T_97c73_row2_col7" class="data row2 col7" >8.8%</td>
+      <td id="T_f9767_row2_col0" class="data row2 col0" >3</td>
+      <td id="T_f9767_row2_col1" class="data row2 col1" >Valle del Cauca</td>
+      <td id="T_f9767_row2_col2" class="data row2 col2" >3.703794</td>
+      <td id="T_f9767_row2_col3" class="data row2 col3" >-76.404540</td>
+      <td id="T_f9767_row2_col4" class="data row2 col4" >2,060</td>
+      <td id="T_f9767_row2_col5" class="data row2 col5" >Valle del Cauca</td>
+      <td id="T_f9767_row2_col6" class="data row2 col6" >45.785679</td>
+      <td id="T_f9767_row2_col7" class="data row2 col7" >8.8%</td>
     </tr>
     <tr>
-      <td id="T_97c73_row3_col0" class="data row3 col0" >4</td>
-      <td id="T_97c73_row3_col1" class="data row3 col1" >Cundinamarca</td>
-      <td id="T_97c73_row3_col2" class="data row3 col2" >4.738987</td>
-      <td id="T_97c73_row3_col3" class="data row3 col3" >-74.229318</td>
-      <td id="T_97c73_row3_col4" class="data row3 col4" >1,446</td>
-      <td id="T_97c73_row3_col5" class="data row3 col5" >Cundinamarca</td>
-      <td id="T_97c73_row3_col6" class="data row3 col6" >43.663486</td>
-      <td id="T_97c73_row3_col7" class="data row3 col7" >6.1%</td>
+      <td id="T_f9767_row3_col0" class="data row3 col0" >4</td>
+      <td id="T_f9767_row3_col1" class="data row3 col1" >Cundinamarca</td>
+      <td id="T_f9767_row3_col2" class="data row3 col2" >4.738987</td>
+      <td id="T_f9767_row3_col3" class="data row3 col3" >-74.229318</td>
+      <td id="T_f9767_row3_col4" class="data row3 col4" >1,446</td>
+      <td id="T_f9767_row3_col5" class="data row3 col5" >Cundinamarca</td>
+      <td id="T_f9767_row3_col6" class="data row3 col6" >43.663486</td>
+      <td id="T_f9767_row3_col7" class="data row3 col7" >6.1%</td>
     </tr>
     <tr>
-      <td id="T_97c73_row4_col0" class="data row4 col0" >5</td>
-      <td id="T_97c73_row4_col1" class="data row4 col1" >Santander</td>
-      <td id="T_97c73_row4_col2" class="data row4 col2" >6.900185</td>
-      <td id="T_97c73_row4_col3" class="data row4 col3" >-73.273514</td>
-      <td id="T_97c73_row4_col4" class="data row4 col4" >1,140</td>
-      <td id="T_97c73_row4_col5" class="data row4 col5" >Santander</td>
-      <td id="T_97c73_row4_col6" class="data row4 col6" >42.237962</td>
-      <td id="T_97c73_row4_col7" class="data row4 col7" >4.8%</td>
+      <td id="T_f9767_row4_col0" class="data row4 col0" >5</td>
+      <td id="T_f9767_row4_col1" class="data row4 col1" >Santander</td>
+      <td id="T_f9767_row4_col2" class="data row4 col2" >6.900185</td>
+      <td id="T_f9767_row4_col3" class="data row4 col3" >-73.273514</td>
+      <td id="T_f9767_row4_col4" class="data row4 col4" >1,140</td>
+      <td id="T_f9767_row4_col5" class="data row4 col5" >Santander</td>
+      <td id="T_f9767_row4_col6" class="data row4 col6" >42.237962</td>
+      <td id="T_f9767_row4_col7" class="data row4 col7" >4.8%</td>
     </tr>
     <tr>
-      <td id="T_97c73_row5_col0" class="data row5 col0" >6</td>
-      <td id="T_97c73_row5_col1" class="data row5 col1" >Tolima</td>
-      <td id="T_97c73_row5_col2" class="data row5 col2" >4.395348</td>
-      <td id="T_97c73_row5_col3" class="data row5 col3" >-75.108298</td>
-      <td id="T_97c73_row5_col4" class="data row5 col4" >909</td>
-      <td id="T_97c73_row5_col5" class="data row5 col5" >Tolima</td>
-      <td id="T_97c73_row5_col6" class="data row5 col6" >40.880668</td>
-      <td id="T_97c73_row5_col7" class="data row5 col7" >3.9%</td>
+      <td id="T_f9767_row5_col0" class="data row5 col0" >6</td>
+      <td id="T_f9767_row5_col1" class="data row5 col1" >Tolima</td>
+      <td id="T_f9767_row5_col2" class="data row5 col2" >4.395348</td>
+      <td id="T_f9767_row5_col3" class="data row5 col3" >-75.108298</td>
+      <td id="T_f9767_row5_col4" class="data row5 col4" >909</td>
+      <td id="T_f9767_row5_col5" class="data row5 col5" >Tolima</td>
+      <td id="T_f9767_row5_col6" class="data row5 col6" >40.880668</td>
+      <td id="T_f9767_row5_col7" class="data row5 col7" >3.9%</td>
     </tr>
     <tr>
-      <td id="T_97c73_row6_col0" class="data row6 col0" >7</td>
-      <td id="T_97c73_row6_col1" class="data row6 col1" >Norte de Santander</td>
-      <td id="T_97c73_row6_col2" class="data row6 col2" >8.008635</td>
-      <td id="T_97c73_row6_col3" class="data row6 col3" >-72.782842</td>
-      <td id="T_97c73_row6_col4" class="data row6 col4" >837</td>
-      <td id="T_97c73_row6_col5" class="data row6 col5" >Norte de Santander</td>
-      <td id="T_97c73_row6_col6" class="data row6 col6" >40.386109</td>
-      <td id="T_97c73_row6_col7" class="data row6 col7" >3.6%</td>
+      <td id="T_f9767_row6_col0" class="data row6 col0" >7</td>
+      <td id="T_f9767_row6_col1" class="data row6 col1" >Norte de Santander</td>
+      <td id="T_f9767_row6_col2" class="data row6 col2" >8.008635</td>
+      <td id="T_f9767_row6_col3" class="data row6 col3" >-72.782842</td>
+      <td id="T_f9767_row6_col4" class="data row6 col4" >837</td>
+      <td id="T_f9767_row6_col5" class="data row6 col5" >Norte de Santander</td>
+      <td id="T_f9767_row6_col6" class="data row6 col6" >40.386109</td>
+      <td id="T_f9767_row6_col7" class="data row6 col7" >3.6%</td>
     </tr>
     <tr>
-      <td id="T_97c73_row7_col0" class="data row7 col0" >8</td>
-      <td id="T_97c73_row7_col1" class="data row7 col1" >Atlántico</td>
-      <td id="T_97c73_row7_col2" class="data row7 col2" >10.904340</td>
-      <td id="T_97c73_row7_col3" class="data row7 col3" >-74.828031</td>
-      <td id="T_97c73_row7_col4" class="data row7 col4" >809</td>
-      <td id="T_97c73_row7_col5" class="data row7 col5" >Atlántico</td>
-      <td id="T_97c73_row7_col6" class="data row7 col6" >40.182205</td>
-      <td id="T_97c73_row7_col7" class="data row7 col7" >3.4%</td>
+      <td id="T_f9767_row7_col0" class="data row7 col0" >8</td>
+      <td id="T_f9767_row7_col1" class="data row7 col1" >Atlántico</td>
+      <td id="T_f9767_row7_col2" class="data row7 col2" >10.904340</td>
+      <td id="T_f9767_row7_col3" class="data row7 col3" >-74.828031</td>
+      <td id="T_f9767_row7_col4" class="data row7 col4" >809</td>
+      <td id="T_f9767_row7_col5" class="data row7 col5" >Atlántico</td>
+      <td id="T_f9767_row7_col6" class="data row7 col6" >40.182205</td>
+      <td id="T_f9767_row7_col7" class="data row7 col7" >3.4%</td>
     </tr>
     <tr>
-      <td id="T_97c73_row8_col0" class="data row8 col0" >9</td>
-      <td id="T_97c73_row8_col1" class="data row8 col1" >Nariño</td>
-      <td id="T_97c73_row8_col2" class="data row8 col2" >1.270181</td>
-      <td id="T_97c73_row8_col3" class="data row8 col3" >-77.584478</td>
-      <td id="T_97c73_row8_col4" class="data row8 col4" >755</td>
-      <td id="T_97c73_row8_col5" class="data row8 col5" >Nariño</td>
-      <td id="T_97c73_row8_col6" class="data row8 col6" >39.768248</td>
-      <td id="T_97c73_row8_col7" class="data row8 col7" >3.2%</td>
+      <td id="T_f9767_row8_col0" class="data row8 col0" >9</td>
+      <td id="T_f9767_row8_col1" class="data row8 col1" >Nariño</td>
+      <td id="T_f9767_row8_col2" class="data row8 col2" >1.270181</td>
+      <td id="T_f9767_row8_col3" class="data row8 col3" >-77.584478</td>
+      <td id="T_f9767_row8_col4" class="data row8 col4" >755</td>
+      <td id="T_f9767_row8_col5" class="data row8 col5" >Nariño</td>
+      <td id="T_f9767_row8_col6" class="data row8 col6" >39.768248</td>
+      <td id="T_f9767_row8_col7" class="data row8 col7" >3.2%</td>
     </tr>
     <tr>
-      <td id="T_97c73_row9_col0" class="data row9 col0" >10</td>
-      <td id="T_97c73_row9_col1" class="data row9 col1" >Huila</td>
-      <td id="T_97c73_row9_col2" class="data row9 col2" >2.480193</td>
-      <td id="T_97c73_row9_col3" class="data row9 col3" >-75.609458</td>
-      <td id="T_97c73_row9_col4" class="data row9 col4" >736</td>
-      <td id="T_97c73_row9_col5" class="data row9 col5" >Huila</td>
-      <td id="T_97c73_row9_col6" class="data row9 col6" >39.615527</td>
-      <td id="T_97c73_row9_col7" class="data row9 col7" >3.1%</td>
+      <td id="T_f9767_row9_col0" class="data row9 col0" >10</td>
+      <td id="T_f9767_row9_col1" class="data row9 col1" >Huila</td>
+      <td id="T_f9767_row9_col2" class="data row9 col2" >2.480193</td>
+      <td id="T_f9767_row9_col3" class="data row9 col3" >-75.609458</td>
+      <td id="T_f9767_row9_col4" class="data row9 col4" >736</td>
+      <td id="T_f9767_row9_col5" class="data row9 col5" >Huila</td>
+      <td id="T_f9767_row9_col6" class="data row9 col6" >39.615527</td>
+      <td id="T_f9767_row9_col7" class="data row9 col7" >3.1%</td>
     </tr>
   </tbody>
 </table>
 </div><div class="output text_html"><style type="text/css">
 </style>
-<table id="T_33a87">
+<table id="T_70786">
   <thead>
     <tr>
-      <th id="T_33a87_level0_col0" class="col_heading level0 col0" >Total casos</th>
-      <th id="T_33a87_level0_col1" class="col_heading level0 col1" >N departamentos</th>
-      <th id="T_33a87_level0_col2" class="col_heading level0 col2" >Promedio casos/depto</th>
-      <th id="T_33a87_level0_col3" class="col_heading level0 col3" >Mediana</th>
+      <th id="T_70786_level0_col0" class="col_heading level0 col0" >Total casos</th>
+      <th id="T_70786_level0_col1" class="col_heading level0 col1" >N departamentos</th>
+      <th id="T_70786_level0_col2" class="col_heading level0 col2" >Promedio casos/depto</th>
+      <th id="T_70786_level0_col3" class="col_heading level0 col3" >Mediana</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td id="T_33a87_row0_col0" class="data row0 col0" >23,541</td>
-      <td id="T_33a87_row0_col1" class="data row0 col1" >33</td>
-      <td id="T_33a87_row0_col2" class="data row0 col2" >713.4</td>
-      <td id="T_33a87_row0_col3" class="data row0 col3" >536</td>
+      <td id="T_70786_row0_col0" class="data row0 col0" >23,541</td>
+      <td id="T_70786_row0_col1" class="data row0 col1" >33</td>
+      <td id="T_70786_row0_col2" class="data row0 col2" >713.4</td>
+      <td id="T_70786_row0_col3" class="data row0 col3" >536</td>
     </tr>
   </tbody>
 </table>
@@ -2767,221 +2876,221 @@ if (outputEl) {{
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
-#T_09792 caption {
+#T_f9925 caption {
   font-size: 16px;
   font-weight: bold;
   color: #333;
   margin-bottom: 10px;
 }
-#T_09792 th {
+#T_f9925 th {
   background-color: #1f77b4;
   color: white;
   font-weight: bold;
   text-align: center;
 }
-#T_09792 tr:nth-child(even):not(:last-child) {
+#T_f9925 tr:nth-child(even):not(:last-child) {
   background-color: #f7f7f7;
 }
-#T_09792 tr:last-child {
+#T_f9925 tr:last-child {
   font-style: italic;
   color: #555;
   font-size: 12px;
   background-color: #f9f9f9;
   border-top: 2px solid #eee;
 }
-#T_09792 td {
+#T_f9925 td {
   padding: 8px;
 }
-#T_09792  th {
+#T_f9925  th {
   padding: 8px;
 }
-#T_09792_row0_col0, #T_09792_row0_col1, #T_09792_row1_col0, #T_09792_row1_col1, #T_09792_row2_col0, #T_09792_row2_col1, #T_09792_row3_col0, #T_09792_row3_col1, #T_09792_row4_col0, #T_09792_row4_col1, #T_09792_row5_col0, #T_09792_row5_col1, #T_09792_row6_col0, #T_09792_row6_col1, #T_09792_row7_col0, #T_09792_row7_col1, #T_09792_row8_col0, #T_09792_row8_col1, #T_09792_row9_col0, #T_09792_row9_col1, #T_09792_row10_col0, #T_09792_row10_col1, #T_09792_row11_col0, #T_09792_row11_col1, #T_09792_row12_col0, #T_09792_row12_col1, #T_09792_row13_col0, #T_09792_row13_col1, #T_09792_row14_col0, #T_09792_row14_col1, #T_09792_row15_col0, #T_09792_row15_col1, #T_09792_row16_col0, #T_09792_row16_col1, #T_09792_row17_col0, #T_09792_row17_col1, #T_09792_row18_col0, #T_09792_row18_col1, #T_09792_row19_col0, #T_09792_row19_col1, #T_09792_row20_col0, #T_09792_row20_col1, #T_09792_row21_col0, #T_09792_row21_col1, #T_09792_row22_col0, #T_09792_row22_col1, #T_09792_row23_col0, #T_09792_row23_col1, #T_09792_row24_col0, #T_09792_row24_col1, #T_09792_row25_col0, #T_09792_row25_col1, #T_09792_row26_col0, #T_09792_row26_col1, #T_09792_row27_col0, #T_09792_row27_col1, #T_09792_row28_col0, #T_09792_row28_col1, #T_09792_row29_col0, #T_09792_row29_col1, #T_09792_row30_col0, #T_09792_row30_col1, #T_09792_row31_col0, #T_09792_row31_col1, #T_09792_row32_col0, #T_09792_row32_col1, #T_09792_row33_col0, #T_09792_row33_col1, #T_09792_row34_col0, #T_09792_row34_col1, #T_09792_row35_col0, #T_09792_row35_col1, #T_09792_row36_col0, #T_09792_row36_col1, #T_09792_row37_col0, #T_09792_row37_col1, #T_09792_row38_col0, #T_09792_row38_col1, #T_09792_row39_col0, #T_09792_row39_col1, #T_09792_row40_col0, #T_09792_row40_col1, #T_09792_row41_col0, #T_09792_row41_col1, #T_09792_row42_col0, #T_09792_row42_col1 {
+#T_f9925_row0_col0, #T_f9925_row0_col1, #T_f9925_row1_col0, #T_f9925_row1_col1, #T_f9925_row2_col0, #T_f9925_row2_col1, #T_f9925_row3_col0, #T_f9925_row3_col1, #T_f9925_row4_col0, #T_f9925_row4_col1, #T_f9925_row5_col0, #T_f9925_row5_col1, #T_f9925_row6_col0, #T_f9925_row6_col1, #T_f9925_row7_col0, #T_f9925_row7_col1, #T_f9925_row8_col0, #T_f9925_row8_col1, #T_f9925_row9_col0, #T_f9925_row9_col1, #T_f9925_row10_col0, #T_f9925_row10_col1, #T_f9925_row11_col0, #T_f9925_row11_col1, #T_f9925_row12_col0, #T_f9925_row12_col1, #T_f9925_row13_col0, #T_f9925_row13_col1, #T_f9925_row14_col0, #T_f9925_row14_col1, #T_f9925_row15_col0, #T_f9925_row15_col1, #T_f9925_row16_col0, #T_f9925_row16_col1, #T_f9925_row17_col0, #T_f9925_row17_col1, #T_f9925_row18_col0, #T_f9925_row18_col1, #T_f9925_row19_col0, #T_f9925_row19_col1, #T_f9925_row20_col0, #T_f9925_row20_col1, #T_f9925_row21_col0, #T_f9925_row21_col1, #T_f9925_row22_col0, #T_f9925_row22_col1, #T_f9925_row23_col0, #T_f9925_row23_col1, #T_f9925_row24_col0, #T_f9925_row24_col1, #T_f9925_row25_col0, #T_f9925_row25_col1, #T_f9925_row26_col0, #T_f9925_row26_col1, #T_f9925_row27_col0, #T_f9925_row27_col1, #T_f9925_row28_col0, #T_f9925_row28_col1, #T_f9925_row29_col0, #T_f9925_row29_col1, #T_f9925_row30_col0, #T_f9925_row30_col1, #T_f9925_row31_col0, #T_f9925_row31_col1, #T_f9925_row32_col0, #T_f9925_row32_col1, #T_f9925_row33_col0, #T_f9925_row33_col1, #T_f9925_row34_col0, #T_f9925_row34_col1, #T_f9925_row35_col0, #T_f9925_row35_col1, #T_f9925_row36_col0, #T_f9925_row36_col1, #T_f9925_row37_col0, #T_f9925_row37_col1, #T_f9925_row38_col0, #T_f9925_row38_col1, #T_f9925_row39_col0, #T_f9925_row39_col1, #T_f9925_row40_col0, #T_f9925_row40_col1, #T_f9925_row41_col0, #T_f9925_row41_col1, #T_f9925_row42_col0, #T_f9925_row42_col1 {
   border: 1px solid #ddd;
   padding: 10px;
   font-size: 14px;
   text-align: left;
 }
 </style>
-<table id="T_09792" style="border-collapse: collapse; width: 100;">
+<table id="T_f9925" style="border-collapse: collapse; width: 100;">
   <caption>Mapeo de nombres de columnas y Estandarización</caption>
   <thead>
     <tr>
-      <th id="T_09792_level0_col0" class="col_heading level0 col0" >Nombre original</th>
-      <th id="T_09792_level0_col1" class="col_heading level0 col1" >Nombre estandarizado</th>
+      <th id="T_f9925_level0_col0" class="col_heading level0 col0" >Nombre original</th>
+      <th id="T_f9925_level0_col1" class="col_heading level0 col1" >Nombre estandarizado</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td id="T_09792_row0_col0" class="data row0 col0" >ID</td>
-      <td id="T_09792_row0_col1" class="data row0 col1" >id</td>
+      <td id="T_f9925_row0_col0" class="data row0 col0" >ID</td>
+      <td id="T_f9925_row0_col1" class="data row0 col1" >id</td>
     </tr>
     <tr>
-      <td id="T_09792_row1_col0" class="data row1 col0" >Año del hecho</td>
-      <td id="T_09792_row1_col1" class="data row1 col1" >a_o_del_hecho</td>
+      <td id="T_f9925_row1_col0" class="data row1 col0" >Año del hecho</td>
+      <td id="T_f9925_row1_col1" class="data row1 col1" >a_o_del_hecho</td>
     </tr>
     <tr>
-      <td id="T_09792_row2_col0" class="data row2 col0" >Grupo de edad de la victima</td>
-      <td id="T_09792_row2_col1" class="data row2 col1" >grupo_de_edad_de_la_victima</td>
+      <td id="T_f9925_row2_col0" class="data row2 col0" >Grupo de edad de la victima</td>
+      <td id="T_f9925_row2_col1" class="data row2 col1" >grupo_de_edad_de_la_victima</td>
     </tr>
     <tr>
-      <td id="T_09792_row3_col0" class="data row3 col0" >Grupo Mayor Menor de Edad</td>
-      <td id="T_09792_row3_col1" class="data row3 col1" >grupo_mayor_menor_de_edad</td>
+      <td id="T_f9925_row3_col0" class="data row3 col0" >Grupo Mayor Menor de Edad</td>
+      <td id="T_f9925_row3_col1" class="data row3 col1" >grupo_mayor_menor_de_edad</td>
     </tr>
     <tr>
-      <td id="T_09792_row4_col0" class="data row4 col0" >Edad judicial</td>
-      <td id="T_09792_row4_col1" class="data row4 col1" >edad_judicial</td>
+      <td id="T_f9925_row4_col0" class="data row4 col0" >Edad judicial</td>
+      <td id="T_f9925_row4_col1" class="data row4 col1" >edad_judicial</td>
     </tr>
     <tr>
-      <td id="T_09792_row5_col0" class="data row5 col0" >Ciclo Vital</td>
-      <td id="T_09792_row5_col1" class="data row5 col1" >ciclo_vital</td>
+      <td id="T_f9925_row5_col0" class="data row5 col0" >Ciclo Vital</td>
+      <td id="T_f9925_row5_col1" class="data row5 col1" >ciclo_vital</td>
     </tr>
     <tr>
-      <td id="T_09792_row6_col0" class="data row6 col0" >Sexo de la victima</td>
-      <td id="T_09792_row6_col1" class="data row6 col1" >sexo_de_la_victima</td>
+      <td id="T_f9925_row6_col0" class="data row6 col0" >Sexo de la victima</td>
+      <td id="T_f9925_row6_col1" class="data row6 col1" >sexo_de_la_victima</td>
     </tr>
     <tr>
-      <td id="T_09792_row7_col0" class="data row7 col0" >Estado Civil</td>
-      <td id="T_09792_row7_col1" class="data row7 col1" >estado_civil</td>
+      <td id="T_f9925_row7_col0" class="data row7 col0" >Estado Civil</td>
+      <td id="T_f9925_row7_col1" class="data row7 col1" >estado_civil</td>
     </tr>
     <tr>
-      <td id="T_09792_row8_col0" class="data row8 col0" >País de Nacimiento de la Víctima</td>
-      <td id="T_09792_row8_col1" class="data row8 col1" >pais_de_nacimiento_de_la_victima</td>
+      <td id="T_f9925_row8_col0" class="data row8 col0" >País de Nacimiento de la Víctima</td>
+      <td id="T_f9925_row8_col1" class="data row8 col1" >pais_de_nacimiento_de_la_victima</td>
     </tr>
     <tr>
-      <td id="T_09792_row9_col0" class="data row9 col0" >Escolaridad</td>
-      <td id="T_09792_row9_col1" class="data row9 col1" >escolaridad</td>
+      <td id="T_f9925_row9_col0" class="data row9 col0" >Escolaridad</td>
+      <td id="T_f9925_row9_col1" class="data row9 col1" >escolaridad</td>
     </tr>
     <tr>
-      <td id="T_09792_row10_col0" class="data row10 col0" >Pertenencia Grupal</td>
-      <td id="T_09792_row10_col1" class="data row10 col1" >pertenencia_grupal</td>
+      <td id="T_f9925_row10_col0" class="data row10 col0" >Pertenencia Grupal</td>
+      <td id="T_f9925_row10_col1" class="data row10 col1" >pertenencia_grupal</td>
     </tr>
     <tr>
-      <td id="T_09792_row11_col0" class="data row11 col0" >Mes del hecho</td>
-      <td id="T_09792_row11_col1" class="data row11 col1" >mes_del_hecho</td>
+      <td id="T_f9925_row11_col0" class="data row11 col0" >Mes del hecho</td>
+      <td id="T_f9925_row11_col1" class="data row11 col1" >mes_del_hecho</td>
     </tr>
     <tr>
-      <td id="T_09792_row12_col0" class="data row12 col0" >Dia del hecho</td>
-      <td id="T_09792_row12_col1" class="data row12 col1" >dia_del_hecho</td>
+      <td id="T_f9925_row12_col0" class="data row12 col0" >Dia del hecho</td>
+      <td id="T_f9925_row12_col1" class="data row12 col1" >dia_del_hecho</td>
     </tr>
     <tr>
-      <td id="T_09792_row13_col0" class="data row13 col0" >Rango de Hora del Hecho X 3 Horas</td>
-      <td id="T_09792_row13_col1" class="data row13 col1" >rango_de_hora_del_hecho_x_3_horas</td>
+      <td id="T_f9925_row13_col0" class="data row13 col0" >Rango de Hora del Hecho X 3 Horas</td>
+      <td id="T_f9925_row13_col1" class="data row13 col1" >rango_de_hora_del_hecho_x_3_horas</td>
     </tr>
     <tr>
-      <td id="T_09792_row14_col0" class="data row14 col0" >Código Dane Municipio</td>
-      <td id="T_09792_row14_col1" class="data row14 col1" >codigo_dane_municipio</td>
+      <td id="T_f9925_row14_col0" class="data row14 col0" >Código Dane Municipio</td>
+      <td id="T_f9925_row14_col1" class="data row14 col1" >codigo_dane_municipio</td>
     </tr>
     <tr>
-      <td id="T_09792_row15_col0" class="data row15 col0" >Municipio del hecho DANE</td>
-      <td id="T_09792_row15_col1" class="data row15 col1" >municipio_del_hecho_dane</td>
+      <td id="T_f9925_row15_col0" class="data row15 col0" >Municipio del hecho DANE</td>
+      <td id="T_f9925_row15_col1" class="data row15 col1" >municipio_del_hecho_dane</td>
     </tr>
     <tr>
-      <td id="T_09792_row16_col0" class="data row16 col0" >Departamento del hecho DANE</td>
-      <td id="T_09792_row16_col1" class="data row16 col1" >departamento_del_hecho_dane</td>
+      <td id="T_f9925_row16_col0" class="data row16 col0" >Departamento del hecho DANE</td>
+      <td id="T_f9925_row16_col1" class="data row16 col1" >departamento_del_hecho_dane</td>
     </tr>
     <tr>
-      <td id="T_09792_row17_col0" class="data row17 col0" >Código Dane Departamento</td>
-      <td id="T_09792_row17_col1" class="data row17 col1" >codigo_dane_departamento</td>
+      <td id="T_f9925_row17_col0" class="data row17 col0" >Código Dane Departamento</td>
+      <td id="T_f9925_row17_col1" class="data row17 col1" >codigo_dane_departamento</td>
     </tr>
     <tr>
-      <td id="T_09792_row18_col0" class="data row18 col0" >Escenario del Hecho</td>
-      <td id="T_09792_row18_col1" class="data row18 col1" >escenario_del_hecho</td>
+      <td id="T_f9925_row18_col0" class="data row18 col0" >Escenario del Hecho</td>
+      <td id="T_f9925_row18_col1" class="data row18 col1" >escenario_del_hecho</td>
     </tr>
     <tr>
-      <td id="T_09792_row19_col0" class="data row19 col0" >Zona del Hecho</td>
-      <td id="T_09792_row19_col1" class="data row19 col1" >zona_del_hecho</td>
+      <td id="T_f9925_row19_col0" class="data row19 col0" >Zona del Hecho</td>
+      <td id="T_f9925_row19_col1" class="data row19 col1" >zona_del_hecho</td>
     </tr>
     <tr>
-      <td id="T_09792_row20_col0" class="data row20 col0" >Actividad Durante el Hecho</td>
-      <td id="T_09792_row20_col1" class="data row20 col1" >actividad_durante_el_hecho</td>
+      <td id="T_f9925_row20_col0" class="data row20 col0" >Actividad Durante el Hecho</td>
+      <td id="T_f9925_row20_col1" class="data row20 col1" >actividad_durante_el_hecho</td>
     </tr>
     <tr>
-      <td id="T_09792_row21_col0" class="data row21 col0" >Circunstancia del Hecho</td>
-      <td id="T_09792_row21_col1" class="data row21 col1" >circunstancia_del_hecho</td>
+      <td id="T_f9925_row21_col0" class="data row21 col0" >Circunstancia del Hecho</td>
+      <td id="T_f9925_row21_col1" class="data row21 col1" >circunstancia_del_hecho</td>
     </tr>
     <tr>
-      <td id="T_09792_row22_col0" class="data row22 col0" >Manera de Muerte</td>
-      <td id="T_09792_row22_col1" class="data row22 col1" >manera_de_muerte</td>
+      <td id="T_f9925_row22_col0" class="data row22 col0" >Manera de Muerte</td>
+      <td id="T_f9925_row22_col1" class="data row22 col1" >manera_de_muerte</td>
     </tr>
     <tr>
-      <td id="T_09792_row23_col0" class="data row23 col0" >Mecanismo Causal</td>
-      <td id="T_09792_row23_col1" class="data row23 col1" >mecanismo_causal</td>
+      <td id="T_f9925_row23_col0" class="data row23 col0" >Mecanismo Causal</td>
+      <td id="T_f9925_row23_col1" class="data row23 col1" >mecanismo_causal</td>
     </tr>
     <tr>
-      <td id="T_09792_row24_col0" class="data row24 col0" >Diagnostico Topográfico de la Lesión</td>
-      <td id="T_09792_row24_col1" class="data row24 col1" >diagnostico_topografico_de_la_lesion</td>
+      <td id="T_f9925_row24_col0" class="data row24 col0" >Diagnostico Topográfico de la Lesión</td>
+      <td id="T_f9925_row24_col1" class="data row24 col1" >diagnostico_topografico_de_la_lesion</td>
     </tr>
     <tr>
-      <td id="T_09792_row25_col0" class="data row25 col0" >Presunto Agresor</td>
-      <td id="T_09792_row25_col1" class="data row25 col1" >presunto_agresor</td>
+      <td id="T_f9925_row25_col0" class="data row25 col0" >Presunto Agresor</td>
+      <td id="T_f9925_row25_col1" class="data row25 col1" >presunto_agresor</td>
     </tr>
     <tr>
-      <td id="T_09792_row26_col0" class="data row26 col0" >Condición de la Víctima</td>
-      <td id="T_09792_row26_col1" class="data row26 col1" >condicion_de_la_victima</td>
+      <td id="T_f9925_row26_col0" class="data row26 col0" >Condición de la Víctima</td>
+      <td id="T_f9925_row26_col1" class="data row26 col1" >condicion_de_la_victima</td>
     </tr>
     <tr>
-      <td id="T_09792_row27_col0" class="data row27 col0" >Medio de Desplazamiento o Transporte</td>
-      <td id="T_09792_row27_col1" class="data row27 col1" >medio_de_desplazamiento_o_transporte</td>
+      <td id="T_f9925_row27_col0" class="data row27 col0" >Medio de Desplazamiento o Transporte</td>
+      <td id="T_f9925_row27_col1" class="data row27 col1" >medio_de_desplazamiento_o_transporte</td>
     </tr>
     <tr>
-      <td id="T_09792_row28_col0" class="data row28 col0" >Servicio del Vehículo</td>
-      <td id="T_09792_row28_col1" class="data row28 col1" >servicio_del_vehiculo</td>
+      <td id="T_f9925_row28_col0" class="data row28 col0" >Servicio del Vehículo</td>
+      <td id="T_f9925_row28_col1" class="data row28 col1" >servicio_del_vehiculo</td>
     </tr>
     <tr>
-      <td id="T_09792_row29_col0" class="data row29 col0" >Clase o Tipo de Accidente</td>
-      <td id="T_09792_row29_col1" class="data row29 col1" >clase_o_tipo_de_accidente</td>
+      <td id="T_f9925_row29_col0" class="data row29 col0" >Clase o Tipo de Accidente</td>
+      <td id="T_f9925_row29_col1" class="data row29 col1" >clase_o_tipo_de_accidente</td>
     </tr>
     <tr>
-      <td id="T_09792_row30_col0" class="data row30 col0" >Objeto de Colisión</td>
-      <td id="T_09792_row30_col1" class="data row30 col1" >objeto_de_colision</td>
+      <td id="T_f9925_row30_col0" class="data row30 col0" >Objeto de Colisión</td>
+      <td id="T_f9925_row30_col1" class="data row30 col1" >objeto_de_colision</td>
     </tr>
     <tr>
-      <td id="T_09792_row31_col0" class="data row31 col0" >Servicio del Objeto de Colisión</td>
-      <td id="T_09792_row31_col1" class="data row31 col1" >servicio_del_objeto_de_colision</td>
+      <td id="T_f9925_row31_col0" class="data row31 col0" >Servicio del Objeto de Colisión</td>
+      <td id="T_f9925_row31_col1" class="data row31 col1" >servicio_del_objeto_de_colision</td>
     </tr>
     <tr>
-      <td id="T_09792_row32_col0" class="data row32 col0" >Razón del Suicidio</td>
-      <td id="T_09792_row32_col1" class="data row32 col1" >razon_del_suicidio</td>
+      <td id="T_f9925_row32_col0" class="data row32 col0" >Razón del Suicidio</td>
+      <td id="T_f9925_row32_col1" class="data row32 col1" >razon_del_suicidio</td>
     </tr>
     <tr>
-      <td id="T_09792_row33_col0" class="data row33 col0" >Localidad del Hecho</td>
-      <td id="T_09792_row33_col1" class="data row33 col1" >localidad_del_hecho</td>
+      <td id="T_f9925_row33_col0" class="data row33 col0" >Localidad del Hecho</td>
+      <td id="T_f9925_row33_col1" class="data row33 col1" >localidad_del_hecho</td>
     </tr>
     <tr>
-      <td id="T_09792_row34_col0" class="data row34 col0" >Ancestro Racial</td>
-      <td id="T_09792_row34_col1" class="data row34 col1" >ancestro_racial</td>
+      <td id="T_f9925_row34_col0" class="data row34 col0" >Ancestro Racial</td>
+      <td id="T_f9925_row34_col1" class="data row34 col1" >ancestro_racial</td>
     </tr>
     <tr>
-      <td id="T_09792_row35_col0" class="data row35 col0" >Codigo_Dane_Municipio_norm</td>
-      <td id="T_09792_row35_col1" class="data row35 col1" >codigo_dane_municipio_norm</td>
+      <td id="T_f9925_row35_col0" class="data row35 col0" >Codigo_Dane_Municipio_norm</td>
+      <td id="T_f9925_row35_col1" class="data row35 col1" >codigo_dane_municipio_norm</td>
     </tr>
     <tr>
-      <td id="T_09792_row36_col0" class="data row36 col0" >Muni_Cod</td>
-      <td id="T_09792_row36_col1" class="data row36 col1" >muni_cod</td>
+      <td id="T_f9925_row36_col0" class="data row36 col0" >Muni_Cod</td>
+      <td id="T_f9925_row36_col1" class="data row36 col1" >muni_cod</td>
     </tr>
     <tr>
-      <td id="T_09792_row37_col0" class="data row37 col0" >Muni_Nom</td>
-      <td id="T_09792_row37_col1" class="data row37 col1" >muni_nom</td>
+      <td id="T_f9925_row37_col0" class="data row37 col0" >Muni_Nom</td>
+      <td id="T_f9925_row37_col1" class="data row37 col1" >muni_nom</td>
     </tr>
     <tr>
-      <td id="T_09792_row38_col0" class="data row38 col0" >Depto_Cod</td>
-      <td id="T_09792_row38_col1" class="data row38 col1" >depto_cod</td>
+      <td id="T_f9925_row38_col0" class="data row38 col0" >Depto_Cod</td>
+      <td id="T_f9925_row38_col1" class="data row38 col1" >depto_cod</td>
     </tr>
     <tr>
-      <td id="T_09792_row39_col0" class="data row39 col0" >Depto_Nom</td>
-      <td id="T_09792_row39_col1" class="data row39 col1" >depto_nom</td>
+      <td id="T_f9925_row39_col0" class="data row39 col0" >Depto_Nom</td>
+      <td id="T_f9925_row39_col1" class="data row39 col1" >depto_nom</td>
     </tr>
     <tr>
-      <td id="T_09792_row40_col0" class="data row40 col0" >latitud</td>
-      <td id="T_09792_row40_col1" class="data row40 col1" >latitud</td>
+      <td id="T_f9925_row40_col0" class="data row40 col0" >latitud</td>
+      <td id="T_f9925_row40_col1" class="data row40 col1" >latitud</td>
     </tr>
     <tr>
-      <td id="T_09792_row41_col0" class="data row41 col0" >longitud</td>
-      <td id="T_09792_row41_col1" class="data row41 col1" >longitud</td>
+      <td id="T_f9925_row41_col0" class="data row41 col0" >longitud</td>
+      <td id="T_f9925_row41_col1" class="data row41 col1" >longitud</td>
     </tr>
     <tr>
-      <td id="T_09792_row42_col0" class="data row42 col0" ><em>Fuente: <a href="https://www.datos.gov.co/Justicia-y-Derecho/Presuntos-Suicidios-Colombia-2015-a-2024-Cifras-de/f75u-mirk/about_data" target="_blank">datos.gov.co</a></em></td>
-      <td id="T_09792_row42_col1" class="data row42 col1" ></td>
+      <td id="T_f9925_row42_col0" class="data row42 col0" ><em>Fuente: <a href="https://www.datos.gov.co/Justicia-y-Derecho/Presuntos-Suicidios-Colombia-2015-a-2024-Cifras-de/f75u-mirk/about_data" target="_blank">datos.gov.co</a></em></td>
+      <td id="T_f9925_row42_col1" class="data row42 col1" ></td>
     </tr>
   </tbody>
 </table>
@@ -3048,6 +3157,7 @@ if (outputEl) {{
 <img alt="_images/377b7ca9f588f20493c22d2f61fdb27f82dbfbdaa774601f84708b410bf4850c.png" src="_images/377b7ca9f588f20493c22d2f61fdb27f82dbfbdaa774601f84708b410bf4850c.png" />
 </div>
 </div>
+<p>El análisis de la tendencia anual de los casos de suicidio en Colombia entre 2015 y 2023 revela un patrón dinámico con fluctuaciones significativas a lo largo del periodo.</p>
 </section>
 <section id="por-departamento-top-10">
 <h3>Por Departamento (Top 10)<a class="headerlink" href="#por-departamento-top-10" title="Link to this heading">#</a></h3>
@@ -3098,6 +3208,9 @@ if (outputEl) {{
 <img alt="_images/a447bb3717a18d88d210d4bca813866e9808f616199071e6f8d2a857d532ca70.png" src="_images/a447bb3717a18d88d210d4bca813866e9808f616199071e6f8d2a857d532ca70.png" />
 </div>
 </div>
+<ul class="simple">
+<li><p>Las tres primeras regiones, Antioquia (24,5%) , Bogotá (21,1%) y Valle del Cauca (12,9%) , acumulan en conjunto casi el 60% del total. A partir de ahí, las cifras descienden notablemente en los demás departamentos del top 10. Se observa que Atlántico se encuentra en la octava posición de esta clasificación, con 809 casos, representando el 5.1% del total mostrado.</p></li>
+</ul>
 </section>
 <section id="grafico-de-barras-horizontales-para-grupo-edad-de-la-victima">
 <h3>Gráfico de barras horizontales para grupo edad de la victima<a class="headerlink" href="#grafico-de-barras-horizontales-para-grupo-edad-de-la-victima" title="Link to this heading">#</a></h3>
@@ -3141,6 +3254,9 @@ if (outputEl) {{
 <img alt="_images/35474c319b0fa02c8c96c1923a9a38e7e807888d77023b5f581a571ec7b107d0.png" src="_images/35474c319b0fa02c8c96c1923a9a38e7e807888d77023b5f581a571ec7b107d0.png" />
 </div>
 </div>
+<ul class="simple">
+<li><p>El grupo de 20 a 24 años es el más afectado, representando el 14,5% del total. De hecho, el rango de edad entre 20 y 34 años acumula más de un tercio (35,3%) de todos los casos . También se observa una incidencia notable en adolescentes (15-19 años). A partir de la adultez joven, la frecuencia de los hechos tiende a disminuir progresivamente a medida que aumenta la edad.</p></li>
+</ul>
 </section>
 <section id="sexo-vs-grupo-de-edad">
 <h3>Sexo vs Grupo de edad<a class="headerlink" href="#sexo-vs-grupo-de-edad" title="Link to this heading">#</a></h3>
@@ -3199,6 +3315,10 @@ if (outputEl) {{
 <img alt="_images/38b15fda1ade16db2d967c968134b8609b706ba3f5a4608a61cdf32eeda566b7.png" src="_images/38b15fda1ade16db2d967c968134b8609b706ba3f5a4608a61cdf32eeda566b7.png" />
 </div>
 </div>
+<ul class="simple">
+<li><p>En mujeres (barras oscuras), la incidencia de casos se concentra de forma aguda en la adolescencia y la adultez joven, con el pico más alto entre los 15 y 24 años .</p></li>
+<li><p>En hombres (barras claras), aunque el riesgo está presente en todas las edades, la frecuencia máxima se desplaza significativamente hacia la mediana edad, alcanzando su pico en el grupo de 40 a 44 años .</p></li>
+</ul>
 </section>
 <section id="tabla-razones-mas-comunes-del-suicidio">
 <h3>Tabla: Razones más comunes del suicidio<a class="headerlink" href="#tabla-razones-mas-comunes-del-suicidio" title="Link to this heading">#</a></h3>
