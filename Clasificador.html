@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Modelo de Clasificación XGBoot &#8212; Factores asociados al mecanismo de suicidio en Colombia (2015–2023)
+    <title>Modelo de Clasificación XGBoost &#8212; Factores asociados al mecanismo de suicidio en Colombia (2015–2023)
 </title>
   
   
@@ -188,7 +188,7 @@
 <li class="toctree-l1"><a class="reference internal" href="Eda.html">Análisis Exploratorio de Datos</a></li>
 
 
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Modelo de Clasificación XGBoot</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Modelo de Clasificación XGBoost</a></li>
 <li class="toctree-l1"><a class="reference internal" href="referencias.html">Citations</a></li>
 </ul>
 
@@ -375,7 +375,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Modelo de Clasificación XGBoot</h1>
+    <h1>Modelo de Clasificación XGBoost</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -385,7 +385,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-de-clasificadores-xgboost-para-mecanismos-de-suicidio">Comparación de Clasificadores XGBoost para Mecanismos de Suicidio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-de-clasificadores-xgboost-para-mecanismos-de-suicidio">Comparación de Clasificadores XGBoost para Mecanismos de Suicidio</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-de-la-curva-roc">Visualización de la Curva ROC</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -397,11 +400,12 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="modelo-de-clasificacion-xgboot">
-<h1>Modelo de Clasificación XGBoot<a class="headerlink" href="#modelo-de-clasificacion-xgboot" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="modelo-de-clasificacion-xgboost">
+<h1>Modelo de Clasificación XGBoost<a class="headerlink" href="#modelo-de-clasificacion-xgboost" title="Link to this heading">#</a></h1>
 <section id="comparacion-de-clasificadores-xgboost-para-mecanismos-de-suicidio">
 <h2>Comparación de Clasificadores XGBoost para Mecanismos de Suicidio<a class="headerlink" href="#comparacion-de-clasificadores-xgboost-para-mecanismos-de-suicidio" title="Link to this heading">#</a></h2>
-<p>Implementación del odelo de clasificación XGBoost para predecir el mecanismo causal de suicidio basado en diferentes variables predictoras.</p>
+<p>Implementación del modelo de clasificación XGBoost para predecir el mecanismo causal de suicidio basado en diferentes variables predictoras.</p>
+<p>Importación de bibliotecas necesarias para el funcionamiento del modelo</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Importar bibliotecas necesarias</span>
@@ -418,6 +422,7 @@ document.write(`
 </div>
 </div>
 </div>
+<p>Carga y preparación de los datos</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cargar y preparar los datos</span>
@@ -574,6 +579,7 @@ Tamaño del conjunto de prueba: (4709, 16)
 </div>
 </div>
 </div>
+<p>Entrenamiento del modelo</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Crear y entrenar el modelo XGBoost con manejo de errores</span>
@@ -798,6 +804,49 @@ rango_de_hora_del_hecho_x_3_horas           0.025656
 </div>
 </div>
 </div>
+<section id="visualizacion-de-la-curva-roc">
+<h3>Visualización de la Curva ROC<a class="headerlink" href="#visualizacion-de-la-curva-roc" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Crear la curva ROC</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">roc_curve</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># Calcular la curva ROC</span>
+    <span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">thresholds</span> <span class="o">=</span> <span class="n">roc_curve</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_proba</span><span class="p">)</span>
+
+    <span class="c1"># Crear el gráfico</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;darkblue&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+             <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Curva ROC (AUC = </span><span class="si">{</span><span class="n">roc_auc</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Línea Base&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Personalizar el gráfico</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Tasa de Falsos Positivos (1 - Especificidad)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Tasa de Verdaderos Positivos (Sensibilidad)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Curva ROC - Modelo XGBoost para Predicción de Mecanismo de Suicidio&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower right&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+    <span class="c1"># Mostrar el gráfico</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error al generar la curva ROC:&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">traceback</span>
+    <span class="n">traceback</span><span class="o">.</span><span class="n">print_exc</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/3889cb842ba658e789ffa166bf42bf419d4fe1c4528c2e518a897ebc8e63ccf1.png" src="_images/3889cb842ba658e789ffa166bf42bf419d4fe1c4528c2e518a897ebc8e63ccf1.png" />
+</div>
+</div>
+<p>La gráfica demuestra que el Modelo XGBoost tiene un rendimiento aceptable y superior al azar para la predicción del mecanismo de suicidio, como lo confirma su Área Bajo la Curva (AUC) de 0.721. Esto significa que el modelo es útil para distinguir o predecir correctamente el mecanismo causal.</p>
+</section>
 </section>
 </section>
 
@@ -865,7 +914,10 @@ rango_de_hora_del_hecho_x_3_horas           0.025656
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-de-clasificadores-xgboost-para-mecanismos-de-suicidio">Comparación de Clasificadores XGBoost para Mecanismos de Suicidio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-de-clasificadores-xgboost-para-mecanismos-de-suicidio">Comparación de Clasificadores XGBoost para Mecanismos de Suicidio</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-de-la-curva-roc">Visualización de la Curva ROC</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

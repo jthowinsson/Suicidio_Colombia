@@ -61,7 +61,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Eda';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Modelo de Clasificación XGBoot" href="Modelo.html" />
+    <link rel="next" title="Modelo de Clasificación XGBoot" href="Clasificador.html" />
     <link rel="prev" title="Datos y metodología" href="Datos_Met.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -188,7 +188,7 @@
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Análisis Exploratorio de Datos</a></li>
 
 
-<li class="toctree-l1"><a class="reference internal" href="Modelo.html">Modelo de Clasificación XGBoot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clasificador.html">Modelo de Clasificación XGBoot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="referencias.html">Citations</a></li>
 </ul>
 
@@ -386,14 +386,14 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Análisis Exploratorio de Datos</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-univariado">Análisis Univariado</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-univariado">1. Análisis Univariado</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#desarrollo-del-analisis-exploratorio-de-datos">Desarrollo del Análisis Exploratorio de Datos</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mapeo-estandarizacion-de-las-variables-y-dimensiones-del-dataframe">Mapeo, Estandarización de las Variables y dimensiones del DataFrame</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-bivariado">Análisis Bivariado</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-bivariado">2. Análisis Bivariado</a></li>
 </ul>
 
             </nav>
@@ -410,12 +410,12 @@ document.write(`
 <h1>Análisis Exploratorio de Datos<a class="headerlink" href="#analisis-exploratorio-de-datos" title="Link to this heading">#</a></h1>
 <p>El Análisis Exploratorio de Datos (EDA) constituye una etapa fundamental en toda investigación estadística, ya que permite comprender las características principales del conjunto de datos, identificar patrones, detectar posibles inconsistencias y orientar la preparación de la información antes del modelado.</p>
 <p>En este estudio, el EDA tiene como propósito examinar los registros de suicidios en Colombia durante el periodo 2015–2023, con el fin de describir las variables sociodemográficas y contextuales asociadas y evaluar la calidad de los datos para la construcción de un modelo de regresión XGBoost Regressor.</p>
-<p>En primer lugar, se realiza una revisión general del dataset, verificando el número de observaciones, la disponibilidad de variables y la presencia de valoreados.s faltantes o categorías indeterminadas. Posteriormente, se lleva a cabo un análisis univariado, en el que se describen la distribución de la variable dependiente (mecanismo de suicidio: generadores de asfixia vs otros) y de las principales variables independientes (sexo, edad, estado civil, escolaridad, escenario, zona, entre otras).</p>
+<p>En primer lugar, se realiza una revisión general del dataset, verificando el número de observaciones, la disponibilidad de variables y la presencia de valores faltantes o categorías indeterminadas. Posteriormente, se lleva a cabo un análisis univariado, en el que se describen la distribución de la variable dependiente (mecanismo de suicidio: generadores de asfixia vs otros) y de las principales variables independientes (sexo, edad, estado civil, escolaridad, escenario, zona, entre otras).</p>
 <p>En una segunda fase, se desarrolla un análisis bivariado, explorando las asociaciones preliminares entre el mecanismo de suicidio y las variables sociodemográficas/contextuales. Esto incluye el uso de tablas de contingencia, gráficos comparativos y estimaciones de razones de momios (odds ratios) crudas en variables binarias.</p>
-<p>Finalmente, a partir de los hallazgos del EDA, se definen las decisiones de recodificación, agrupación y preparación de variables que alimentarán el modelo de regresión XGBoost Regressor, asegurando la validez y consistencia de los resulto</p>
+<p>Finalmente, a partir de los hallazgos del EDA, se definen las decisiones de recodificación, agrupación y preparación de variables que alimentarán el modelo de regresión XGBoost Regressor, asegurando la validez y consistencia de los resultados.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="analisis-univariado">
-<h1>Análisis Univariado<a class="headerlink" href="#analisis-univariado" title="Link to this heading">#</a></h1>
+<h1>1. Análisis Univariado<a class="headerlink" href="#analisis-univariado" title="Link to this heading">#</a></h1>
 <section id="desarrollo-del-analisis-exploratorio-de-datos">
 <h2>Desarrollo del Análisis Exploratorio de Datos<a class="headerlink" href="#desarrollo-del-analisis-exploratorio-de-datos" title="Link to this heading">#</a></h2>
 <p><strong>Carga, estandarización y dimensiones del DataFrame</strong>:</p>
@@ -1434,7 +1434,7 @@ Distribución de suicidios por sexo</p></li>
 </table>
 </div></div></div>
 </div>
-<p>La distribución por sexo muestra que la mayoría de los casos de suicidio corresponden a hombres (16,835 casos), mientras que las mujeres representan una proporción menor (6,302 casos). Esta diferencia significativa sugiere que el género es un factor importante a considerar en el análisis de los suicidios en Colombia.</p>
+<p>La distribución por sexo muestra que la mayoría de los casos de suicidio corresponden a hombres (18,928 casos), mientras que las mujeres representan una proporción menor (4,616 casos). Esta diferencia significativa sugiere que el género es un factor importante a considerar en el análisis de los suicidios en Colombia.</p>
 <ul class="simple">
 <li><ol class="arabic simple" start="11">
 <li><p>Gráfica de la distribución por sexo</p></li>
@@ -1482,7 +1482,7 @@ Distribución de suicidios por sexo</p></li>
 <img alt="_images/b3da8d862c2c2f1eb43a3efa77afd8938e60dd6749aa983bddc50283b2002ea1.png" src="_images/b3da8d862c2c2f1eb43a3efa77afd8938e60dd6749aa983bddc50283b2002ea1.png" />
 </div>
 </div>
-<p>La gráfica de barras horizontales ilustra la distribución de suicidios por sexo en Colombia entre 2015 y 2023. Se observa una marcada predominancia de casos en hombres, con un total de 18,205 registros (77.3%), en comparación con 5,339 casos en mujeres (22.7%). Esta diferencia significativa sugiere que los hombres tienen una mayor incidencia de suicidios en el país durante el periodo analizado.</p>
+<p>La gráfica muestra que la mayoría de los casos de suicidio corresponden a un solo sexo, lo que indica una distribución desigual entre hombres y mujeres.</p>
 <ul class="simple">
 <li><ol class="arabic simple" start="12">
 <li><p>Distribución de sexo por ciclo vital</p></li>
@@ -1538,15 +1538,7 @@ Distribución de suicidios por sexo</p></li>
 <img alt="_images/dcdada404c1a7cabaceedafccd5a9d2674dbe429df80e0ba7a14606352c7b9b0.png" src="_images/dcdada404c1a7cabaceedafccd5a9d2674dbe429df80e0ba7a14606352c7b9b0.png" />
 </div>
 </div>
-<p>La distribución de suicidios por sexo y ciclo vital en Colombia entre 2015 y 2023 revela patrones diferenciados según la etapa de la vida.</p>
-<ul class="simple">
-<li><p>En la infancia (0-11 años), los casos son relativamente bajos, con una ligera predominancia masculina (58.3% hombres vs. 41.7% mujeres).</p></li>
-<li><p>Durante la adolescencia (12-17 años), la proporción de hombres aumenta a 70.2%, mientras que las mujeres representan el 29.8%.</p></li>
-<li><p>En la adultez joven (18-26 años), la brecha se amplía aún más, con un 78.1% de hombres frente a un 21.9% de mujeres.</p></li>
-<li><p>En la adultez media (27-59 años), los hombres constituyen el 80.5%, y las mujeres el 19.5%.</p></li>
-<li><p>Finalmente, en la adultez mayor (60+ años), la proporción de hombres es del 75.6%, con un 24.4% de mujeres.</p></li>
-</ul>
-<p>Estos datos sugieren que la incidencia de suicidios es consistentemente mayor en hombres a lo largo de todas las etapas de la vida, con una tendencia creciente en la brecha de género desde la adolescencia hasta la adultez media.</p>
+<p>La distribución de suicidios en Colombia por sexo y ciclo vital entre 2015 y 2023 muestra una mayor prevalencia en hombres en todos los grupos de edad, con una brecha que se amplía progresivamente a medida que avanza la edad.</p>
 <ul class="simple">
 <li><ol class="arabic simple" start="13">
 <li><p>Distribución de edad con histograma normalizado y KDE.</p></li>
@@ -1587,14 +1579,8 @@ Distribución de suicidios por sexo</p></li>
 <img alt="_images/66309ca867980ddb1e8de21eae0b6b50890e33a84c976affb2e4efc1e9220d20.png" src="_images/66309ca867980ddb1e8de21eae0b6b50890e33a84c976affb2e4efc1e9220d20.png" />
 </div>
 </div>
-<p>La gráfica de densidad de Kernel (KDE) y el histograma normalizado muestran la distribución de edades de los casos de suicidio en Colombia entre 2015 y 2023. La distribución presenta una ligera asimetría positiva, con una mayor concentración de casos en edades jóvenes y adultas tempranas.</p>
-<p>La descripción detallada de la distribución es la siguiente:</p>
 <ul class="simple">
-<li><p>Sesgo a la derecha: La mayoría entre ~15–35 años; cola larga hasta ~80.</p></li>
-<li><p>Pico principal alrededor de ~20–25.</p></li>
-<li><p>Pocos casos &gt;60; casi nulos &gt;80.</p></li>
-<li><p>La curva suave confirma forma asimétrica y posible ligera multimodalidad cerca de los 20 y 30s.</p></li>
-<li><p>Eje X muestra marcas negativas por el rango automático; tus datos válidos parten de 0.</p></li>
+<li><p>La gráfica de densidad de Kernel (KDE) y el histograma normalizado muestran la distribución de edades de los casos de suicidio en Colombia entre 2015 y 2023. Muestra que la mayoría de los casos se concentran entre los 15 y 40 años, con un pico más fuerte alrededor de los 20 años. Después de los 40, la frecuencia disminuye gradualmente, siendo menos común en edades avanzadas. Es una distribución que refleja que el problema es más crítico en etapas tempranas y medias de la vida adulta.</p></li>
 </ul>
 <ul class="simple">
 <li><ol class="arabic simple" start="14">
@@ -1614,33 +1600,33 @@ Distribución de suicidios por sexo</p></li>
 
 <span class="c1"># Verificar si hay datos suficientes</span>
 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">edad</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
-	<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No hay suficientes datos válidos de edad para crear el boxplot&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No hay suficientes datos válidos de edad para crear el boxplot&quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-	<span class="c1"># Boxplot</span>
-	<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mf">2.8</span><span class="p">))</span>
-	<span class="n">plt</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">edad</span><span class="p">,</span> <span class="n">vert</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">showmeans</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">meanline</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-	<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Edad (años)&#39;</span><span class="p">)</span>
-	<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Boxplot de Edad (atípicos por IQR)&#39;</span><span class="p">)</span>
-	<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">edad</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1"># ajuste dinámico del límite</span>
-	<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-	<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="c1"># Boxplot</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mf">2.8</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">edad</span><span class="p">,</span> <span class="n">vert</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">showmeans</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">meanline</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Edad (años)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Boxplot de Edad (atípicos por IQR)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">edad</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1"># ajuste dinámico del límite</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-	<span class="c1"># Conteo de atípicos (regla IQR)</span>
-	<span class="n">q1</span><span class="p">,</span> <span class="n">q3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">edad</span><span class="p">,</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">75</span><span class="p">])</span>
-	<span class="n">iqr</span> <span class="o">=</span> <span class="n">q3</span> <span class="o">-</span> <span class="n">q1</span>
-	<span class="n">low</span><span class="p">,</span> <span class="n">high</span> <span class="o">=</span> <span class="n">q1</span> <span class="o">-</span> <span class="mf">1.5</span><span class="o">*</span><span class="n">iqr</span><span class="p">,</span> <span class="n">q3</span> <span class="o">+</span> <span class="mf">1.5</span><span class="o">*</span><span class="n">iqr</span>
-	<span class="n">n_low</span> <span class="o">=</span> <span class="p">(</span><span class="n">edad</span> <span class="o">&lt;</span> <span class="n">low</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-	<span class="n">n_high</span> <span class="o">=</span> <span class="p">(</span><span class="n">edad</span> <span class="o">&gt;</span> <span class="n">high</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-	<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Estadísticas de edad:&quot;</span><span class="p">)</span>
-	<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Q1=</span><span class="si">{</span><span class="n">q1</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">, Q3=</span><span class="si">{</span><span class="n">q3</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">, IQR=</span><span class="si">{</span><span class="n">iqr</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-	<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Límites para atípicos: [</span><span class="si">{</span><span class="n">low</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">high</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
-	<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Atípicos bajos: </span><span class="si">{</span><span class="n">n_low</span><span class="si">}</span><span class="s2">, Atípicos altos: </span><span class="si">{</span><span class="n">n_high</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-	<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total de registros válidos: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">edad</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="c1"># Conteo de atípicos (regla IQR)</span>
+    <span class="n">q1</span><span class="p">,</span> <span class="n">q3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">edad</span><span class="p">,</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">75</span><span class="p">])</span>
+    <span class="n">iqr</span> <span class="o">=</span> <span class="n">q3</span> <span class="o">-</span> <span class="n">q1</span>
+    <span class="n">low</span><span class="p">,</span> <span class="n">high</span> <span class="o">=</span> <span class="n">q1</span> <span class="o">-</span> <span class="mf">1.5</span><span class="o">*</span><span class="n">iqr</span><span class="p">,</span> <span class="n">q3</span> <span class="o">+</span> <span class="mf">1.5</span><span class="o">*</span><span class="n">iqr</span>
+    <span class="n">n_low</span> <span class="o">=</span> <span class="p">(</span><span class="n">edad</span> <span class="o">&lt;</span> <span class="n">low</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">n_high</span> <span class="o">=</span> <span class="p">(</span><span class="n">edad</span> <span class="o">&gt;</span> <span class="n">high</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Estadísticas de edad:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Q1=</span><span class="si">{</span><span class="n">q1</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">, Q3=</span><span class="si">{</span><span class="n">q3</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">, IQR=</span><span class="si">{</span><span class="n">iqr</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Límites para atípicos: [</span><span class="si">{</span><span class="n">low</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">high</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Atípicos bajos: </span><span class="si">{</span><span class="n">n_low</span><span class="si">}</span><span class="s2">, Atípicos altos: </span><span class="si">{</span><span class="n">n_high</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total de registros válidos: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">edad</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/97558ef719e8e7d358538cadff7dd4f1ce5b5928cda57dcca9ba95315b540065.png" src="_images/97558ef719e8e7d358538cadff7dd4f1ce5b5928cda57dcca9ba95315b540065.png" />
+<img alt="_images/1fc7d9d48d04341d53faa7363645cb18f7dcc6adaf26cf0fadb79ae70cb91118.png" src="_images/1fc7d9d48d04341d53faa7363645cb18f7dcc6adaf26cf0fadb79ae70cb91118.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estadísticas de edad:
 Q1=20.0, Q3=50.0, IQR=30.0
 Límites para atípicos: [-25.0, 95.0]
@@ -1650,7 +1636,11 @@ Total de registros válidos: 23544
 </div>
 </div>
 </div>
-<p>El Boxplot revela la presencia de datos atípicos en la variable edad de los casos de suicidio en Colombia entre 2015 y 2023. La mayoría de los casos se concentran entre los 10 y 60 años, con una mediana alrededor de los 30 años. Sin embargo, se identifican varios valores atípicos por encima de los 70 años, que se representan como puntos individuales fuera del rango intercuartílico. Estos datos atípicos podrían indicar casos excepcionales o errores en la recopilación de datos, y su análisis detallado podría proporcionar información adicional sobre las características demográficas de los suicidios en el país.</p>
+<ul class="simple">
+<li><p>Este boxplot muestra que la edad más frecuente de casos de suicidio se concentra entre los 20 y 50 años, con una mediana (línea verde) alrededor de los 35 años.</p></li>
+<li><p>También se pueden observar casos en edades más avanzadas, aunque son menos comunes.</p></li>
+<li><p>La caja representa el rango donde se encuentra la mayoría de los datos, mientras que las líneas extendidas indican la variabilidad total de las edades registradas.</p></li>
+</ul>
 <ul class="simple">
 <li><ol class="arabic simple" start="15">
 <li><p>Distribución de frecuencias de mecanismos causales</p></li>
@@ -1845,7 +1835,7 @@ Total de registros válidos: 23544
 <img alt="_images/daed48c47e0eae6ff6af7c2c36c38d211cc5092e452804af0eaaef75add56838.png" src="_images/daed48c47e0eae6ff6af7c2c36c38d211cc5092e452804af0eaaef75add56838.png" />
 </div>
 </div>
-<p>Este gráfico está diseñado para resaltar la brecha porcentual entre sexos, evidenciando que las mayores disparidades en la elección del mecanismo causal radican en el uso de tóxicos y armas de fuego. La prevalencia de tóxicos es marcadamente superior en mujeres (27% frente al 14% en hombres), mientras que el proyectil de arma de fuego es un método significativamente más frecuente en hombres (12% frente al 2% en mujeres). En contraste, la diferencia para el mecanismo más común, generadores de asfixia, es más moderada (67% vs. 60%), y es prácticamente nula en las demás categorías de menor frecuencia.</p>
+<p>La distribución de los mecanismos causales revela una marcada disparidad de género en la elección del método. Si bien los Generadores de asfixia constituyen el principal mecanismo para ambos grupos, se observan diferencias proporcionales significativas: el mecanismo Tóxico se registra en mujeres con el doble de frecuencia que en hombres, mientras que la utilización de Proyectil de arma de fuego por parte de los hombres supera en seis veces la registrada en mujeres.</p>
 <ul class="simple">
 <li><ol class="arabic simple" start="19">
 <li><p>Dsitribución de frecuencias zona rural y urbana</p></li>
@@ -1962,7 +1952,6 @@ Total de registros válidos: 23544
         <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s2">&quot;No se encontró columna de departamento.&quot;</span><span class="p">)</span>
     <span class="n">dept_col</span> <span class="o">=</span> <span class="n">matches</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-
 <span class="c1"># ---------- 2) Verifica columnas lat/lon de tu base ----------</span>
 <span class="k">assert</span> <span class="p">{</span><span class="s1">&#39;latitud&#39;</span><span class="p">,</span><span class="s1">&#39;longitud&#39;</span><span class="p">}</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="s2">&quot;Faltan columnas &#39;latitud&#39; y &#39;longitud&#39;&quot;</span>
 
@@ -1987,33 +1976,61 @@ Total de registros válidos: 23544
 <span class="n">map_data</span><span class="p">[</span><span class="s1">&#39;dept_clean&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">map_data</span><span class="p">[</span><span class="n">dept_col</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">_title</span><span class="p">)</span>
 <span class="n">map_data</span><span class="p">[</span><span class="s1">&#39;size_norm&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">map_data</span><span class="p">[</span><span class="s1">&#39;casos&#39;</span><span class="p">])</span> <span class="o">*</span> <span class="mi">6</span>
 
-<span class="c1"># ---------- 4) Mapa (usa scatter_map si está disponible; si no, fallback a scatter_mapbox) ----------</span>
+<span class="c1"># ---------- 4) Mapa con escala de colores mejorada ----------</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter_map</span><span class="p">(</span>
         <span class="n">map_data</span><span class="p">,</span>
         <span class="n">lat</span><span class="o">=</span><span class="s2">&quot;lat&quot;</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="s2">&quot;lon&quot;</span><span class="p">,</span>
         <span class="n">size</span><span class="o">=</span><span class="s2">&quot;size_norm&quot;</span><span class="p">,</span> <span class="n">size_max</span><span class="o">=</span><span class="mi">28</span><span class="p">,</span>
-        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;casos&quot;</span><span class="p">,</span> <span class="n">color_continuous_scale</span><span class="o">=</span><span class="s2">&quot;Viridis&quot;</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;casos&quot;</span><span class="p">,</span> 
+        <span class="n">color_continuous_scale</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;#E0F3F8&quot;</span><span class="p">,</span> <span class="s2">&quot;#91BFDB&quot;</span><span class="p">,</span> <span class="s2">&quot;#4575B4&quot;</span><span class="p">,</span> <span class="s2">&quot;#313695&quot;</span><span class="p">],</span>
         <span class="n">hover_name</span><span class="o">=</span><span class="s2">&quot;dept_clean&quot;</span><span class="p">,</span>
         <span class="n">hover_data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;casos&quot;</span><span class="p">:</span><span class="s2">&quot;:,&quot;</span><span class="p">,</span> <span class="s2">&quot;lat&quot;</span><span class="p">:</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;lon&quot;</span><span class="p">:</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;size_norm&quot;</span><span class="p">:</span><span class="kc">False</span><span class="p">},</span>
         <span class="n">zoom</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="mf">4.6</span><span class="p">,</span> <span class="n">lon</span><span class="o">=-</span><span class="mf">74.1</span><span class="p">),</span>
         <span class="n">map_style</span><span class="o">=</span><span class="s2">&quot;open-street-map&quot;</span><span class="p">,</span>
-        <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Presuntos suicidios por departamento — Total: </span><span class="si">{</span><span class="n">map_data</span><span class="p">[</span><span class="s1">&#39;casos&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> casos&quot;</span>
+        <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Presuntos suicidios por departamento — Total: </span><span class="si">{</span><span class="n">map_data</span><span class="p">[</span><span class="s1">&#39;casos&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> casos&quot;</span><span class="p">,</span>
     <span class="p">)</span>
+    
+    <span class="c1"># Mejorar la leyenda del colorbar</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+        <span class="n">coloraxis_colorbar</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Número de casos&quot;</span><span class="p">,</span>
+            <span class="n">tickformat</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">,</span>
+            <span class="nb">len</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span>
+            <span class="n">thickness</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+    
 <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
     <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter_mapbox</span><span class="p">(</span>
         <span class="n">map_data</span><span class="p">,</span>
         <span class="n">lat</span><span class="o">=</span><span class="s2">&quot;lat&quot;</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="s2">&quot;lon&quot;</span><span class="p">,</span>
         <span class="n">size</span><span class="o">=</span><span class="s2">&quot;size_norm&quot;</span><span class="p">,</span> <span class="n">size_max</span><span class="o">=</span><span class="mi">28</span><span class="p">,</span>
-        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;casos&quot;</span><span class="p">,</span> <span class="n">color_continuous_scale</span><span class="o">=</span><span class="s2">&quot;Viridis&quot;</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;casos&quot;</span><span class="p">,</span> 
+        <span class="n">color_continuous_scale</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;#E0F3F8&quot;</span><span class="p">,</span> <span class="s2">&quot;#91BFDB&quot;</span><span class="p">,</span> <span class="s2">&quot;#4575B4&quot;</span><span class="p">,</span> <span class="s2">&quot;#313695&quot;</span><span class="p">],</span>
         <span class="n">hover_name</span><span class="o">=</span><span class="s2">&quot;dept_clean&quot;</span><span class="p">,</span>
         <span class="n">hover_data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;casos&quot;</span><span class="p">:</span><span class="s2">&quot;:,&quot;</span><span class="p">,</span> <span class="s2">&quot;lat&quot;</span><span class="p">:</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;lon&quot;</span><span class="p">:</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;size_norm&quot;</span><span class="p">:</span><span class="kc">False</span><span class="p">},</span>
         <span class="n">zoom</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="mf">4.6</span><span class="p">,</span> <span class="n">lon</span><span class="o">=-</span><span class="mf">74.1</span><span class="p">),</span>
         <span class="n">mapbox_style</span><span class="o">=</span><span class="s2">&quot;open-street-map&quot;</span><span class="p">,</span>
         <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Presuntos suicidios por departamento — Total: </span><span class="si">{</span><span class="n">map_data</span><span class="p">[</span><span class="s1">&#39;casos&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> casos&quot;</span>
     <span class="p">)</span>
+    
+    <span class="c1"># Mejorar la leyenda del colorbar</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+        <span class="n">coloraxis_colorbar</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Número de casos&quot;</span><span class="p">,</span>
+            <span class="n">tickformat</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">,</span>
+            <span class="nb">len</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span>
+            <span class="n">thickness</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
 
-<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">margin</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">r</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">t</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">height</span><span class="o">=</span><span class="mi">700</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">950</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+    <span class="n">margin</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">r</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">t</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> 
+    <span class="n">height</span><span class="o">=</span><span class="mi">700</span><span class="p">,</span> 
+    <span class="n">width</span><span class="o">=</span><span class="mi">950</span><span class="p">,</span>
+    <span class="n">font</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 <span class="c1"># ---------- 5) Tablas PRO ----------</span>
@@ -2044,12 +2061,13 @@ Total de registros válidos: 23544
 <span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="n">estilo_top10</span><span class="p">)</span>
 
-<span class="c1"># Resumen numérico</span>
+<span class="c1"># Resumen numérico con interpretación</span>
 <span class="n">resumen</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
     <span class="s2">&quot;Total casos&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">tbl</span><span class="p">[</span><span class="s2">&quot;Casos&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()],</span>
     <span class="s2">&quot;N departamentos&quot;</span><span class="p">:</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">tbl</span><span class="p">)],</span>
     <span class="s2">&quot;Promedio casos/depto&quot;</span><span class="p">:</span> <span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">tbl</span><span class="p">[</span><span class="s2">&quot;Casos&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">1</span><span class="p">)],</span>
-    <span class="s2">&quot;Mediana&quot;</span><span class="p">:</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">tbl</span><span class="p">[</span><span class="s2">&quot;Casos&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">())]</span>
+    <span class="s2">&quot;Mediana&quot;</span><span class="p">:</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">tbl</span><span class="p">[</span><span class="s2">&quot;Casos&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">())],</span>
+    <span class="s2">&quot;Desviación estándar&quot;</span><span class="p">:</span> <span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">tbl</span><span class="p">[</span><span class="s2">&quot;Casos&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">(),</span> <span class="mi">1</span><span class="p">)]</span>
 <span class="p">})</span>
 <span class="n">display</span><span class="p">(</span><span class="n">resumen</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:,}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">hide</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;index&quot;</span><span class="p">))</span>
 </pre></div>
@@ -2872,7 +2890,7 @@ if (outputEl) {{
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="analisis-bivariado">
-<h1>Análisis Bivariado<a class="headerlink" href="#analisis-bivariado" title="Link to this heading">#</a></h1>
+<h1>2. Análisis Bivariado<a class="headerlink" href="#analisis-bivariado" title="Link to this heading">#</a></h1>
 <ul class="simple">
 <li><ol class="arabic simple">
 <li><p>Por Año del hecho (tendencia anual)</p></li>
@@ -2885,39 +2903,55 @@ if (outputEl) {{
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="c1"># Configuración del gráfico</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="c1"># Configuración del estilo</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 
-<span class="c1"># Crear el gráfico de conteo con un solo tono de azul</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span>
+<span class="c1"># Crear el gráfico de tendencia</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span>
     <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
     <span class="n">x</span><span class="o">=</span><span class="s1">&#39;a_o_del_hecho&#39;</span><span class="p">,</span>
-    <span class="n">order</span><span class="o">=</span><span class="nb">sorted</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;a_o_del_hecho&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">unique</span><span class="p">()),</span>
-    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;royalblue&#39;</span>  <span class="c1"># Usar un tono de azul</span>
+    <span class="n">y</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># Contar cada fila</span>
+    <span class="n">estimator</span><span class="o">=</span><span class="s1">&#39;count&#39;</span><span class="p">,</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;royalblue&#39;</span><span class="p">,</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Número de casos&#39;</span>
 <span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Casos por Año&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Año&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Cantidad de Casos&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="c1"># Añadir línea de tendencia</span>
+<span class="n">years</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;a_o_del_hecho&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;a_o_del_hecho&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">counts</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">p</span><span class="p">(</span><span class="n">years</span><span class="p">),</span> <span class="s2">&quot;r--&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Tendencia lineal&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Evolución Anual de Casos de Suicidio (2015-2023)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Año&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Número de Casos&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
 
 <span class="c1"># Obtener los valores de frecuencia</span>
-<span class="n">counts</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;a_o_del_hecho&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+<span class="n">total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 
-<span class="c1"># Obtener el total de casos para calcular los porcentajes</span>
-<span class="n">total</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="c1"># Mostrar las frecuencias absolutas y porcentajes en cada punto</span>
+<span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;a_o_del_hecho&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">year</span><span class="p">])</span>
+    <span class="n">percentage</span> <span class="o">=</span> <span class="n">count</span> <span class="o">/</span> <span class="n">total</span> <span class="o">*</span> <span class="mi">100</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">50</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="se">\n</span><span class="s1">(</span><span class="si">{</span><span class="n">percentage</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">%)&#39;</span><span class="p">,</span> 
+             <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
 
-<span class="c1"># Mostrar las frecuencias absolutas y porcentajes en cada barra</span>
-<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">patches</span><span class="p">:</span>
-    <span class="n">height</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
-        <span class="n">p</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">p</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">,</span>
-        <span class="n">height</span> <span class="o">+</span> <span class="mf">0.01</span> <span class="o">*</span> <span class="n">total</span><span class="p">,</span>  <span class="c1"># Ajustar la posición vertical del texto</span>
-        <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">height</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s1">(</span><span class="si">{</span><span class="n">height</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">total</span><span class="si">:</span><span class="s1">.1%</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span>  <span class="c1"># Frecuencia absoluta y porcentaje</span>
-        <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
-        <span class="n">va</span><span class="o">=</span><span class="s2">&quot;bottom&quot;</span>
-    <span class="p">)</span>
+<span class="c1"># Añadir anotación sobre la caída en 2020</span>
+<span class="n">min_2020</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;a_o_del_hecho&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2020</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;Caída en 2020</span><span class="se">\n</span><span class="s1">posiblemente debido</span><span class="se">\n</span><span class="s1">a la pandemia COVID-19&#39;</span><span class="p">,</span>
+             <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="n">min_2020</span><span class="p">),</span>
+             <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mf">2020.3</span><span class="p">,</span> <span class="n">min_2020</span> <span class="o">+</span> <span class="mi">500</span><span class="p">),</span>
+             <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.05</span><span class="p">),</span>
+             <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s2">&quot;round,pad=0.3&quot;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s2">&quot;yellow&quot;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">))</span>
 
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -2926,7 +2960,9 @@ if (outputEl) {{
 <img alt="_images/8d4b5b9fac4bc9e5ab45d82c56d29acace1912e394bf02f8a73d3549e88f0012.png" src="_images/8d4b5b9fac4bc9e5ab45d82c56d29acace1912e394bf02f8a73d3549e88f0012.png" />
 </div>
 </div>
-<p>El análisis de la tendencia anual de los casos de suicidio en Colombia entre 2015 y 2023 revela un patrón dinámico con fluctuaciones significativas a lo largo del periodo.</p>
+<ul class="simple">
+<li><p>El análisis de la tendencia anual de los casos de suicidio en Colombia entre 2015 y 2023 revela un patrón dinámico con fluctuaciones significativas a lo largo del periodo.</p></li>
+</ul>
 <ul class="simple">
 <li><ol class="arabic simple" start="2">
 <li><p>Por Departamento (Top 10)</p></li>
@@ -2993,44 +3029,55 @@ if (outputEl) {{
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
 
-<span class="c1"># Configuración del gráfico</span>
+<span class="c1"># --- ORDENAR GRUPOS DE EDAD DE MENOR A MAYOR ---</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">edad_key</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Extrae el número inicial del rango de edad para ordenar correctamente.&quot;&quot;&quot;</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\d+&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">())</span> <span class="k">if</span> <span class="n">m</span> <span class="k">else</span> <span class="mi">999</span>
+
+<span class="n">order</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;grupo_de_edad_de_la_victima&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">edad_key</span><span class="p">)</span>
+
+<span class="c1"># --- CONFIGURACIÓN DEL GRÁFICO ---</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 
-<span class="c1"># Orden descendente de los grupos</span>
-<span class="n">order</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;grupo_de_edad_de_la_victima&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">index</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;grupo_de_edad_de_la_victima&#39;</span><span class="p">,</span>
+    <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;royalblue&#39;</span>
+<span class="p">)</span>
 
-<span class="c1"># Crear el gráfico de barras horizontales</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;grupo_de_edad_de_la_victima&#39;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;royalblue&#39;</span><span class="p">)</span>
-
-<span class="c1"># Títulos</span>
+<span class="c1"># --- TÍTULOS ---</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Casos por Grupo de Edad de la Víctima&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Cantidad de Casos&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Grupo de Edad&#39;</span><span class="p">)</span>
 
-<span class="c1"># Calcular total para porcentajes</span>
+<span class="c1"># --- ETIQUETAS DE FRECUENCIA Y PORCENTAJE ---</span>
 <span class="n">total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 
-<span class="c1"># Agregar etiquetas con frecuencia absoluta y porcentaje</span>
 <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">patches</span><span class="p">:</span>
     <span class="n">width</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">width</span> <span class="o">+</span> <span class="n">total</span> <span class="o">*</span> <span class="mf">0.002</span><span class="p">,</span>  <span class="c1"># Posición horizontal (un poco después de la barra)</span>
-             <span class="n">p</span><span class="o">.</span><span class="n">get_y</span><span class="p">()</span> <span class="o">+</span> <span class="n">p</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
-             <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">width</span><span class="p">)</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">width</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">total</span><span class="si">:</span><span class="s1">.1%</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span>
-             <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+        <span class="n">width</span> <span class="o">+</span> <span class="n">total</span> <span class="o">*</span> <span class="mf">0.002</span><span class="p">,</span>                   <span class="c1"># posición horizontal</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">get_y</span><span class="p">()</span> <span class="o">+</span> <span class="n">p</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>          <span class="c1"># posición vertical centrada</span>
+        <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">width</span><span class="p">)</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">width</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">total</span><span class="si">:</span><span class="s1">.1%</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span>   <span class="c1"># texto</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span>
+    <span class="p">)</span>
 
-<span class="c1"># Ajustar diseño</span>
+<span class="c1"># --- AJUSTE FINAL ---</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c74dde5b2e1542fec7895e5549d46259d1fae0eda3184a68bed784b03921744a.png" src="_images/c74dde5b2e1542fec7895e5549d46259d1fae0eda3184a68bed784b03921744a.png" />
+<img alt="_images/3656bd0da8b39209bab6e63b6873277417aadfc6af0e28809a481c3cc8ada065.png" src="_images/3656bd0da8b39209bab6e63b6873277417aadfc6af0e28809a481c3cc8ada065.png" />
 </div>
 </div>
 <ul class="simple">
-<li><p>El grupo de 20 a 24 años es el más afectado, representando el 14,5% del total. De hecho, el rango de edad entre 20 y 34 años acumula más de un tercio (35,3%) de todos los casos . También se observa una incidencia notable en adolescentes (15-19 años). A partir de la adultez joven, la frecuencia de los hechos tiende a disminuir progresivamente a medida que aumenta la edad.</p></li>
+<li><p>La gráfica concluye que la mayor cantidad de casos se concentra en la población adulta joven, con el grupo de 20 a 24 años siendo el más afectado en términos absolutos, seguido por los grupos de 25 a 29 años y 30 a 34 años. A partir de los 35 años, la cantidad de casos disminuye progresivamente con la edad, aunque la afectación sigue siendo notoria en todos los grupos adultos.</p></li>
 </ul>
 <ul class="simple">
 <li><ol class="arabic simple" start="4">
@@ -3042,60 +3089,71 @@ if (outputEl) {{
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
 
-<span class="c1"># Configuración del gráfico</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="c1"># --- ORDENAR GRUPOS DE EDAD CORRECTAMENTE ---</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">edad_key</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Extrae el número inicial del rango de edad para ordenar correctamente.&quot;&quot;&quot;</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\d+&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">())</span> <span class="k">if</span> <span class="n">m</span> <span class="k">else</span> <span class="mi">999</span>
 
-<span class="c1"># Crear el gráfico de conteo con tonos de azul para cada sexo</span>
+<span class="c1"># Crear orden basado en el número inicial del grupo</span>
+<span class="n">order</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;grupo_de_edad_de_la_victima&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">edad_key</span><span class="p">)</span>
+
+<span class="c1"># --- CONFIGURACIÓN DEL GRÁFICO ---</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
 <span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span>
     <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
     <span class="n">y</span><span class="o">=</span><span class="s1">&#39;grupo_de_edad_de_la_victima&#39;</span><span class="p">,</span>
     <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;sexo_de_la_victima&#39;</span><span class="p">,</span>
     <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span>
-    <span class="n">palette</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#1f77b4&#39;</span><span class="p">,</span> <span class="s1">&#39;#9edae5&#39;</span><span class="p">]</span>  <span class="c1"># Tonos de azul para cada sexo</span>
+    <span class="n">palette</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#1f77b4&#39;</span><span class="p">,</span> <span class="s1">&#39;#9edae5&#39;</span><span class="p">]</span>
 <span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Casos por Grupo de Edad y Sexo&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Cantidad de Casos&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Grupo de Edad&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Sexo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Casos por Grupo de Edad y Sexo&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Cantidad de Casos&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Grupo de Edad&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 
-<span class="c1"># Obtener los valores de frecuencia para cada grupo de edad y sexo</span>
-<span class="n">counts</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;grupo_de_edad_de_la_victima&#39;</span><span class="p">,</span> <span class="s1">&#39;sexo_de_la_victima&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+<span class="c1"># Leyenda fuera del gráfico</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Sexo&#39;</span><span class="p">,</span>
+    <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span>
+    <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.02</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span>
+<span class="p">)</span>
 
-<span class="c1"># Obtener el total de casos para calcular los porcentajes</span>
-<span class="n">total</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="c1"># --- ETIQUETAS DE CANTIDAD Y PORCENTAJE ---</span>
+<span class="n">total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 
-<span class="c1"># Mostrar las frecuencias absolutas y porcentajes en cada barra</span>
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">edad</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">index</span><span class="p">):</span>
-    <span class="c1"># Posición inicial para el texto</span>
-    <span class="n">x_pos</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">container</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">containers</span><span class="p">:</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="n">container</span><span class="p">:</span>
+        <span class="n">width</span> <span class="o">=</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">width</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">percentage</span> <span class="o">=</span> <span class="p">(</span><span class="n">width</span> <span class="o">/</span> <span class="n">total</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+            <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">width</span><span class="p">)</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">percentage</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">%)&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">bar_label</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
 
-    <span class="k">for</span> <span class="n">sexo</span> <span class="ow">in</span> <span class="n">counts</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
-        <span class="n">count</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">edad</span><span class="p">,</span> <span class="n">sexo</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># Solo mostrar si hay casos</span>
-            <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
-                <span class="n">x_pos</span> <span class="o">+</span> <span class="n">count</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>  <span class="c1"># Posición horizontal centrada en la barra</span>
-                <span class="n">i</span><span class="p">,</span>  <span class="c1"># Posición vertical (al lado de la barra)</span>
-                <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">count</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">total</span><span class="si">:</span><span class="s1">.1%</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span>  <span class="c1"># Frecuencia absoluta y porcentaje</span>
-                <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
-                <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
-                <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span>
-            <span class="p">)</span>
-        <span class="n">x_pos</span> <span class="o">+=</span> <span class="n">count</span>  <span class="c1"># Actualizar la posición horizontal para la siguiente barra</span>
+<span class="c1"># Escala del eje X: llevarla por encima del máximo total por grupo</span>
+<span class="n">max_total</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;grupo_de_edad_de_la_victima&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">max_total</span> <span class="o">*</span> <span class="mi">1</span><span class="p">))</span>  <span class="c1"># 15% de margen</span>
 
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/dd0576df55a0e48f0a44e1f6eb75298b7c982f3994ae7afb245b962dee3e1ebf.png" src="_images/dd0576df55a0e48f0a44e1f6eb75298b7c982f3994ae7afb245b962dee3e1ebf.png" />
+<img alt="_images/ea9c7c8a1d55be2561e00efa06e8ec6d3a2427553bfcbe557473963d99c48f28.png" src="_images/ea9c7c8a1d55be2561e00efa06e8ec6d3a2427553bfcbe557473963d99c48f28.png" />
 </div>
 </div>
 <ul class="simple">
-<li><p>En mujeres (barras oscuras), la incidencia de casos se concentra de forma aguda en la adolescencia y la adultez joven, con el pico más alto entre los 15 y 24 años .</p></li>
-<li><p>En hombres (barras claras), aunque el riesgo está presente en todas las edades, la frecuencia máxima se desplaza significativamente hacia la mediana edad, alcanzando su pico en el grupo de 40 a 44 años .</p></li>
+<li><p>La gráfica concluye que la mayor cantidad de casos se concentra en la población masculina adulta joven, siendo el grupo de 20 a 24 años el más afectado en términos absolutos. La distribución revela una mayor prevalencia de casos en hombres en todas las cohortes de edad, lo que subraya una disparidad de género consistente en la muestra analizada.</p></li>
 </ul>
 <ul class="simple">
 <li><ol class="arabic simple" start="5">
@@ -3209,23 +3267,10 @@ Desv. Est. = 18.5
 </div>
 </div>
 </div>
-<p>El Boxplot segmentado por sexo permite comparar la distribución de edades entre hombres y mujeres en los casos de suicidio en Colombia entre 2015 y 2023. A continuación, se describen las características principales de cada grupo:</p>
-<ol class="arabic simple">
-<li><p><em>Hombres</em> (n=18,928 casos)</p>
 <ul class="simple">
-<li><p>Edad Mediana (med=35.0): El valor central es de 35 años. Esto significa que el 50% de los hombres tenían 35 años o menos, y el otro 50% tenían 35 años o más.</p></li>
-<li><p>Concentración de Casos (La Caja): El 50% central de los casos se concentra en un rango de edad que va aproximadamente desde los 24 hasta los 50 años. Esta es la franja de edad más común para este suceso en hombres.</p></li>
-<li><p>Rango Total (Los Bigotes): Las edades se extienden en un rango muy amplio, desde la adolescencia temprana (alrededor de los 10 años) hasta la vejez (cerca de los 80 años).</p></li>
+<li><p>El Boxplot segmentado por sexo permite comparar la distribución de edades entre hombres y mujeres en los casos de suicidio en Colombia entre 2015 y 2023.</p></li>
 </ul>
-</li>
-<li><p><em>Mujeres</em> (n=4,616 casos)</p>
-<ul class="simple">
-<li><p>Edad Mediana (med=25.0): La edad mediana para las mujeres es de 25 años, es decir, 10 años más joven que la de los hombres.</p></li>
-<li><p>Concentración de Casos (La Caja): El 50% central de los casos se agrupa en un rango de edad más joven y más compacto que en los hombres, aproximadamente entre los 19 y los 40 años.</p></li>
-<li><p>Rango Total (Los Bigotes): Al igual que en los hombres, el rango es amplio, pero parece tener un límite superior ligeramente menor, llegando hasta aproximadamente los 70 años.</p></li>
-</ul>
-</li>
-</ol>
+<p>El análisis revela una clara diferencia en la edad de afectación según el sexo. La edad mediana de los casos masculinos es notablemente superior (35 años), y su 50% central se extiende hasta los 50 años. Por el contrario, la edad mediana en mujeres es diez años más joven (25 años), y su 50% central se concentra en un rango más compacto (aproximadamente 19 a 40 años).</p>
 <ul class="simple">
 <li><ol class="arabic simple" start="6">
 <li><p>Tabla: Razones más comunes del suicidio</p></li>
@@ -3299,7 +3344,7 @@ Name: count, dtype: int64
       </div>
     </a>
     <a class="right-next"
-       href="Modelo.html"
+       href="Clasificador.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
@@ -3324,14 +3369,14 @@ Name: count, dtype: int64
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Análisis Exploratorio de Datos</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-univariado">Análisis Univariado</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-univariado">1. Análisis Univariado</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#desarrollo-del-analisis-exploratorio-de-datos">Desarrollo del Análisis Exploratorio de Datos</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mapeo-estandarizacion-de-las-variables-y-dimensiones-del-dataframe">Mapeo, Estandarización de las Variables y dimensiones del DataFrame</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-bivariado">Análisis Bivariado</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-bivariado">2. Análisis Bivariado</a></li>
 </ul>
 
   </nav></div>
